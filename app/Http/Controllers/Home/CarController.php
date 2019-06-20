@@ -20,14 +20,7 @@ class CarController extends Controller
     	$id = session('home_userinfo')->id;
     	$user = Users::find($id);
     	$car = $user->usercar;
-    	// $goods = [];
-    	// foreach ($car as $key => $value){
-    	// 	$goods[] = $car[$key]->cargood;
-    	// }
-    	// dd($goods);
-    	// dump($user);
-    	// dd($car);	
-    	// dd($car->cargood);
+    	
     	return view('home.car.index',['car'=>$car]);
     }
 
@@ -43,5 +36,23 @@ class CarController extends Controller
 		$res = $car->delete();
 		// dd($res);
 		echo '删除成功';
+	}
+
+	public function buyorder(Request $request)
+	{
+		$num = $request->input('num');
+
+		$id = session('home_userinfo')->id;
+    	$user = Users::find($id);
+    	$car = $user->usercar;
+    	foreach ($car as $key => $value) {
+    		$cid = $car[$key]->id ;
+    		$buycar = Car::find($cid);
+    		$buycar->num = $num[$key];
+    		$buycar->save();
+    	}
+    	
+    	return redirect('/home/personal');
+
 	}
 }

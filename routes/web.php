@@ -34,6 +34,11 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('home/car/index','Home\CarController@index');
 		//购物车删除
 		Route::get('home/car/delete','Home\CarController@delete');
+		//购物车 确认结算
+		Route::get('home/car/buyorder','Home\CarController@buyorder');
+		//确认订单
+		Route::get('home/order/index',)
+
 		                                                                             
 });	
 

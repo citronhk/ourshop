@@ -37,6 +37,7 @@
     
     <!--Begin 第一步：查看购物车 Begin -->
     <div class="content mar_20">
+      <form name="demo" action="/home/car/buyorder" method="get">
     	<table border="0" class="car_tab" style="width:970px; margin-left: 0px; margin-bottom:50px;" cellspacing="0" cellpadding="0">
           <tr>
             <td class="car_th" width="230">商品名称</td>
@@ -59,7 +60,7 @@
             	<div class="c_num">
             		<!-- jianUpdate1(jq(this)); -->
                     <input type="button" value="" onclick="jianUpdate({{ $v->cargood->price }},{{$v->id}},{{count($car)}})" class="car_btn_1" />
-                	<input type="text" id="num{{$v->id}}" value="{{ $v->num }}" name="num" class="car_ipt" />
+                	<input type="text" id="num{{$v->id}}" value="{{ $v->num }}" name="num[{{$k}}]" class="car_ipt" />
 
                     <input type="button" value="" onclick="addUpdate({{ $v->cargood->price }},{{$v->id}},{{count($car)}})" class="car_btn_2" />
                 </div>
@@ -110,7 +111,7 @@
          
           <tr height="70">
           	<td colspan="6" style="font-family:'Microsoft YaHei'; border-bottom:0;">
-            	<label class="r_rad"><input type="checkbox" name="clear" checked="checked" /></label><label class="r_txt">清空购物车</label>
+            	<label class="r_rad"><input type="checkbox"  checked="checked" /></label><label class="r_txt">清空购物车</label>
                 <span class="fr">商品总价：<b id="abc"  onclick="totalPrice({{count($car)}})" style="font-size:22px; color:#ff4e00;">￥2899</b></span>
             </td>
           </tr>
@@ -127,11 +128,11 @@
           </script>
           <tr valign="top" height="150">
           	<td colspan="6" align="right">
-            	<a href="#"><img src="/homes/images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#"><img src="/homes/images/buy2.gif" /></a>
+            	<a href="#"><img src="/homes/images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#"><img src="/homes/images/buy2.gif" onclick="demo.submit()" /></a>
             </td>
           </tr>
         </table>
-        
+        </form>
     </div>
 	<!--End 第一步：查看购物车 End--> 
     
