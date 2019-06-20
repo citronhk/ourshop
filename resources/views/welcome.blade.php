@@ -79,7 +79,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
+<<<<<<< HEAD
                 ASHOPMALL
+=======
+                    LAMP21533333333333
+>>>>>>> origin/dapeng
                 </div>
 
                 <div class="links">

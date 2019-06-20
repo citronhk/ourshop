@@ -15,7 +15,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
         View::share('cates_data', IndexController::getPidCatesData());
     }
 
