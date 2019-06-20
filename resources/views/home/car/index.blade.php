@@ -1,35 +1,15 @@
 @extends('home.public.share')
 
 @section('main')
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 	<link type="text/css" rel="stylesheet" href="/homes/css/style.css" />
-    <!--[if IE 6]>
-    <script src="/homes/js/iepng.js" type="text/javascript"></script>
-        <script type="text/javascript">
-           EvPNG.fix('div, ul, img, li, input, a'); 
-        </script>
-    <![endif]-->
-    
-    <script type="text/javascript" src="/homes/js/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="/homes/js/num.js">
-    	var jq = jQuery.noConflict();
-    </script>     
     
     
+  <script type="text/javascript" src="/homes/js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="/homes/js/num.js">
+  	var jq = jQuery.noConflict();
+  </script>     
     
-<title>尤洪</title>
-</head>
-<body>  
-<!--Begin Header Begin-->
-
-
-<!--End Header End--> 
-<!--Begin Menu Begin-->
-
-<!--End Menu End--> 
 <div class="i_bg">  
     <div class="content mar_20">
     	<img src="/homes/images/img1.jpg" style="width: 970px" />        
@@ -111,7 +91,7 @@
          
           <tr height="70">
           	<td colspan="6" style="font-family:'Microsoft YaHei'; border-bottom:0;">
-            	<label class="r_rad"><input type="checkbox"  checked="checked" /></label><label class="r_txt">清空购物车</label>
+            	
                 <span class="fr">商品总价：<b id="abc"  onclick="totalPrice({{count($car)}})" style="font-size:22px; color:#ff4e00;">￥2899</b></span>
             </td>
           </tr>
@@ -140,8 +120,7 @@
 
 </div>
 
-</body>
 
-</html>
+
 
 @endsection

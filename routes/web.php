@@ -37,7 +37,7 @@ Route::group(['middleware'=>'home_login'],function(){
 		//购物车 确认结算
 		Route::get('home/car/buyorder','Home\CarController@buyorder');
 		//确认订单
-		Route::get('home/order/index',)
+		Route::get('home/order/index','Home\OrderController@index');
 
 		                                                                             
 });	

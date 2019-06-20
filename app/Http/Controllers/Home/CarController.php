@@ -52,7 +52,7 @@ class CarController extends Controller
     		$buycar->save();
     	}
     	
-    	return redirect('/home/personal');
+    	return redirect('/home/order/index');
 
 	}
 }
