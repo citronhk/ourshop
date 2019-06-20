@@ -20,5 +20,11 @@ class Users extends Model
     {
     	return $this->hasOne('App\Models\UsersInfo','uid');
     }
+
+     //配置一对多 模型关系
+    public function usercar()
+    {
+    	return $this->hasMany('App\Models\Car','uid');
+    }
     
 }

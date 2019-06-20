@@ -68,10 +68,7 @@
 									</div>
 								<script type="text/javascript">
 										function del(id,obj){
-											// console.log(id);
-											// $.post('/admin/cates/'+id,{'_method':'DELETE','_token':'{{ csrf_token() }}'},(res)=>{
-											// 	console.log(res);
-											// },'json')
+											
 											$.post('/admin/cates/'+id,{'_method':'DELETE','_token':'{{ csrf_token() }}'},(res)=>{
 												if(res.msg == 'ok'){
 													$(obj).parent().parent().remove();

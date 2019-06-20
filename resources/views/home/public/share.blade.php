@@ -137,7 +137,11 @@
             </span>
             <span class="fl">|&nbsp;关注我们：</span>
             <span class="s_sh"><a href="#" class="sh1">新浪</a><a href="#" class="sh2">微信</a></span>
+            @if(session('home_userinfo'))
+            <span class="fr">|&nbsp;<a href="/home/loginout">退出登录&nbsp;<img src="/homes/images/s_tel.png" align="absmiddle" /></a></span>
+            @else
             <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="/homes/images/s_tel.png" align="absmiddle" /></a></span>
+            @endif
         </span>
     </div>
 </div>
@@ -152,33 +156,20 @@
             <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
         </div>
         <div class="i_car">
-            <div class="car_t">购物车 [ <span>3</span> ]</div>
+            <div class="car_t"><a href="/home/car/index">购物车</a> [ <span>3</span> ]</div>
+            @if(empty(session('home_userinfo')))
             <div class="car_bg">
                 <!--Begin 购物车未登录 Begin-->
                 <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
                 <!--End 购物车未登录 End-->
-                <!--Begin 购物车已登录 Begin-->
-                <ul class="cars">
-                    <li>
-                        <div class="img"><a href="#"><img src="/homes/images/car1.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="/homes/images/car2.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="/homes/images/car2.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                </ul>
-                <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-                <div class="price_a"><a href="#">去购物车结算</a></div>
-                <!--End 购物车已登录 End-->
             </div>
+            @else
+            <div class="car_bg">
+                <!--Begin 购物车未登录 Begin-->
+                <div class="un_login">你好,<a href="Login.html" style="color:#ff4e00;">{{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}</a></div>
+                <!--End 购物车未登录 End-->
+            </div>
+            @endif
         </div>
     </div>
 </div>

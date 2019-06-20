@@ -79,4 +79,17 @@ class Logincontroller extends Controller
 		// dd(session('home_userinfo'));
 		return redirect('/home/personal')->with('success','登录成功');
 	}
+
+	/**
+	 * 执行退出登录操作
+	 *
+	 * @return 邮箱登录用户session
+	 */
+	public function loginout()
+	{
+		session(['home_login'=>false]);
+		session(['home_userinfo'=>false]);
+
+		return back();
+	}
 }

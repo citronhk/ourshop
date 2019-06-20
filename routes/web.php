@@ -30,6 +30,10 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('home/personal/edit','Home\PersonalController@edit');
 		//个人信息修改执行
 		Route::post('home/personal/update','Home\PersonalController@update');
+		//购物车主页面
+		Route::get('home/car/index','Home\CarController@index');
+		//购物车删除
+		Route::get('home/car/delete','Home\CarController@delete');
 		                                                                             
 });	
 
@@ -51,6 +55,8 @@ Route::get('home/login','Home\LoginController@login');
 Route::post('home/dologin','Home\LoginController@dologin');
 //执行邮箱登录操作
 Route::post('home/sign','Home\LoginController@sign');
+//执行邮箱登录操作
+Route::get('home/loginout','Home\LoginController@loginout');
 
 
 
