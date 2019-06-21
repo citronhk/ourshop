@@ -1,4 +1,5 @@
 @extends('admins.public.index')
+<<<<<<< HEAD
 @section('main')
 
 <!-- BASIC TABLE -->
@@ -48,5 +49,11 @@
 								</div>
 							</div>
 							<!-- END BASIC TABLE -->
+=======
+
+
+@section('main')
+我爱我家
+>>>>>>> origin/zhihao
 @endsection
 

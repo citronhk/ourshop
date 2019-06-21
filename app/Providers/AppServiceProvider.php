@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Home\IndexController;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
