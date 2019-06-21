@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Detail;
 use App\Models\Goods;
 
-class DetailController extends Controller
+class DetailController extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class DetailController extends Controller
     public function index(Request $request)
     {
       
-            $detail_datas = Detail::all();
+        $detail_datas = Detail::all();
         
         return view('admins.detail.index',['detail_datas'=>$detail_datas]);
         

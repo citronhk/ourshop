@@ -23,7 +23,7 @@ Route::get('/',function() {
 	return view('welcome');
 });
 //后台-首页
-Route::get('index', 'Admin\IndexController@index');
+Route::get('admin/index', 'Admin\IndexController@index');
 
 
 

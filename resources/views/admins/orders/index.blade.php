@@ -11,24 +11,7 @@
 	       </ul>
 	  </div>
 @endif
-@if(session('success'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('success') }}</strong> 
-    </div>
-  </div>
-@endif
 
-
-@if(session('error'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('error') }}</strong> 
-    </div>
-  </div>
-@endif
 <!-- BASIC TABLE -->
  <h3 class="title1">&nbsp;&nbsp;&nbsp;&nbsp;订单管理</h3>
  <div class="panel" >
@@ -46,7 +29,7 @@
 						<th>订单号</th>
 						<th>订单商品</th>
 						<th>订单时间</th>
-						<th>订单总价</th>
+						<th>订单单价</th>
 						<th>订单数量</th>
 						<th>收货地址</th>
 						<th>快递状态</th>

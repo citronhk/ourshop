@@ -13,10 +13,10 @@
 <h3 class="title1">商品添加</h3>
     <div class="panel">
 		<div class="panel-body">
-		<form action="/admin/phtoto?id={{$data->id}}&gid={{$data->phtoto_goods->id}}" method="post" enctype="multipart/form-data">
+		<form action="/admin/phtoto?gid={{$goods_data->id}}" method="post" enctype="multipart/form-data">
 			{{ csrf_field() }} 
 
-		    商品名称：<input type="text" class="form-control" name="gname" value="{{$data->phtoto_goods->gname}}" disabled>
+		    商品名称：<input type="text" class="form-control" name="gname" value="{{$goods_data->gname}}" disabled>
 		    <br>
             商品图片：<input type="file" name="profile">
             <br>      

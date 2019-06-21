@@ -2,6 +2,11 @@
 
 
 @section('main')
-我爱我家
+
+							<!-- BASIC TABLE -->
+							
+								
+							<!-- END BASIC TABLE -->
+
 @endsection
 
