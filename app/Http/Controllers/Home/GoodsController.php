@@ -101,29 +101,84 @@ class GoodsController extends Controller
 		}
 	}
 
-
-	//记录每点击一个商品
-	public function addRecord($uid,$gid)
+	/**
+	 * 记录浏览记录 
+	 *	
+	 *	@param $request 请求参数
+	 *  @return 返回json数据
+	 */
+	public function addRecord(Request $request)
 	{
-		$record_list = [];
-		$data = $this->getRecordsByUid($uid);
+		//接收用户id
+		$uid = $request->input('uid',0);
+		//接收商品id
+		$gid = $request->input('id',0);
 
-		foreach ($data as $key => $value) {
-			$record_list[] = $value->gid;
+		//搜索该用户的浏览记录
+		$record_list = $this->getRecordsByUid($uid);
+
+		//判断当前用户是否已经浏览过该商品
+		if(in_array($gid, $record_list)){
+			//if true ,exit;
+			exit;
 		}
-		$res = DB::table('good_records')->insert([]);
+
+		//如果不存在数组中
+		//则向数据库压入数据
+		//返回记录数据
+		$res = DB::table('goods_records')->insert(['uid'=>$uid,'gid'=>$gid]);
+		if($res){
+			echo json_encode(['msg'=>'success']);
+		}else{
+			echo json_encode(['msg'=>'error']]);
+		}
 	}
 
+	/**
+	 *	获取当前用户的浏览商品记录 
+	 *	
+	 * @param $uid 当前用户id
+	 * @return 返回记录数组
+	 */
 	public function getRecordsByUid($uid)
 	{
-		//orderby(time,desc)
-		return DB::table('goods_records')->where('uid',$uid)->get();
+		//
+		$data =  DB::table('goods_records')->where('uid',$uid)->get();
+
+		//定义一个数组,接收商品记录id
+		$record_list = [];
+
+		foreach ($data as $key => $value) {
+			//压入数据
+			$record_list[] = $value->gid;
+		}
+
+		return $record_list;
 	}
 
-	public function getRecordsByUidTake()
+	/**
+	 *	记录商品点击量 
+	 *	@param $pid商品id
+	 *  @return 
+	 */
+	public function addGoodsBrows($pid)
 	{
-		
+
+		//通过商品id,获取该商品的浏览量
+		$num = DB::table('goods')->select('clickNum')->where('id',$pid)->first();
+		$num = $num + 1;
+
+		//浏览量+1
+		DB::table('goods')->where('id',$gid)->updata(['clickNum'=>$num]);
+
 	}
+
+
+
+
+
+
+
 
 
 }
