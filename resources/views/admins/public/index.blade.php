@@ -160,6 +160,62 @@
 							</ul>
 						</div>
 					</li>
+
+
+                    <!-- 商品管理 -->
+                        <li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/goods" class="">商品列表</a></li>
+									<li><a href="/admin/goods/create" class="">商品添加</a></li>
+									<li><a href="/admin/detail" class="">商品详情</a></li>
+								  </ul>
+							</div>
+						</li>
+
+                        <!-- 订单管理 -->
+						<li>
+							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="orders" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/orders" class="">订单列表</a></li>
+									
+								  </ul>
+							</div>
+						</li>
+
+						<!-- 评价管理 -->
+						<li>
+							<a href="#comment" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>评价管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="comment" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/comment" class="">评价列表</a></li>
+								  </ul>
+							</div>
+						</li>
+
+						<!-- 秒杀管理 -->
+						<li>
+							<a href="#seckills" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>秒杀商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="seckills" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/seckills" class="">秒杀商品列表</a></li>
+								  </ul>
+							</div>
+						</li>
+
+						<!-- 活动管理 -->
+						<li>
+							<a href="#activities" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="activities" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/activities" class="">活动商品列表</a></li>
+								  </ul>
+							</div>
+						</li>
+
+
 					</ul>
 				</nav>
 			</div>

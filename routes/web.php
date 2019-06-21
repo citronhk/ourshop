@@ -163,34 +163,8 @@ Route::get('/',function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
+//前台 商品信息模板 路由
+Route::get('home/activities/index','Home\ActivitiesController@index');
 
 
 
@@ -220,22 +194,61 @@ Route::group(['middleware'=>['login']],function(){
 	Route::get('admin/users/changeStatus/{id}', 'Admin\UsersController@changeStatus');
 	//后台-用户管理
 	Route::resource('admin/users', 'Admin\UsersController');
+
 	//修改轮播图状态
 	Route::get('admin/banners/changeStatus/{id}', 'Admin\BannersController@changeStatus');
 	//后台-轮播图管理
 	Route::resource('admin/banners', 'Admin\BannersController');
+
 	//后台-管理员管理
 	Route::resource('admin/admins', 'Admin\AdminsController');
+
 	//后台-友情链接管理
 	Route::resource('admin/links', 'Admin\LinksController');
+
 	//修改广告状态
 	Route::get('admin/ads/changeStatus/{id}', 'Admin\AdsController@changeStatus');
 	//后台-广告管理
 	Route::resource('admin/ads', 'Admin\AdsController');
+
     //后台-角色管理
 	Route::resource('admin/roles', 'Admin\RolesController');
+	
     //后台-节点权限管理
 	Route::resource('admin/nodes', 'Admin\NodesController');
+
+
+
+
+
+
+//志豪路由
+ 
+	//商品路由 
+Route::get('admin/goods/status/{id}', 'Admin\GoodsController@status');
+Route::resource('admin/goods', 'Admin\GoodsController');
+//商品详情
+Route::get('admin/detail/del/{id}','Admin\DetailController@del');
+Route::resource('admin/detail', 'Admin\DetailController');
+//商品图集
+Route::get('admin/phtoto/del/{id}','Admin\PhtotoController@del');
+Route::resource('admin/phtoto', 'Admin\PhtotoController');
+
+//订单路由
+Route::resource('admin/orders', 'Admin\OrdersController');
+
+//评价管理路由
+Route::get('admin/comment/status','Admin\CommentController@status');
+Route::resource('admin/comment', 'Admin\CommentController');
+
+//秒杀商品路由
+Route::get('admin/seckills/status/{id}','Admin\SeckillsController@status');
+Route::resource('admin/seckills','Admin\SeckillsController');
+
+//活动商品路由
+Route::get('admin/activities/status/{id}','Admin\ActivitiesController@status');
+Route::resource('admin/activities','Admin\ActivitiesController');
+
 });
 
 
