@@ -161,6 +161,9 @@ class GoodsController extends Controller
 	 *	@param $pid商品id
 	 *  @return 
 	 */
+
+
+	
 	public function addGoodsBrows($pid)
 	{
 
