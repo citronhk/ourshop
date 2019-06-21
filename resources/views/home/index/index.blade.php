@@ -164,10 +164,10 @@
                                     <div class="box">
                                         <div class="h_icon"><img src="home/images/hot.png" width="50" height="50" /></div>
                                         <div class="imgbg">
-                                            <a href="/home/detail?id={{$v->id}}"><img src="/uploads/{{$v->pic}}" width="160" height="136" /></a>
+                                            <a href="/home/detail?cid={{$v->cid}}&id={{$v->id}}"><img src="/uploads/{{$v->pic}}" width="160" height="136" /></a>
                                         </div>                                        
                                         <div class="name">
-                                            <a href="/home/detail?id={{$v->id}}">
+                                            <a href="/home/detail?cid={{$v->cid}}&id={{$v->id}}">
                                             <h2>{{$v->gname}}</h2>
                                             {{$v->desc}}
                                             </a>
@@ -276,7 +276,7 @@
                 <div id="imgPlay1">
                     <ul class="imgs" id="actor1">
                     @foreach($floor_ads_datas_l as $k=>$v)
-                        <li><a href="/home/detail?id={{$v->gid}}"><img src="/uploads/{{$v->url}}" width="211" height="286" /></a></li>
+                        <li><a href="/home/detail?cid={{$v->cid}}&id={{$v->id}}"><img src="/uploads/{{$v->url}}" width="211" height="286" /></a></li>
                     @endforeach
                     </ul>
                     <div class="prevf">上一张</div>

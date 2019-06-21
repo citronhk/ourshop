@@ -154,10 +154,10 @@ Route::get('home/list','Home\ListController@index');
 Route::get('home/detail','Home\DetailController@index');
 
 //商品收藏
-Route::get('/home/goods/addColl','Home\GoodsController@addColl');
+Route::get('/home/goods/addColl','Home\DetailController@addColl');
 
 //加入购物车
-Route::get('/home/goods/addCar','Home\GoodsController@addCar');
+Route::get('/home/goods/addCar','Home\DetailController@addCar');
 
 
 

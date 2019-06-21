@@ -260,41 +260,15 @@
         <div class="l_history">
             <div class="fav_t">用户还喜欢</div>
             <ul>
+            @foreach($like_goods_data as $k=>$v)
                 <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_1.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
+                    <div class="img"><a href="#"><img src="/uploads/{{$v->pic}}" width="185" height="162" /></a></div>
+                    <div class="name"><a href="#">{{$v->gname}}</a></div>
                     <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
+                        <font>￥<span>{{$v->price}}</span></font> &nbsp; 18R
                     </div>
                 </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_2.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>768.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_3.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>680.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_4.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_5.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
+            @endforeach
             </ul>
         </div>
         <div class="l_list">            

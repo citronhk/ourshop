@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Home\DetailController;
 use DB;
 
 class IndexController extends Controller
@@ -23,9 +24,8 @@ class IndexController extends Controller
         $floor_ads_datas_r = self::getFloorAds(4,1);          //获取生鲜右侧广告位
         $hot_sell_goods_data = self::getHotsell();
 
+        
 
-
-        // dd($hot_sell_goods_data);
 
     	//返回首页视图
         // return view('home.index.index',['cates_data'=>$cates_data]);
@@ -35,7 +35,7 @@ class IndexController extends Controller
                     'floor_goods_datas'=>$floor_goods_datas,
                     'floor_ads_datas_l'=>$floor_ads_datas_l,
                     'floor_ads_datas_r'=>$floor_ads_datas_r,
-                    'hot_sell_goods_data'=>$hot_sell_goods_data
+                    'hot_sell_goods_data'=>$hot_sell_goods_data,
                 ]);
     }
 
@@ -121,5 +121,30 @@ class IndexController extends Controller
         return DB::table('goods')->orderBy('sell', 'desc')->take(10)->get();
     }
 
+    /**
+     *  获取猜你喜欢的数据
+     *  @param $uid 用户id
+     *  @return 商品推荐商品信息
+     */
+    public static function getGoodsByRecord($uid)
+    {
+        //获取用户浏览数据
+        $record_list = DetailController::getRecordsByUid($uid);
+
+        //通过数组当前用户浏览记录
+        $count = count($record_list);
+
+        //如何浏览数据>5,则根据浏览记录推荐
+        if($count>5){
+            $data = DB::table('goods')->whereIn('id',$record_list)->get();
+        }else{
+            //如何浏览数据<5,自动推荐 
+            $data = DB::table('goods')->orderBy('clickNum', 'desc')->take(20);
+        }
+
+        //return 
+        return $data;
+        
+    }
 
 }

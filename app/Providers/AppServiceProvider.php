@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('cates_data', IndexController::getPidCatesData());
+        View::share(['cates_data'=>IndexController::getPidCatesData(),
+                    'guess_goods_datas' => IndexController::getGoodsByRecord(10)
+                    ]);
     }
 
     /**
