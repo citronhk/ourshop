@@ -130,7 +130,7 @@ class GoodsController extends Controller
 		if($res){
 			echo json_encode(['msg'=>'success']);
 		}else{
-			echo json_encode(['msg'=>'error']]);
+			echo json_encode(['msg'=>'error']);
 		}
 	}
 

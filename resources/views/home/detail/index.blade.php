@@ -98,7 +98,7 @@
                 </div>
                 <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
             </div> -->
-            <img class="MagicZoomLoading" width="16" height="16" src="/home/images/loading.gif" alt="Loading..." />               
+            <!-- <img class="MagicZoomLoading" width="16" height="16" src="/home/images/loading.gif" alt="Loading..." /> -->               
         </div>
         
         <div class="pro_des">

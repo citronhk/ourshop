@@ -43,6 +43,17 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('home/car/buyorder','Home\CarController@buyorder');
 		//确认订单
 		Route::get('home/order/index','Home\OrderController@index');
+		//订单生成
+		Route::post('home/order/result','Home\OrderController@result');
+		//支付
+		Route::get('home/order/pay','Home\OrderController@pay');
+		//我的订单
+		Route::get('home/order/list','Home\OrderController@list');
+		//我的订单
+		Route::get('home/order/confirm','Home\OrderController@confirm');
+		//我的订单 待发货
+		Route::get('home/order/deliver','Home\OrderController@deliver');
+
 
 		                                                                             
 });	
@@ -73,8 +84,7 @@ Route::get('home/loginout','Home\LoginController@loginout');
 
 
 
-
-
+ 
 
 
 

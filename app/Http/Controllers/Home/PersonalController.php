@@ -21,8 +21,11 @@ class PersonalController extends Controller
     {   
         $id = session('home_userinfo')->id;
         $user_data = Users::find($id);
-    
-    	return view('home.personal.index',['user_data'=>$user_data]);
+        
+        //获取当前登录用户购物车信息
+      $car = CarController::cardata();
+
+    	return view('home.personal.index',['user_data'=>$user_data,'car'=>$car]);
     }
 
     /**
@@ -35,7 +38,11 @@ class PersonalController extends Controller
     {   
          $id = session('home_userinfo')->id;
         $user_data = Users::find($id);
-        return view('home.personal.edit',['user_data'=>$user_data]);
+
+        //获取当前登录用户购物车信息
+      $car = CarController::cardata();
+
+        return view('home.personal.edit',['user_data'=>$user_data,'car'=>$car]);
     }
 
     /**

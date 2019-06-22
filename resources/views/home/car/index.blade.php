@@ -9,7 +9,7 @@
   <script type="text/javascript" src="/homes/js/num.js">
   	var jq = jQuery.noConflict();
   </script>     
-    
+ @if(count($car) != 0)   
 <div class="i_bg">  
     <div class="content mar_20">
     	<img src="/homes/images/img1.jpg" style="width: 970px" />        
@@ -119,8 +119,9 @@
     
 
 </div>
-
-
+@else
+  <a href="/"><img src="/home/images/carout.png" style="width:100%"></a>
+@endif
 
 
 @endsection
