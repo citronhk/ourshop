@@ -106,12 +106,13 @@ class RegisterController extends Controller
 
 
     	$this->validate($request, [
-    		'phone' => 'required',
+            'phone' => 'required|regex:/^[\w]{5,17}$/',
     		'code' => 'required',
             'upass' => 'required|regex:/^[\w]{6,18}$/',
             'repass' => 'required|same:upass',
         ],[
-        	'phone.required' => '手机号必填',
+            'phone.required' => '手机号必填',
+        	'phone.regex' => '手机号格式不正确',
         	'code.required' => '验证码必填',
             'upass.required'=>'密码必填',
             'upass.regex'=>'密码格式不正确',

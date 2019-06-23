@@ -184,7 +184,7 @@
                 <ul>
                     <li><a href="/home/personal/edit">个人信息</a></li>
                     <li><a href="/home/order/list">我的订单</a></li>
-                    <li><a href="Member_Address.html">收货地址</a></li>
+                    <li><a href="/home/addr">收货地址</a></li>
                 </ul>
             </div>
             <div class="left_m">

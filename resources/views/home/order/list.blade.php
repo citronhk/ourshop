@@ -11,7 +11,7 @@
 					<div class="m-order" style="margin-top: 0px;width:100%;">
 						<div class="s-bar" style="margin-top: 20px;">
 							<i class="s-icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;我的订单
-							<a class="i-load-more-item-shadow" href="order.html">全部订单&nbsp;&nbsp;&nbsp;&nbsp;</a>
+							<a class="i-load-more-item-shadow" href="/home/order/list">全部订单&nbsp;&nbsp;&nbsp;&nbsp;</a>
 						</div>
 						<ul>
 							<li><a ><i><img src="/homes/image/pay.png"/></i><span>不存在未付款</span></a></li>

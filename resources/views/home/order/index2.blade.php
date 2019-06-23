@@ -86,19 +86,18 @@
             <table border="0" class="peo_tab" style="width:830px; margin-left:50px ;margin-bottom:50px;" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="p_td" width="160">收件人名称</td>
-                <td width="395"><input type="text" name="order_name" value="{{$addr[0]->order_name}}" style="width:100%; height:100%"></td>
+                <td width="395"><input type="text" name="order_name" value="" style="width:100%; height:100%"></td>
                 <td class="p_td" width="160">手机</td>
-                <td width="395"><input type="text" name="phone" value="{{$addr[0]->phone}}" style="width:100%; height:100%"></td>
+                <td width="395"><input type="text" name="phone" value="" style="width:100%; height:100%"></td>
               </tr>
               <tr>
                 <td class="p_td">详细地址</td>
-                <td width="395"><input type="text" name="order_addr" value="{{$addr[0]->order_addr}}" style="width:100%; height:100%"></td>
+                <td width="395"><input type="text" name="order_addr" value="" style="width:100%; height:100%"></td>
                 <td class="p_td">邮政编码</td>
-                <td width="395"><input type="text" name="postal" value="{{$addr[0]->postal}}" style="width:100%; height:100%"></td>
+                <td width="395"><input type="text" name="postal" value="" style="width:100%; height:100%"></td>
               </tr>
             </table>
-          
-           
+        
             <div class="two_t">
               &nbsp;&nbsp;&nbsp;&nbsp;其他信息
             </div>

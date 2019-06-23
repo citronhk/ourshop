@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Goods;
 use App\Models\Car;
 use App\Models\Users;
+use App\Models\Addrs;
 use App\Models\orders_infos;
 use App\Models\Orders_users;
 use DB;
@@ -23,7 +24,7 @@ class OrderController extends Controller
         $id = session('home_userinfo')->id;
 
         //获取当前用户全部订单
-        $orders_user = Orders_users::where('uid','=',$id)->get();
+        $orders_user = Orders_users::where('uid','=',$id)->orderBy('created_at', 'desc')->get();
 
         //获取订单收货人信息详情
         $order_user = [];
@@ -51,8 +52,17 @@ class OrderController extends Controller
     {
     	//获取当前登录用户购物车信息
     	$car = CarController::cardata();
+        //获取当前用户id
+        $id = session('home_userinfo')->id;
+        //获取用户默认地址
+        $addr = Addrs::where('uid',$id)->where('status','=','1')->get();
+        
+        if(!empty($addr[0])){
+    	   return view('home.order.index',['car'=>$car,'addr'=>$addr]); 
+        }else{
+           return view('home.order.index2',['car'=>$car]); 
+        }
 
-    	return view('home.order.index',['car'=>$car]);
     }
 
     /**

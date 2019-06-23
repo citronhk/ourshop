@@ -43,6 +43,8 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('home/car/buyorder','Home\CarController@buyorder');
 		//确认订单
 		Route::get('home/order/index','Home\OrderController@index');
+		//确认订单2
+		Route::get('home/order/index','Home\OrderController@index');
 		//订单生成
 		Route::post('home/order/result','Home\OrderController@result');
 		//支付
@@ -53,9 +55,10 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('home/order/confirm','Home\OrderController@confirm');
 		//我的订单 待发货
 		Route::get('home/order/deliver','Home\OrderController@deliver');
-
-
-		                                                                             
+		//前台用户收货地址
+		Route::resource('home/addr','Home\AddrController');
+		//前台设置默认地址
+		Route::get('/home/addr/changestatus/{id}','Home\AddrController@changestatus');                                                                           
 });	
 
 //后台-首页
