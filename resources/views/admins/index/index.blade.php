@@ -2,7 +2,6 @@
 
 @section('main')
 
-<<<<<<< HEAD
 <!-- BASIC TABLE -->
                    <h3 class="title1">栏目管理</h3>
 							<div class="panel" >
@@ -128,10 +127,8 @@
 	
 				</div>
 			</div>
-=======
 							<!-- BASIC TABLE -->
 							
->>>>>>> origin/zhihao
 								
 							<!-- END BASIC TABLE -->
 

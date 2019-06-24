@@ -80,6 +80,27 @@
 				<nav>
 					<ul class="nav">
 
+					<!-- 用户管理 -->
+					<li>
+						<a href="#users" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-user"></i> <span>用户管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="users" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/users" class="">用户列表</a></li>
+								<li><a href="/admin/users/create" class="">用户添加</a></li>
+							</ul>
+						</div>
+					</li>
+					 <!-- 轮播图管理 -->
+					<li>
+							<a href="#banners" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-picture	"></i> <span>轮播图管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="banners" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/banners" class="">轮播图	列表</a></li>
+									<li><a href="/admin/banners/create" class="">轮播图	添加</a></li>
+								</ul>
+							</div>
+					</li>
+
 					<li>
 							<a href="#cate" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="cate" class="collapse ">
@@ -89,9 +110,37 @@
 								  </ul>
 							</div>
 					</li>
-<<<<<<< HEAD
-					
-=======
+					<!-- 友情链接管理 -->
+						<li>
+							<a href="#links" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-heart"></i> <span>友情链接管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="links" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/links" class="">友情链接列表</a></li>
+									<li><a href="/admin/links/create" class="">友情链接添加</a></li>
+								</ul>
+							</div>
+						</li>
+					<!-- 广告管理 -->
+					 <!-- 管理员管理-->
+				    <li>
+						<a href="#admins" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-education"></i> <span>管理员管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="admins" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/admins" class="">管理员列表</a></li>
+								<li><a href="/admin/admins/create" class="">管理员添加</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- 角色管理 -->
+					<li>
+							<a href="#roles" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-globe"></i> <span>角色管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="roles" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/roles" class="">角色列表</a></li>
+									<li><a href="/admin/roles/create" class="">角色添加</a></li>
+								</ul>
+							</div>
+					</li>
              		<!-- 权限管理 -->
 					<li>
 						<a href="#nodes" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-eye-open"></i> <span>权限管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -103,7 +152,6 @@
 						</div>
 					</li>
 
-<<<<<<< HEAD
              		<!-- 收货地址管理 -->
 					<li>
 						<a href="#addrs" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-map-marker"></i> <span>收货地址管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -114,22 +162,11 @@
 							</ul>
 						</div>
 					</li>
-=======
->>>>>>> root/wnuo
+				
 
->>>>>>> origin/wnuo
+
                     <!-- 商品管理 -->
-                        <li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse ">
-								<ul class="nav">
-									<li><a href="/admin/goods" class="">商品列表</a></li>
-									<li><a href="/admin/goods/create" class="">商品添加</a></li>
-									<li><a href="/admin/detail" class="">商品详情</a></li>
-								  </ul>
-							</div>
-						</li>
-<<<<<<< HEAD
+            
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
@@ -140,10 +177,8 @@
 								  </ul>
 							</div>
 						</li>
-=======
 
                         <!-- 订单管理 -->
->>>>>>> origin/zhihao
 						<li>
 							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="orders" class="collapse ">
@@ -186,6 +221,9 @@
 
 
 					</ul>
+					
+
+
 				</nav>
 			</div>
 

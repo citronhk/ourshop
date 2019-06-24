@@ -10,17 +10,11 @@ class Users extends Model
     //设置表名
     public $table = 'users';
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/zhihao
     //配置一对一
     public function userinfo()
     {
     	return $this->hasOne('App\Models\UsersInfo','uid');
     }
-<<<<<<< HEAD
 
      //配置一对多 模型关系
     public function usercar()
@@ -28,6 +22,4 @@ class Users extends Model
     	return $this->hasMany('App\Models\Car','uid');
     }
    
-=======
->>>>>>> origin/zhihao
 }

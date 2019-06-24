@@ -303,16 +303,9 @@ Route::group(['middleware'=>['login']],function(){
     //后台-节点权限管理
 	Route::resource('admin/nodes', 'Admin\NodesController');
 
-<<<<<<< HEAD
     //后台-收货地址管理
 	Route::resource('admin/addrs', 'Admin\AddrsController');
     
-=======
-
->>>>>>> root/wnuo
-
-
-
 
 //志豪路由
  
