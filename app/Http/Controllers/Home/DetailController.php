@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\H\C;
 use DB;
 
 class DetailController extends Controller
 {
+
     /**
      * 显示首页
      * @param 
@@ -18,7 +20,26 @@ class DetailController extends Controller
         //接收请求id
         $gid = $request->input('id',0);
         // dump('');
-        $uid = 10;
+        $uid = 8;
+
+    
+
+        //获取当请求id的商品数据
+        $goods_attr = self::getGoodsAttrById($gid);
+
+        //分类id
+        $cid = $goods_attr['cid'];
+
+        //
+        $like_goods_data = self::getUseLikeByCid($cid);
+
+        //商品评论
+        $comment_data = self::getCommentByGid($gid);
+        
+        //商品图集
+        $goods_photo = self::getDescPhotoByid($gid);
+
+        $result = in_array($gid, self::GetGoodsListByUid($uid));
 
         //点击量+1
         self::addGoodsBrows($gid);
@@ -26,19 +47,16 @@ class DetailController extends Controller
         //记录用户浏览记录
         self:: addRecord($gid,$uid);
 
-        //获取当请求id的商品数据
-        $goods_data = self::getGoodsDataById($gid);
-
-        $cid = $goods_data->cid;
-
-        $like_goods_data = self::getUseLikeByCid($cid);
-
-      
 
     	//返回详情页视图  
-    	return view('home.detail.index',['goods_data'=>$goods_data,'like_goods_data'=>$like_goods_data]);
+    	return view('home.detail.index',['id'=>$gid,  
+                                         'goods_attr'=>$goods_attr,
+                                         'like_goods_data'=>$like_goods_data,
+                                         'goods_photo'=>$goods_photo,
+                                         'comment_data'=>$comment_data,
+                                         'result' =>$result
+                                        ]);
     }
-
 
     /**
      * 通过商品id查询获取商品信息 
@@ -48,6 +66,48 @@ class DetailController extends Controller
     public function getGoodsDataById($id)
     {
         return DB::table('goods')->where('id',$id)->first();
+    }
+
+    /**
+     *  根据id获取当前商品描述图片
+     *  @param $id 商品id
+     *  @return data 
+     */
+    public function getDescPhotoByid($id)
+    {
+        return DB::table('goods_photo')->select('profile')->where('gid',$id)->get();
+    }
+
+    /**
+     *  获取和设置商品属性
+     *  @param $id 商品id
+     *  @return attr_list
+     */
+    public function getGoodsAttrById($id)
+    {
+        //获取商品名称
+        $goods = DB::table('goods')->where('id',$id)->first();
+
+
+        //获取商品属性
+        $data = DB::table('goods_detail')->where('gid',$id)->first();
+    
+        //定义商品属性列表
+        $attr_list = [];
+
+        //填充属性，属性值
+        $attr_list['id'] = $id;
+        $attr_list['cid'] = $goods->cid;
+        $attr_list['gname'] = $goods->gname;
+        $attr_list['desc'] = $goods->desc;
+        $attr_list['pic'] = $goods->pic;
+        $attr_list['price'] = $goods->price;
+        $attr_list['brand'] = $data->brand;
+        $attr_list['origin'] = $data->origin;
+        $attr_list['weight'] = $data->weight;
+        $attr_list['created_at'] = $data->created_at;
+        
+        return $attr_list;
     }
 
     /**
@@ -171,9 +231,6 @@ class DetailController extends Controller
             DB::table('goods_records')->insert(['uid'=>$uid,'gid'=>$gid]);
 
         }
-
-        
-
     }
 
     /**
@@ -194,8 +251,6 @@ class DetailController extends Controller
             //压入数据
             $record_list[] = $value->gid;
         }
-
-    
 
         return $record_list;
     }
@@ -219,7 +274,6 @@ class DetailController extends Controller
 
         //浏览量+1
         DB::table('goods')->where('id',$gid)->update(['clickNum'=>$num]);
-
     }
 
     /**
@@ -234,6 +288,126 @@ class DetailController extends Controller
                     ->orderBy('sell','desc')
                     ->take(6)
                     ->get();
+    }
+
+    /**
+     * 获取当前商品的评论 
+     * @param $gid 商品id
+     * @return $data
+     */
+    public function getCommentByGid($gid)
+    {
+        return DB::table('comment')
+                    ->where('gid',$gid)
+                    ->orderBy('created_at','desc')
+                    ->paginate(5);
+    }
+
+    /**
+     * 发表评价
+     * @param Request id 商品id ,content评论内容
+     * @return 
+     */
+    public function publish(Request $request)
+    {
+        $uid = 14;
+        //商品id
+        $gid = $request->input('id',0);
+
+
+        if(self::CheckComment($gid,$uid)){
+            echo json_encode(['msg'=>'error','info'=>'已经评论过了']);
+            exit;
+        }
+
+        //评论内容
+        $content = $request->input('content','');
+        //创建时间
+        $created_at = date('Y-m-d H:i:s',time());
+        //修改时间
+        $updated_at = $created_at;
+
+        //定义一个评论数组
+        $data = array('gid'=>$gid,
+                      'uid'=>$uid,
+                      'content'=>$content,
+                      'created_at'=>$created_at,
+                      'updated_at'=>$updated_at,
+                    );
+
+        //向数据库压入记录
+        $res = DB::table('comment')->insert($data);
+
+        if($res){
+            echo json_encode(['msg'=>'success','info'=>'评论成功']);
+            exit;
+        }else{
+            echo json_encode(['msg'=>'error','info'=>'评论失败']);
+            exit;
+        }
+
+    }
+
+    /**
+     * 通过商品id,用户id,检测该用户是否已经评论过该商品
+     * @param $gid 商品id, $uid用户id
+     * @return true/false
+     */
+    public function CheckComment($gid,$uid)
+    {
+        $res = DB::table('comment')
+                ->where('uid',$uid)
+                ->where('gid',$gid)
+                ->first();
+    
+        if($res){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     *  获取该当前用户是买过的商品 
+     *  @param $uid 用户id
+     *  @return 返回用户所有购买过的商品id
+     */
+    public function GetGoodsListByUid($uid)
+    {
+
+        //uid->order_number->gid
+
+        $order_number_list = [];
+
+        //查询该用户所有订单
+        $data_order_number =  DB::table('orders_users')
+                ->select('order_number')
+                ->where('uid',$uid)
+                ->get();
+
+        //生成订单数组
+        foreach($data_order_number as $k=>$v){
+            $order_number_list[] = $v->order_number;
+        }
+
+        //通过订单,获取所有购买过的商品
+        $user_goods_list = [];
+
+        //订单商品信息
+        $goods_data = DB::table('orders_infos')
+                        ->select('gid')
+                        ->whereIn('order_number',$order_number_list)
+                        ->distinct()
+                        ->get();
+        //遍历所有商品id
+        foreach ($goods_data as $k => $v) {
+            $user_goods_list[] = $v->gid;
+        }
+
+        //返回用户所有购买过的商品id
+        return $user_goods_list;
+        
+
+
     }
 
 }

@@ -35,11 +35,16 @@
  <div class="leftNav">
     <ul>      
             @foreach($cates_data as $k=>$v)
-            <li>
+            <li> 
                 <div class="fj">
                     <span class="n_img"><span></span></span>
-                   <span class="fl">{{ $v->cname }}</span>
-                </div>
+                    <span class="fl">
+                        @foreach($v->cname as $a=>$b)
+                            <a href="/home/list?cid={{$b->id}}">{{$b->cname}}</a>&nbsp;
+                        @endforeach
+                    </span>
+
+                </div>  
                    <div class="zj" style="top:{{ -40*$k+1 }}px;">
                     <div class="zj_l">
                         @foreach($v->sub as $kk=>$vv)
@@ -69,7 +74,13 @@
                 </div>
             </li>
         @endforeach
-    </ul>            
+    </ul>        
+    <style>
+        .leftNav ul li:hover a{color:#000;}
+        .leftNav ul li:hover a:hover{color:#e02d02;text-decoration: underline;}
+        .leftNav span h2{color:#dbdbdb;}
+        .leftNav .fl a{color: #fff;}
+    </style>      
 </div>
 @endsection
 
@@ -206,6 +217,7 @@
             </div>        
         </div>
         <div class="sell_right">
+        
             <div class="sell_1">
                 <div class="s_img"><a href="#"><img src="home/images/tm_1.jpg" width="185" height="155" /></a></div>
                 <div class="s_price">￥<span>89</span></div>

@@ -78,11 +78,12 @@
 				<nav>
 					<ul class="nav">
 						<li>
-							<a href="#cate" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="cate" class="collapse ">
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="/admin/cates" class="">分类列表</a></li>
-									<li><a href="/admin/cates/create" class="">分类添加</a></li>
+									<li><a href="/admin/goods" class="">商品列表</a></li>
+									<li><a href="/admin/goods/create" class="">商品添加</a></li>
+									<li><a href="/admin/detail" class="">商品详情</a></li>
 								  </ul>
 							</div>
 						</li>

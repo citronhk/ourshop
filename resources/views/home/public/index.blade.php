@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- <link href="/home/css/bootstrap.css" rel='stylesheet' type='text/css' /> -->
 
 <!-- load css_script -->
 @section('css_script')
@@ -135,8 +136,12 @@
             <span class="fl">|&nbsp;关注我们：</span>
             <span class="s_sh"><a href="#" class="sh1">新浪</a><a href="#" class="sh2">微信</a></span>
             <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="/home/images/s_tel.png" align="absmiddle" /></a></span>
+
         </span>
     </div>
+    
+
+
 </div>
 
 <div class="top">

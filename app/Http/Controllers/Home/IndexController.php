@@ -24,7 +24,7 @@ class IndexController extends Controller
         $floor_ads_datas_r = self::getFloorAds(4,1);          //获取生鲜右侧广告位
         $hot_sell_goods_data = self::getHotsell();
 
-        
+  
 
 
     	//返回首页视图
@@ -47,20 +47,81 @@ class IndexController extends Controller
      */
     public static function getPidCatesData($pid = 0)
     {
-    	$data =  DB::table('cates')->where('pid',$pid)->get();
-
+    	$data =  DB::table('cates')
+                    ->where('pid',$pid)
+                    ->get();
+       
         foreach($data as $k=>$v){
 
             // $sec = DB::table('cates')->where('pid',$v->id)->get();
 
             // $v->sub = $sec;
-
+            //递归
             $v->sub = self::getPidCatesData($v->id);
+            if($v->pid == 0)
+            {
+                $v->cname = self::getTopCateByPid($v->id);
+            } 
+            
         }
+
 
         return $data;
     }
 
+    //     /**
+    //  * 获取分类数据
+    //  * @param $pid 分类id
+    //  * @return 返回分类数据
+    //  */
+    // public static function getPidCatesData($pid = 0)
+    // {
+    //     $data =  DB::table('cates')
+    //                 ->where('pid',$pid)
+    //                 ->get();
+       
+    //     foreach($data as $k=>$v){
+
+    //         // $sec = DB::table('cates')->where('pid',$v->id)->get();
+
+    //         // $v->sub = $sec;
+    //         //递归
+    //         $v->sub = self::getPidCatesData($v->id);
+    //     }
+
+       
+    //     return $data;
+    // }
+
+
+    /**
+     *  修改栏目显示形式 
+     *
+     */
+    public static function getTopCateByPid($pid)
+    {
+
+        $data =  DB::table('cates')
+                    ->where('pid',$pid)
+                    ->take(3)
+                    ->get();
+        return $data ;
+       // return  DB::tabel('cates')
+       //          ->where('pid',$pid)
+       //          ->take(3)
+       //          ->get();
+    }
+
+    // public static function cataData()
+    // {
+    //     getPidCatesData($pid = 0)
+    // }
+
+    /**
+     * 显示轮播图
+     * @param 
+     * @return  
+     */
     public function getBannersData()
     {
        return DB::table('banners')
@@ -144,6 +205,17 @@ class IndexController extends Controller
 
         //return 
         return $data;
+        
+    }
+
+
+    /**
+     * 获取主页商品特卖信息
+     * @param
+     * @return 
+     */
+    public function getSellData()
+    {
         
     }
 
