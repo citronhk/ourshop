@@ -156,7 +156,7 @@
             <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
         </div>
         <div class="i_car">
-            <div class="car_t"><a href="/home/car/index">购物车</a> [ <span>3</span> ]</div>
+            <div class="car_t"><a href="/home/car/index">购物车</a> [ <span>{{count($car)}}</span> ]</div>
             @if(empty(session('home_userinfo')))
             <div class="car_bg">
                 <!--Begin 购物车未登录 Begin-->
@@ -183,8 +183,8 @@
                 <div class="left_m_t t_bg1">订单中心</div>
                 <ul>
                     <li><a href="/home/personal/edit">个人信息</a></li>
-                    <li><a href="Member_Order.html">我的订单</a></li>
-                    <li><a href="Member_Address.html">收货地址</a></li>
+                    <li><a href="/home/order/list">我的订单</a></li>
+                    <li><a href="/home/addr">收货地址</a></li>
                 </ul>
             </div>
             <div class="left_m">
