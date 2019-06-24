@@ -2,7 +2,7 @@
 
 
 @section('main')
-@if (count($errors) > 0)
+@if (count($errors) > 0) 
 	  <div class="alert alert-danger">
 	       <ul>
 	           @foreach ($errors->all() as $error)
@@ -11,24 +11,7 @@
 	       </ul>
 	  </div>
 @endif
-@if(session('success'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('success') }}</strong> 
-    </div>
-  </div>
-@endif
 
-
-@if(session('error'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('error') }}</strong> 
-    </div>
-  </div>
-@endif
 <!-- BASIC TABLE -->
  <h3 class="title1">&nbsp;&nbsp;&nbsp;&nbsp;商品详情</h3>
  <div class="panel" >
@@ -45,12 +28,13 @@
 						<th>商品名称</th>
 						<th>图集</th>
 						<th>创建时间</th>
-						<th>操作</th>
+						<th>操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/phtoto/create?gid={{ $gid }}" class="">添加图片</a></th>
+
 					</tr>
 				</thead>
 				<tbody>
 				@foreach($phtoto_data as $k=>$v)
-					<tr>
+				<tr>
 					    <td>{{ $v->id }}</td>
 					    <td>{{$v->phtoto_goods->gname}}</td>
 						<td>
@@ -58,7 +42,7 @@
 						</td>
 						<td>{{$v->created_at}}</td>
 						<td>
-						    <a href="/admin/phtoto/create?id={{ $v->id }}" class="btn btn-info">添加</a>
+						    <a href="/admin/phtoto/create?gid={{ $gid }}" class="btn btn-info">添加</a>
 							<a href="/admin/phtoto/{{ $v->id }}/edit" class="btn btn-info">修改</a>
 							<a href="/admin/phtoto/del/{{ $v->id }}" class="btn btn-danger">删除</a>
 						</td>

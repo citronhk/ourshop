@@ -23,7 +23,10 @@ class OrdersController extends Controller
         //查询数据
         $orders_datas = Orders_infos::where('order_number','like','%'.$search.'%')->paginate(5);
         //传输到页面
-        return view('admins.orders.index',['orders_datas'=>$orders_datas,'params'=>$request->all()]);
+        return view('admins.orders.index',[
+            'orders_datas'=>$orders_datas,
+            'params'=>$request->all()
+            ]);
     }
 
     /**
@@ -120,5 +123,47 @@ class OrdersController extends Controller
         }else{
             return back()->with('error','删除成功');
         }
+    }
+
+
+    public function infoUser(Request $request)
+    {
+        $oid = $request->id;
+
+        $orders_datas = Orders_users::where('oid',$oid)->first();
+        $uname = $orders_datas->orders_users->uname;
+        
+        echo json_encode(['orders_datas'=>$orders_datas,'uname'=>$uname]);
+    }
+
+
+    public function upUser(Request $request)
+    {
+        // dd($request->all());
+        $id = $request->id;
+        //获取订单用户表数据
+        $datas = Orders_users::find($id);
+        //修改数据
+        
+        $datas->order_number = $request->input('order_number');
+        $datas->uid = $datas->uid;
+        $datas->oid = $datas->oid;
+        $datas->phone = $request->input('phone');
+        $datas->total = $request->input('total');
+        $datas->order_addr = $request->input('order_addr');
+        $datas->postal = $request->input('postal');
+        $datas->message = $request->input('message');
+        $datas->updated_at = date('Y-m-d H:i:s');
+        
+        //执行修改 返回受影响行数
+        $res = $datas->save();
+        
+        if($res){
+        
+            return redirect('/admin/orders')->with('success','修改成功');
+        }else{
+            return back('修改失败');
+        }
+
     }
 }

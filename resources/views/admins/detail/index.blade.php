@@ -5,30 +5,13 @@
 @if (count($errors) > 0)
 	  <div class="alert alert-danger">
 	       <ul>
-	           @foreach ($errors->all() as $error)
+	           @foreach ($errors->all() as $error) 
 	               <li>{{ $error }}</li>
 	           @endforeach
 	       </ul>
 	  </div>
 @endif
-@if(session('success'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('success') }}</strong> 
-    </div>
-  </div>
-@endif
 
-
-@if(session('error'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('error') }}</strong> 
-    </div>
-  </div>
-@endif
 <!-- BASIC TABLE -->
  <h3 class="title1">&nbsp;&nbsp;&nbsp;&nbsp;商品详情</h3>
  <div class="panel" >

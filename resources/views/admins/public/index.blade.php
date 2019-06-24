@@ -38,7 +38,7 @@
 		<!-- 头部栏 开始 -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="/admins/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="/admin/index"><img src="/admins/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -51,18 +51,20 @@
 					</div>
 				</form>
 				<div class="navbar-btn navbar-btn-right">
-					<a class="btn btn-success update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>返回前台</span></a>
+					<a class="btn btn-success update-pro" href="/admin/outlogin" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>退出</span></a>
 				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"></li>
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/admins/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img style="border-radius:50%;border:1px solid black;width:50px;" src="">
+							 <span></span>
+							  <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>个人中心</span></a></li>
-								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>修改密码</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>修改头像</span></a></li>
+								<li> <a href="javascript:;" onclick="changepass()"><i class="fa fa-cog"></i>修改密码</a> </li> 
+								<li> <a href="javascript:;" onclick="changeimg()"><i class="fa fa-user"></i>更换头像</a> </li> 
 
 							</ul>
 						</li>
@@ -77,6 +79,29 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
+
+					<li>
+							<a href="#cate" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="cate" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/cates" class="">分类列表</a></li>
+									<li><a href="/admin/cates/create" class="">分类添加</a></li>
+								  </ul>
+							</div>
+					</li>
+					
+                    <!-- 商品管理 -->
+                        <li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/goods" class="">商品列表</a></li>
+									<li><a href="/admin/goods/create" class="">商品添加</a></li>
+									<li><a href="/admin/detail" class="">商品详情</a></li>
+								  </ul>
+							</div>
+						</li>
+<<<<<<< HEAD
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
@@ -87,16 +112,10 @@
 								  </ul>
 							</div>
 						</li>
-						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse ">
-								<ul class="nav">
-									<li><a href="/admin/goods" class="">商品列表</a></li>
-									<li><a href="/admin/goods/create" class="">商品添加</a></li>
-									<li><a href="/admin/detail" class="">商品详情</a></li>
-								  </ul>
-							</div>
-						</li>
+=======
+
+                        <!-- 订单管理 -->
+>>>>>>> origin/zhihao
 						<li>
 							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="orders" class="collapse ">
@@ -106,6 +125,8 @@
 								  </ul>
 							</div>
 						</li>
+
+						<!-- 评价管理 -->
 						<li>
 							<a href="#comment" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>评价管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="comment" class="collapse ">
@@ -114,6 +135,8 @@
 								  </ul>
 							</div>
 						</li>
+
+						<!-- 秒杀管理 -->
 						<li>
 							<a href="#seckills" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>秒杀商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="seckills" class="collapse ">
@@ -122,6 +145,8 @@
 								  </ul>
 							</div>
 						</li>
+
+						<!-- 活动管理 -->
 						<li>
 							<a href="#activities" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="activities" class="collapse ">
@@ -130,19 +155,39 @@
 								  </ul>
 							</div>
 						</li>
+
+
 					</ul>
-
 				</nav>
-
 			</div>
+
 		</div>
 		<!-- 侧边栏 结束 -->
 
 		<!-- 内容-接口 开始 -->
+
 		<div class="main">
-		
-		  @section('main')
-         
+
+			@if(session('success'))
+			<div class="bs-example" data-example-id="dismissible-alert-css">
+			    <div class="alert alert-success alert-dismissible" role="alert">
+			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			      <strong>{{ session('success') }}</strong> 
+			    </div>
+			  </div>
+			@endif
+
+
+			@if(session('error'))
+			<div class="bs-example" data-example-id="dismissible-alert-css">
+			    <div class="alert alert alert-danger alert-dismissible" role="alert">
+			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			      <strong>{{ session('error') }}</strong> 
+			    </div>
+			  </div>
+			@endif
+			  @section('main')
+		 
           @show
 		</div>
 		<!-- 内容-接口 结束 -->

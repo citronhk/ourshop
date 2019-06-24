@@ -11,24 +11,7 @@
 	       </ul>
 	  </div>
 @endif
-@if(session('success'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('success') }}</strong> 
-    </div>
-  </div>
-@endif
 
-
-@if(session('error'))
-<div class="bs-example" data-example-id="dismissible-alert-css">
-    <div class="alert alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong>{{ session('error') }}</strong> 
-    </div>
-  </div>
-@endif
 <!-- BASIC TABLE -->
  <h3 class="title1">&nbsp;&nbsp;&nbsp;&nbsp;活动商品管理</h3>
  <div class="panel" >
@@ -44,6 +27,7 @@
 					<tr>
 						<th>ID</th>
 						<th>商品名称</th>
+						<th>商品优惠</th>
 						<th>商品销量</th>
 						<th>开始时间</th>
 						<th>结束时间</th>
@@ -55,6 +39,7 @@
 					<tr>
 						<td>{{ $v->id }}</td>
 						<td>{{ $v->activities_goods->gname }}</td>
+						<td>{{ $v->discount }}</td>
 						<td>{{ $v->sales }}</td>
 						<td>{{ $v->startTime }}</td>
 						<td>{{ $v->endTime }}</td>

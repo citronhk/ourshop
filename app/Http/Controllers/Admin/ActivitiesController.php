@@ -58,6 +58,7 @@ class ActivitiesController extends Controller
          //压入数据
          $data->gid = $gid;
          $data->sales = $request->input('sales','');
+         $data->discount = $request->input('discount','');
          $data->startTime = date('Y-m-d H:i:s');
          $data->endTime = date('Y-m-d H:i:s',time()+100*100);
          $data->status = 1;
@@ -115,7 +116,7 @@ class ActivitiesController extends Controller
         $datas->sales = $request->input('sales');
         $datas->startTime = date('Y-m-d H:i:s');
         $datas->endTime = date('Y-m-d H:i:s',time()+100*100);
-        
+        $datas->discount = $request->input('discount');
         //压入数据表 返回受影响行数
         $res = $datas->save();
         
