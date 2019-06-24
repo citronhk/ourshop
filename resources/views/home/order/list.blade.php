@@ -51,7 +51,7 @@
 									</div>
 									@else($v->status == 2)
 									<div class="lg-confirm">
-										<a class="i-btn-typical">待评价</a>
+										<a class="i-btn-typical" href="/home/order/evaluate">待评价</a>
 									</div>
 									@endif
 								</li>
@@ -62,6 +62,9 @@
 					</div>
 				</div>
 			</div>	
+		</div>
+		<div>
+			
 		</div>
 	<script type="text/javascript">
 		

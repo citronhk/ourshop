@@ -58,7 +58,8 @@ Route::group(['middleware'=>'home_login'],function(){
 		//前台用户收货地址
 		Route::resource('home/addr','Home\AddrController');
 		//前台设置默认地址
-		Route::get('/home/addr/changestatus/{id}','Home\AddrController@changestatus');                                                                           
+		Route::get('/home/addr/changestatus/{id}','Home\AddrController@changestatus');
+		                                                                           
 });	
 
 //后台-首页
