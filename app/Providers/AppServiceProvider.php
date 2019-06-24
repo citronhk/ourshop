@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Home\IndexController;
 
@@ -14,8 +15,11 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        View::share('cates_data', IndexController::getPidCatesData());
+    {   
+        View::share(['cates_data'=>IndexController::getPidCatesData(),
+                    'guess_goods_datas' => IndexController::getGoodsByRecord(10)
+                    ]);
+
     }
 
     /**

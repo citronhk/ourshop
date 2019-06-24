@@ -1,14 +1,12 @@
 @extends('home.public.index')
 <!-- 加载css js -->
 @section('css_script')
-	<link type="text/css" rel="stylesheet" href="/home/css/style.css" />
     <!--[if IE 6]>
     <script src="/home/js/iepng.js" type="text/javascript"></script>
         <script type="text/javascript">
            EvPNG.fix('div, ul, img, li, input, a'); 
         </script>
     <![endif]-->   
-    
  <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="/home/js/menu.js"></script>    
             
@@ -28,50 +26,62 @@
     <script type="text/javascript" src="/home/js/p_tab.js"></script>
     
     <script type="text/javascript" src="/home/js/shade.js"></script>
-
-
+   
+    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
+    
 @endsection
 
 <!-- 显示商品分类列表 -->
 @section('leftNav')
  <div class="leftNav none">
     <ul>      
-        @foreach($cates_data as $k=>$v)
-        <li>
-            <div class="fj">
-                <span class="n_img"><span></span></span>
-               <span class="fl">{{ $v->cname }}</span>
-            </div>
-               <div class="zj" style="top:{{ $k*-40 }}px;">
-                <div class="zj_l">
-                    @foreach($v->sub as $kk=>$vv)
-                    <div class="zj_l_c">
-                        <div class="zj_title">
-                            <h2>{{ $vv->cname }}</h2>
-                            <span>></span>
+            @foreach($cates_data as $k=>$v)
+            <li> 
+                <div class="fj">
+                    <span class="n_img"><span></span></span>
+                    <span class="fl">
+                        @foreach($v->cname as $a=>$b)
+                            <a href="/home/list?cid={{$b->id}}">{{$b->cname}}</a>&nbsp;
+                        @endforeach
+                    </span>
+
+                </div>  
+                   <div class="zj" style="top:{{ -40*$k+1 }}px;">
+                    <div class="zj_l">
+                        @foreach($v->sub as $kk=>$vv)
+                        <div class="zj_l_c">
+                            <div class="zj_title">
+                                <h2>{{ $vv->cname }}</h2>
+                                <span>></span>
+                            </div>
+                            <div class="zi_l_c_links">
+                                @foreach($vv->sub as $kkk=>$vvv)
+                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
+                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
+                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
+                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
+                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
+                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
+                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="zi_l_c_links">
-                            @foreach($vv->sub as $kkk=>$vvv)
-                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                                <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                            @endforeach
-                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
+                    <div class="zj_r">
+                        <a href="#"><img src="/home/images/n_img1.jpg" width="236" height="200" /></a>
+                        <a href="#"><img src="/home/images/n_img2.jpg" width="236" height="200" /></a>
+                    </div>
                 </div>
-                <div class="zj_r">
-                    <a href="#"><img src="/home/images/n_img1.jpg" width="236" height="200" /></a>
-                    <a href="#"><img src="/home/images/n_img2.jpg" width="236" height="200" /></a>
-                </div>
-            </div>
-        </li>
-    @endforeach
-    </ul>            
+            </li>
+        @endforeach
+    </ul>        
+    <style>
+        .leftNav ul li:hover a{color:#000;}
+        .leftNav ul li:hover a:hover{color:#e02d02;text-decoration: underline;}
+        .leftNav span h2{color:#dbdbdb;}
+        .leftNav .fl a{color: #fff;}
+    </style>      
 </div>
 @endsection
 
@@ -83,8 +93,8 @@
     <div class="content">
                             
         <div id="tsShopContainer">
-            <div id="tsImgS"><a href="/uploads/{{$goods_data->pic}}" title="Images" class="MagicZoom" id="MagicZoom">
-                <img src="/uploads/{{$goods_data->pic}}" width="390" height="390" /></a>
+            <div id="tsImgS"><a href="/uploads/{{$goods_attr['pic']}}" title="Images" class="MagicZoom" id="MagicZoom">
+                <img src="/uploads/{{$goods_attr['pic']}}" width="390" height="390" /></a>
             </div>
          <!--    <div id="tsPicContainer">
                 <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
@@ -103,11 +113,11 @@
         
         <div class="pro_des">
             <div class="des_name">
-                <p>{{$goods_data->gname}}</p>
+                <p>{{$goods_attr['gname']}}</p>
                 “开业巨惠，北京专柜直供”，不光低价，“真”才靠谱！
             </div>
             <div class="des_price">
-                本店价格：<b>￥{{$goods_data->price}}</b><br />
+                本店价格：<b>￥{{$goods_attr['price']}}</b><br />
                 消费积分：<span>28R</span>
             </div>
             <div class="des_choice">
@@ -137,18 +147,20 @@
                         <a href="#"><img src="/home/images/sh_5.gif" /></a>
                     </div>
                 </div>
-                <div class="d_care"><a  onclick="addColl({{$goods_data->id}})">关注商品</a></div>
+                <div class="d_care"><a  onclick="addColl({{$goods_attr['id']}})">关注商品</a></div>
             </div>
             <div class="des_join">
                     <div class="j_nums">
                             
                             <input type="text" value="1" id="num" name="num" class="n_ipt" />
-                            <input type="button" value="" onclick="addUpdate(jq(this));" class="n_btn_1" />
-                            <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />   
+
+                            <input type="button" value="" onclick="addUpdate(jq(this));"  class="n_btn_1" />
+                            <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />  
+         
                         </div>
                         <!-- onclick="ShowDiv_1('MyDiv1','fade1') -->
                         <span class="fl">
-                            <button onclick="AddCar({{ $goods_data->id}});" style="width:180px; height:45px;padding:0;border:0;"><img src="/home/images/j_car.png" /></button>
+                            <button onclick="AddCar({{ $goods_attr['id']}});" style="width:180px; height:45px;padding:0;border:0;"><img src="/home/images/j_car.png" /></button>
                         </span>
                     </div>   
 
@@ -260,41 +272,15 @@
         <div class="l_history">
             <div class="fav_t">用户还喜欢</div>
             <ul>
+            @foreach($like_goods_data as $k=>$v)
                 <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_1.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
+                    <div class="img"><a href="#"><img src="/uploads/{{$v->pic}}" width="185" height="162" /></a></div>
+                    <div class="name"><a href="#">{{$v->gname}}</a></div>
                     <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
+                        <font>￥<span>{{$v->price}}</span></font> &nbsp; 18R
                     </div>
                 </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_2.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>768.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_3.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>680.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_4.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/home/images/his_5.jpg" width="185" height="162" /></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
+            @endforeach
             </ul>
         </div>
         <div class="l_list">            
@@ -302,31 +288,40 @@
                 <div class="des_tit">
                     <ul>
                         <li class="current"><a href="#p_attribute">商品属性</a></li>
-                        <li><a href="#p_details">商品详情</a></li>
+                        <li><a href="#p_details">商品图片</a></li>
                         <li><a href="#p_comment">商品评论</a></li>
                     </ul>
                 </div>
                 <div class="des_con" id="p_attribute">
                     
                     <table border="0" align="center" style="width:100%; font-family:'宋体'; margin:10px auto;" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td>商品名称：迪奥香水</td>
-                        <td>商品编号：1546211</td>
-                        <td>品牌： 迪奥（Dior）</td>
-                        <td>上架时间：2015-09-06 09:19:09 </td>
-                      </tr>
-                      <tr>
-                        <td>商品毛重：160.00g</td>
-                        <td>商品产地：法国</td>
-                        <td>香调：果香调香型：淡香水/香露EDT</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                      <tr>
-                        <td>容量：1ml-15ml </td>
-                        <td>类型：女士香水，Q版香水，组合套装</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                      </tr>
+    
+                        <tr>
+                            <td >
+                                商品名称:{{$goods_attr['gname']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                品牌:{{$goods_attr['brand']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                产品重量:{{$goods_attr['weight']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                产地:{{$goods_attr['origin']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                上架时间:{{$goods_attr['created_at']}} 
+                            </td>
+                        </tr>
+
                     </table>                                               
                                             
                         
@@ -334,29 +329,16 @@
             </div>  
             
             <div class="des_border" id="p_details">
-                <div class="des_t">商品详情</div>
+                <div class="des_t">商品图片</div>
                 <div class="des_con">
                     <table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td width="265"><img src="/home/images/de1.jpg" width="206" height="412" /></td>
-                        <td>
-                            <b>迪奥真我香水(Q版)</b><br />
-                            【商品规格】：5ml<br />
-                            【商品质地】：液体<br />
-                            【商品日期】：与专柜同步更新<br />
-                            【商品产地】：法国<br />
-                            【商品包装】：无外盒 无塑封<br />
-                            【商品香调】：花束花香调<br />
-                            【适用人群】：适合女性（都市白领，性感，有女人味的成熟女性）<br />
-                        </td>
-                      </tr>
+                  
                     </table>
                     
                     <p align="center">
-                    <img src="/home/images/de2.jpg" width="746" height="425" /><br /><br />
-                    <img src="/home/images/de3.jpg" width="750" height="417" /><br /><br />
-                    <img src="/home/images/de4.jpg" width="750" height="409" /><br /><br />
-                    <img src="/home/images/de5.jpg" width="750" height="409" />
+                        @foreach($goods_photo as $k=>$v)
+                            <img src="/uploads/{{$v->profile}}" width="746" height="425" /><br /><br />
+                        @endforeach
                     </p>
                     
                 </div>
@@ -386,79 +368,174 @@
                           </tr>
                         </table>
                     </td>
-                    <td width="185" class="jud_bg">
-                        购买过雅诗兰黛第六代特润精华露50ml的顾客，在收到商品才可以对该商品发表评论
+                    <td width="185" class="jud_bg">对已购买商品用户可进行评价</td>
+                    <td class="jud_bg"><br />
+                        @if($result)
+                            <button id="com" class="btn btn_enable" onclick="show()">我要评论</button>
+                        @else
+                            <button id="com" class="btn">我要评论</button>
+                        @endif
                     </td>
-                    <td class="jud_bg">您可对已购买商品进行评价<br /><a href="#"><img src="/home/images/btn_jud.gif" /></a></td>
                   </tr>
                 </table>
-                
-                
-                                
-                <table border="0" class="jud_list" style="width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
+                <!-- 评论区开始 -->
+                <div id="combox" class="hide">
+                    <input id="comment" type="text" value="" placeholder="请输入评论内容.....">
+                    <button id="sub" class="btn btn_enable" onclick="publish({{$goods_attr['id']}})">提交</button>
+
+                </div>
+                <script type="text/javascript">
+
+                    function show()
+                    {
+                        $('#combox').addClass('show');
+                    }
+
+
+
+                    function publish(id)
+                    {
+                        let content = $('#comment').val();
+                        let html = '';
+
+                        if(content == ''){return;}
+                        $.get('/home/detail/publish',{id:id,content:content},function(msg){
+                            if(msg.msg == 'success'){
+                                html = '<tr valign="top">';
+                                html += '<td width="160">';
+                                html +='<img src="/home/images/peo1.jpg" width="20" height="20" align="absmiddle" />&nbsp;';
+                                html += '{{$goods_attr["gname"]}}</td><td width="180"><font >';
+                                html += content +'</font>';
+                                html += '</td><td><font  color="#999999">';
+                                html += getTime()+'</font></td></tr>';
+                                $('#com_list').prepend(html);
+                                $('#comment').val('');
+                            }else{
+                                $('#tip_fail').html(msg.info);
+                                ShowDiv('Fail','fail');
+                                return;
+                            }
+                           
+                        },'json');
+                    }
+
+
+                    //获取当前时间
+                    function getTime()
+                    {
+                        var time = '';
+                        var now = new Date();
+                        var Y = now.getFullYear();
+                        var m = now.getMonth()+1;
+                        var d = now.getDate();
+                        var H = now.getHours();
+                        var i = now.getMinutes();
+                        var s = now.getSeconds();
+                        time = Y + '-' + m + '-' + d + ' '+ H +':'+ i +':'+ s;
+                        return time;
+                    }
+
+                    </script>
+
+                    <style>
+                        #combox{
+                            width: 905px;
+                            margin: 10px 20px;
+                        }
+                        
+                        .btn{
+                             border: 0;
+                            width: 120px;
+                            height: 34px;
+                            padding: 0;
+                            color: #fff;
+                            outline: none;
+
+                        }
+                        .btn_enable{
+
+                            background-color: #ff3200;
+                        }
+
+                 
+                        #sub{
+                            margin-right: 4px;
+                            margin-top: 10px;
+                            float: right;
+
+                        }
+                        #comment{
+                            height: 40px;
+                            width: 900px;
+                            border: 1px solid #eaeaea;
+                            outline: none;
+                            
+                        }
+
+                        .hide{
+                            display: none;
+                        }
+
+                        .show{
+                            display: block;
+                        }
+                    </style>
+                <!-- 评论区结束 -->
+                <!-- 评论列表 -->
+                <table id="com_list" border="0" class="jud_list" style="width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
+
+                @foreach($comment_data as $k=>$v)
                   <tr valign="top">
-                    <td width="160"><img src="/home/images/peo1.jpg" width="20" height="20" align="absmiddle" />&nbsp;向死而生</td>
+                    <td width="160"><img src="/home/images/peo1.jpg" width="20" height="20" align="absmiddle" />&nbsp;name</td>
                     <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
+                        <font >{{$v->content}}</font>
                     </td>
                     <td>
-                        产品很好，香味很喜欢，必须给赞。 <br />
-                        <font color="#999999">2015-09-24</font>
+                        <font  color="#999999">{{$v->created_at}}</font>
                     </td>
                   </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/home/images/peo2.jpg" width="20" height="20" align="absmiddle" />&nbsp;就是这么想的</td>
-                    <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                        送朋友，她很喜欢，大爱。 <br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/home/images/peo3.jpg" width="20" height="20" align="absmiddle" />&nbsp;墨镜墨镜</td>
-                    <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                        大家都说不错<br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/home/images/peo4.jpg" width="20" height="20" align="absmiddle" />&nbsp;那*****洋 <br /><font color="#999999">（匿名用户）</font></td>
-                    <td width="180">
-                        颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                        下次还会来买，推荐。<br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
+                @endforeach
+
                 </table>
 
                     
-                    
+             <!--        
                 <div class="pages">
                     <a href="#" class="p_pre">上一页</a><a href="#" class="cur">1</a><a href="#">2</a><a href="#">3</a>...<a href="#">20</a><a href="#" class="p_pre">下一页</a>
-                </div>
-                
+                </div> -->
+                <!-- <div id="pag" style="text-align:center;"> $comment_data->links() </div> -->
             </div>
             
             
         </div>
     </div>
-    
-    
-   
-    
-    
-    
-   
+
+ <!--Begin 弹出层-评论失败 Begin-->
+    <div id="fail" class="black_overlay"></div>
+    <div id="Fail" class="white_content">             
+        <div class="white_d">
+            <div class="notice_t">
+                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv('Fail','fail')"><img src="/home/images/close.gif" /></span>
+            </div>
+            <div class="notice_c">
+                
+                <table border="0" align="center" style="margin-top:;" cellspacing="0" cellpadding="0">
+                  <tr valign="top">
+                    <td width="40"><img src="/home/images/suc.png" /></td>
+                    <td>
+                        <span id="tip_fail" style="color:#3e3e3e; font-size:18px; font-weight:bold;"></span><br />
+                    </td>
+                  </tr>
+                  <tr height="50" valign="bottom">
+                    <td>&nbsp;</td>
+                    <td><a onclick="CloseDiv('Fail','fail')" class="b_sure" >确定</a></td>
+                  </tr>
+                </table>
+                    
+            </div>
+        </div>
+    </div>    
+    <!--End 弹出层-收藏成功 End-->
 <script src="/home/js/ShopShow.js"></script>
 @endsection
+

@@ -38,7 +38,7 @@
 		<!-- 头部栏 开始 -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="/admins/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="/admin/index"><img src="/admins/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -51,18 +51,20 @@
 					</div>
 				</form>
 				<div class="navbar-btn navbar-btn-right">
-					<a class="btn btn-success update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>返回前台</span></a>
+					<a class="btn btn-success update-pro" href="/admin/outlogin" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>退出</span></a>
 				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"></li>
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/admins/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img style="border-radius:50%;border:1px solid black;width:50px;" src="">
+							 <span></span>
+							  <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>个人中心</span></a></li>
-								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>修改密码</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>修改头像</span></a></li>
+								<li> <a href="javascript:;" onclick="changepass()"><i class="fa fa-cog"></i>修改密码</a> </li> 
+								<li> <a href="javascript:;" onclick="changeimg()"><i class="fa fa-user"></i>更换头像</a> </li> 
 
 							</ul>
 						</li>
@@ -77,7 +79,29 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li>
+
+					<!-- 用户管理 -->
+					<li>
+						<a href="#users" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-user"></i> <span>用户管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="users" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/users" class="">用户列表</a></li>
+								<li><a href="/admin/users/create" class="">用户添加</a></li>
+							</ul>
+						</div>
+					</li>
+					 <!-- 轮播图管理 -->
+					<li>
+							<a href="#banners" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-picture	"></i> <span>轮播图管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="banners" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/banners" class="">轮播图	列表</a></li>
+									<li><a href="/admin/banners/create" class="">轮播图	添加</a></li>
+								</ul>
+							</div>
+					</li>
+
+					<li>
 							<a href="#cate" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="cate" class="collapse ">
 								<ul class="nav">
@@ -85,7 +109,64 @@
 									<li><a href="/admin/cates/create" class="">分类添加</a></li>
 								  </ul>
 							</div>
+					</li>
+					<!-- 友情链接管理 -->
+						<li>
+							<a href="#links" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-heart"></i> <span>友情链接管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="links" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/links" class="">友情链接列表</a></li>
+									<li><a href="/admin/links/create" class="">友情链接添加</a></li>
+								</ul>
+							</div>
 						</li>
+					<!-- 广告管理 -->
+					 <!-- 管理员管理-->
+				    <li>
+						<a href="#admins" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-education"></i> <span>管理员管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="admins" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/admins" class="">管理员列表</a></li>
+								<li><a href="/admin/admins/create" class="">管理员添加</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- 角色管理 -->
+					<li>
+							<a href="#roles" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-globe"></i> <span>角色管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="roles" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/roles" class="">角色列表</a></li>
+									<li><a href="/admin/roles/create" class="">角色添加</a></li>
+								</ul>
+							</div>
+					</li>
+             		<!-- 权限管理 -->
+					<li>
+						<a href="#nodes" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-eye-open"></i> <span>权限管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="nodes" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/nodes" class="">权限列表</a></li>
+								<li><a href="/admin/nodes/create" class="">权限添加</a></li>
+							</ul>
+						</div>
+					</li>
+
+             		<!-- 收货地址管理 -->
+					<li>
+						<a href="#addrs" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-map-marker"></i> <span>收货地址管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="addrs" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/addrs" class="">收货地址列表</a></li>
+								<li><a href="/admin/addrs/create" class="">收货地址添加</a></li>
+							</ul>
+						</div>
+					</li>
+				
+
+
+                    <!-- 商品管理 -->
+            
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
@@ -96,7 +177,8 @@
 								  </ul>
 							</div>
 						</li>
-							
+
+                        <!-- 订单管理 -->
 						<li>
 							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="orders" class="collapse ">
@@ -106,6 +188,8 @@
 								  </ul>
 							</div>
 						</li>
+
+						<!-- 评价管理 -->
 						<li>
 							<a href="#comment" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>评价管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="comment" class="collapse ">
@@ -114,6 +198,8 @@
 								  </ul>
 							</div>
 						</li>
+
+						<!-- 秒杀管理 -->
 						<li>
 							<a href="#seckills" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>秒杀商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="seckills" class="collapse ">
@@ -122,6 +208,8 @@
 								  </ul>
 							</div>
 						</li>
+
+						<!-- 活动管理 -->
 						<li>
 							<a href="#activities" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="activities" class="collapse ">
@@ -130,19 +218,42 @@
 								  </ul>
 							</div>
 						</li>
+
+
 					</ul>
+					
+
 
 				</nav>
-
 			</div>
+
 		</div>
 		<!-- 侧边栏 结束 -->
 
 		<!-- 内容-接口 开始 -->
+
 		<div class="main">
-		
-		  @section('main')
-         
+
+			@if(session('success'))
+			<div class="bs-example" data-example-id="dismissible-alert-css">
+			    <div class="alert alert-success alert-dismissible" role="alert">
+			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			      <strong>{{ session('success') }}</strong> 
+			    </div>
+			  </div>
+			@endif
+
+
+			@if(session('error'))
+			<div class="bs-example" data-example-id="dismissible-alert-css">
+			    <div class="alert alert alert-danger alert-dismissible" role="alert">
+			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			      <strong>{{ session('error') }}</strong> 
+			    </div>
+			  </div>
+			@endif
+			  @section('main')
+		 
           @show
 		</div>
 		<!-- 内容-接口 结束 -->

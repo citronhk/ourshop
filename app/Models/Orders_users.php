@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Orders_users extends Model
 {
     public $table = 'orders_users';

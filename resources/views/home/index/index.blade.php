@@ -35,11 +35,16 @@
  <div class="leftNav">
     <ul>      
             @foreach($cates_data as $k=>$v)
-            <li>
+            <li> 
                 <div class="fj">
                     <span class="n_img"><span></span></span>
-                   <span class="fl">{{ $v->cname }}</span>
-                </div>
+                    <span class="fl">
+                        @foreach($v->cname as $a=>$b)
+                            <a href="/home/list?cid={{$b->id}}">{{$b->cname}}</a>&nbsp;
+                        @endforeach
+                    </span>
+
+                </div>  
                    <div class="zj" style="top:{{ -40*$k+1 }}px;">
                     <div class="zj_l">
                         @foreach($v->sub as $kk=>$vv)
@@ -69,7 +74,13 @@
                 </div>
             </li>
         @endforeach
-    </ul>            
+    </ul>        
+    <style>
+        .leftNav ul li:hover a{color:#000;}
+        .leftNav ul li:hover a:hover{color:#e02d02;text-decoration: underline;}
+        .leftNav span h2{color:#dbdbdb;}
+        .leftNav .fl a{color: #fff;}
+    </style>      
 </div>
 @endsection
 
@@ -164,10 +175,10 @@
                                     <div class="box">
                                         <div class="h_icon"><img src="home/images/hot.png" width="50" height="50" /></div>
                                         <div class="imgbg">
-                                            <a href="/home/detail?id={{$v->id}}"><img src="/uploads/{{$v->pic}}" width="160" height="136" /></a>
+                                            <a href="/home/detail?cid={{$v->cid}}&id={{$v->id}}"><img src="/uploads/{{$v->pic}}" width="160" height="136" /></a>
                                         </div>                                        
                                         <div class="name">
-                                            <a href="/home/detail?id={{$v->id}}">
+                                            <a href="/home/detail?cid={{$v->cid}}&id={{$v->id}}">
                                             <h2>{{$v->gname}}</h2>
                                             {{$v->desc}}
                                             </a>
@@ -206,6 +217,7 @@
             </div>        
         </div>
         <div class="sell_right">
+        
             <div class="sell_1">
                 <div class="s_img"><a href="#"><img src="home/images/tm_1.jpg" width="185" height="155" /></a></div>
                 <div class="s_price">￥<span>89</span></div>
@@ -276,7 +288,7 @@
                 <div id="imgPlay1">
                     <ul class="imgs" id="actor1">
                     @foreach($floor_ads_datas_l as $k=>$v)
-                        <li><a href="/home/detail?id={{$v->gid}}"><img src="/uploads/{{$v->url}}" width="211" height="286" /></a></li>
+                        <li><a href="/home/detail?cid={{$v->cid}}&id={{$v->id}}"><img src="/uploads/{{$v->url}}" width="211" height="286" /></a></li>
                     @endforeach
                     </ul>
                     <div class="prevf">上一张</div>

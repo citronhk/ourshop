@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Addrs extends Model
 {
-    public $table = 'addrs';
     // public $primaryKey  = 'uid';
+	//设置表名
+    public $table = 'addrs';
 }

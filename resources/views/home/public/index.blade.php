@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- <link href="/home/css/bootstrap.css" rel='stylesheet' type='text/css' /> -->
 
 <!-- load css_script -->
 @section('css_script')
@@ -135,8 +136,12 @@
             <span class="fl">|&nbsp;关注我们：</span>
             <span class="s_sh"><a href="#" class="sh1">新浪</a><a href="#" class="sh2">微信</a></span>
             <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="/home/images/s_tel.png" align="absmiddle" /></a></span>
+
         </span>
     </div>
+    
+
+
 </div>
 
 <div class="top">
@@ -229,24 +234,24 @@
                 <div id="block1">
                     <div id="botton-scroll1">
                         <ul class="featureUL">
-                            @for($i = 0 ; $i < 20 ; $i++)
+                            @foreach($guess_goods_datas as $k=>$v)
                             <li class="featureBox">
                                 <div class="box">
                                     <div class="imgbg">
-                                        <a href="#"><img src="/home/images/hot1.jpg" width="160" height="136" /></a>
+                                        <a href="/home/detail?cid={{$v->cid}}&id={{$v->id}}"><img src="/uploads/{{$v->pic}}" width="160" height="136" /></a>
                                     </div>                                        
                                     <div class="name">
                                         <a href="#">
-                                        <h2>德国进口{{$i}}</h2>
-                                        德亚全脂纯牛奶200ml*48盒
+                                        <h2>{{$v->gname}}</h2>
+                                        {{$v->desc}}
                                         </a>
                                     </div>
                                     <div class="price">
-                                        <font>￥<span>189</span></font> &nbsp; 26R
+                                        <font>￥<span>{{$v->price}}</span></font> &nbsp; 26R
                                     </div>
                                 </div>
                             </li>
-                            @endfor
+                            @endforeach
                         </ul>
                     </div>
                 </div>
