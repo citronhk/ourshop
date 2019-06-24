@@ -161,6 +161,7 @@
 						</div>
 					</li>
 
+<<<<<<< HEAD
              		<!-- 收货地址管理 -->
 					<li>
 						<a href="#addrs" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-map-marker"></i> <span>收货地址管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -171,6 +172,8 @@
 							</ul>
 						</div>
 					</li>
+=======
+>>>>>>> root/wnuo
 
                     <!-- 商品管理 -->
                         <li>
