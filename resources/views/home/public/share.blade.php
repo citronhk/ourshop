@@ -182,7 +182,7 @@
             <div class="left_m">
                 <div class="left_m_t t_bg1">订单中心</div>
                 <ul>
-                    <li><a href="/home/personal/edit">个人信息</a></li>
+                    <li><a href="/home/personal">个人信息</a></li>
                     <li><a href="/home/order/list">我的订单</a></li>
                     <li><a href="/home/addr">收货地址</a></li>
                 </ul>

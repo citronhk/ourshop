@@ -64,6 +64,10 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::resource('home/addr','Home\AddrController');
 		//前台设置默认地址
 		Route::get('/home/addr/changestatus/{id}','Home\AddrController@changestatus');
+		//前台
+		Route::get('/home/order/evaluate','Home\OrderController@evaluate');
+		//前台
+		Route::get('/home/order/comment','Home\OrderController@comment');
 		                                                                           
 });	
 
