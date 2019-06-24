@@ -79,6 +79,16 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
+
+					<li>
+							<a href="#cate" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="cate" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/cates" class="">分类列表</a></li>
+									<li><a href="/admin/cates/create" class="">分类添加</a></li>
+								  </ul>
+							</div>
+					</li>
 					
                     <!-- 商品管理 -->
                         <li>

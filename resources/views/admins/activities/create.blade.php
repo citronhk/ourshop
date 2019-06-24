@@ -18,6 +18,8 @@
 
 		    商品名称：<input type="text" class="form-control" name="gname" value="{{ $goods_data->gname }}" readonly placeholder="">
 		    <br>  
+		    商品优惠：<input type="text" class="form-control" name="discount" >
+		    <br> 
 		    商品销量：<input type="text" class="form-control" name="sales" value="">
 		    <br>
 		    开始时间：<input type="date" class="form-control" name="startTime" value="">

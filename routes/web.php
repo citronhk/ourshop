@@ -117,6 +117,8 @@ Route::get('admin/phtoto/del/{id}','Admin\PhtotoController@del');
 Route::resource('admin/phtoto', 'Admin\PhtotoController');
 
 //订单路由
+Route::post('admin/orders/upUser','Admin\OrdersController@upUser');
+Route::get('admin/orders/infoUser','Admin\OrdersController@infoUser');
 Route::resource('admin/orders', 'Admin\OrdersController');
 
 //评价管理路由

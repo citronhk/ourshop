@@ -19,6 +19,8 @@
 
 		    商品名称：<input type="text" class="form-control" name="gname" value="{{ $activities_data->activities_goods->gname }}" placeholder="">
 		    <br>
+		     商品优惠：<input type="text" class="form-control" name="discount" value="{{ $activities_data->discount }}" placeholder="">
+		    <br>
 		    商品销量：<input type="text" class="form-control" name="sales" value="{{ $activities_data->sales }}" placeholder="">
 		    <br>
 		    开始时间：<input type="date" class="form-control" name="startTime" value="">

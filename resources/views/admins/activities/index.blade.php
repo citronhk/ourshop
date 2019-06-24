@@ -27,6 +27,7 @@
 					<tr>
 						<th>ID</th>
 						<th>商品名称</th>
+						<th>商品优惠</th>
 						<th>商品销量</th>
 						<th>开始时间</th>
 						<th>结束时间</th>
@@ -38,6 +39,7 @@
 					<tr>
 						<td>{{ $v->id }}</td>
 						<td>{{ $v->activities_goods->gname }}</td>
+						<td>{{ $v->discount }}</td>
 						<td>{{ $v->sales }}</td>
 						<td>{{ $v->startTime }}</td>
 						<td>{{ $v->endTime }}</td>
