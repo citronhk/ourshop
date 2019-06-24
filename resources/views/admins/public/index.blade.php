@@ -89,7 +89,35 @@
 								  </ul>
 							</div>
 					</li>
+<<<<<<< HEAD
 					
+=======
+             		<!-- 权限管理 -->
+					<li>
+						<a href="#nodes" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-eye-open"></i> <span>权限管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="nodes" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/nodes" class="">权限列表</a></li>
+								<li><a href="/admin/nodes/create" class="">权限添加</a></li>
+							</ul>
+						</div>
+					</li>
+
+<<<<<<< HEAD
+             		<!-- 收货地址管理 -->
+					<li>
+						<a href="#addrs" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-map-marker"></i> <span>收货地址管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="addrs" class="collapse ">
+							<ul class="nav">
+								<li><a href="/admin/addrs" class="">收货地址列表</a></li>
+								<li><a href="/admin/addrs/create" class="">收货地址添加</a></li>
+							</ul>
+						</div>
+					</li>
+=======
+>>>>>>> root/wnuo
+
+>>>>>>> origin/wnuo
                     <!-- 商品管理 -->
                         <li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
