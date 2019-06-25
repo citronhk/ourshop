@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\Home\CarController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,8 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {   
+        
         View::share(['cates_data'=>IndexController::getPidCatesData(),
-                    'guess_goods_datas' => IndexController::getGoodsByRecord(10)
+                    'guess_goods_datas' => IndexController::getGoodsByRecord(10),
                     ]);
 
     }

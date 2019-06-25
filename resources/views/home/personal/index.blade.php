@@ -77,7 +77,7 @@
               </tr>
               <tr>
                 <td class="td_l">完成订单：</td>
-                <td>0</td>
+                <td>{{ $n }}</td>
               </tr>
               
             

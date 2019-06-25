@@ -17,7 +17,13 @@ class CarController extends Controller
 	public static function cardata(){
 		$id = session('home_userinfo')->id;
     	$user = Users::find($id);
-    	$car = $user->usercar;
+    	$cars = $user->usercar;
+    	$car = [];
+    	foreach ($cars as $key => $value) {
+    		if($value->status == 0){
+    			$car[] = $value;
+    		}
+    	}
     	return $car;
 	}
 
@@ -70,6 +76,34 @@ class CarController extends Controller
     	}
     	
     	return redirect('/home/order/index');
+
+	}
+
+	/**
+	 * [购物车页面 确认秒杀订单]
+	 * @param num 商品数量
+	 * @param Goods(Models)
+	 * @return /home/car/index
+	 */
+	public function seckills(Request $request)
+	{
+		$num = $request->input('num');
+		$gid = $request->input('gid');
+		$aid = $request->input('aid');
+
+		$car = new Car;
+		$car->gid = $gid;
+		$car->num = $num;
+		$car->status = 1;
+		$car->uid = session('home_userinfo')->id;
+		$res = $car->save();
+    	// dump($res);
+    	// dd($car);
+    	if($res){
+    		return redirect('/home/order/seckills?aid='.$aid);
+    	}else{
+    		return back()->with('success','抢购失败');
+    	}
 
 	}
 }

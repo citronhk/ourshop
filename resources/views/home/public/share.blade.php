@@ -194,7 +194,7 @@
                     <li><a href="Member_Collect.html">我的收藏</a></li>
                     <li><a href="Member_Msg.html">我的留言</a></li>
                     <li><a href="Member_Links.html">推广链接</a></li>
-                    <li><a href="#">我的评论</a></li>
+                    <li><a href="/home/comment/index">我的评论</a></li>
                 </ul>
             </div>
             <div class="left_m">

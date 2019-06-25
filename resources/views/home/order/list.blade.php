@@ -30,7 +30,7 @@
 								<a href="/home/order/deliver?status=2"><i><img src="/homes/image/comment.png"/></i><span>待评价<em class="m-num">{{$order_status['2']}}</em></span></a>
 							</li>
 							<li>
-								<a ><i><img src="/homes/image/refund.png"/></i><span>不给退换货</span></a>
+								<a href="/home/order/deliver?status=3"><i><img src="/homes/image/refund.png"/></i><span>已完成<em class="m-num">{{$order_status['3']}}</em></span></a>
 							</li>
 						</ul>
 					</div>
@@ -62,9 +62,13 @@
 									<div class="lg-confirm">
 										<a class="i-btn-typical" onclick="confirm({{$v['id']}},this);" href="#">确认收货</a>
 									</div>
-									@else($v['status'] == 2)
+									@elseif($v['status'] == 2)
 									<div class="lg-confirm">
-										<a class="i-btn-typical" href="/home/order/evaluate">待评价</a>
+										<a class="i-btn-typical" href="/home/comment/evaluate">待评价</a>
+									</div>
+									@else($v['status'] == 3)
+									<div class="lg-confirm">
+										<a class="i-btn-typical">已完成评价</a>
 									</div>
 									@endif
 								</li>

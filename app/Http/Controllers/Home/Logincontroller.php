@@ -43,6 +43,7 @@ class Logincontroller extends Controller
 		//登录
 		session(['home_login'=>true]);
 		session(['home_userinfo'=>$data]);
+		$_SESSION['name'] = 123;
 
 		return redirect('/home/personal')->with('success','登录成功');
 	}

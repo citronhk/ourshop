@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Users;
 use App\Models\Usersinfo;
+use App\Models\Orders_users;
 use Illuminate\Support\Facades\Storage;
 
 class PersonalController extends Controller
@@ -22,10 +23,14 @@ class PersonalController extends Controller
         $id = session('home_userinfo')->id;
         $user_data = Users::find($id);
         
+        //获取当前用户完成订单数
+        $Orders_users = Orders_users::where('uid',$id)->get();
+        $n = count($Orders_users);
+
         //获取当前登录用户购物车信息
       $car = CarController::cardata();
 
-    	return view('home.personal.index',['user_data'=>$user_data,'car'=>$car]);
+    	return view('home.personal.index',['user_data'=>$user_data,'car'=>$car,'n'=>$n]);
     }
 
     /**

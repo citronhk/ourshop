@@ -53,6 +53,8 @@
                    <p align="right" style="position: absolute; top: 180px;right: 30px">
                     @if($v->status == 0)
                     <a href="/home/addr/changestatus/{{$v->id}}" style="color:#ff4e00;">设为默认</a>&nbsp; &nbsp; &nbsp; &nbsp;
+                    @else
+                    <a href="javascript:;" class="btn btn-success">默认地址</a>&nbsp; &nbsp; &nbsp; &nbsp;
                     @endif
                     <a href="/home/addr/{{$v->id}}/edit" style="color:#ff4e00;">编辑</a>&nbsp; &nbsp; &nbsp; &nbsp; 
                     <a onclick="del({{ $v->id }} ,this)" style="color:#ff4e00;">删除</a>&nbsp; &nbsp; &nbsp; &nbsp; 

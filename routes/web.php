@@ -22,8 +22,7 @@
 // Route::get('/',function() {
 // 	return view('welcome');
 // });
-//后台-首页
-Route::get('admin', 'Admin\IndexController@index');
+
 
 // Route 路由
 Route::get('/',function() {
@@ -56,18 +55,24 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('home/order/pay','Home\OrderController@pay');
 		//我的订单
 		Route::get('home/order/list','Home\OrderController@list');
-		//我的订单
+		//我的订单 确认收货
 		Route::get('home/order/confirm','Home\OrderController@confirm');
 		//我的订单 待发货
 		Route::get('home/order/deliver','Home\OrderController@deliver');
-		//前台用户收货地址
-		Route::resource('home/addr','Home\AddrController');
 		//前台设置默认地址
 		Route::get('/home/addr/changestatus/{id}','Home\AddrController@changestatus');
-		//前台
-		Route::get('/home/order/evaluate','Home\OrderController@evaluate');
-		//前台
-		Route::get('/home/order/comment','Home\OrderController@comment');
+		//前台用户收货地址
+		Route::resource('home/addr','Home\AddrController');	
+		//前台评论页面	
+		Route::get('/home/comment/evaluate','Home\CommentController@evaluate');
+		//前台执行评论
+		Route::get('/home/comment/comment','Home\CommentController@comment');
+		//前台查看用户所有评论
+		Route::get('/home/comment/index','Home\CommentController@index');
+		//购物车订单 秒杀订单生成
+		Route::get('/home/car/seckills','Home\CarController@seckills');
+		//购物车订单 秒杀订单确认
+		Route::get('/home/order/seckills','Home\OrderController@seckills');
 		                                                                           
 });	
 

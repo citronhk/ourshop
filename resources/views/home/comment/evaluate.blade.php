@@ -91,7 +91,7 @@
 					let content = $('#content'+n).val();
 					let grade = $('#grade'+n).val();
 					let order_number = $('#order_number'+n).val();
-					$.get('/home/order/comment',{gid:gid,content:content,grade:grade,order_number:order_number},function(res){
+					$.get('/home/comment/comment',{gid:gid,content:content,grade:grade,order_number:order_number},function(res){
 						if(res.msg == 'ok'){
 							$(obj).parent().parent().remove();
 							alert(res.info);

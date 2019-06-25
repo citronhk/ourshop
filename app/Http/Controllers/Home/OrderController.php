@@ -44,13 +44,16 @@ class OrderController extends Controller
         $a = 0;
         $b = 0;
         $c = 0; 
+        $d = 0;
         foreach($order_info as $k=>$v){
             if($v->status == 0){
                 $a++; 
             } else if($v->status == 1){
                 $b++;
-            }else {
+            }else if($v->status == 2){
                 $c++;
+            }else if($v->status == 3){
+                $d++;
             }
         };
 
@@ -58,6 +61,7 @@ class OrderController extends Controller
         $order_count[0] = $a;
         $order_count[1] = $b;
         $order_count[2] = $c;
+        $order_count[3] = $d;
 
         return $order_count;
     }
@@ -242,6 +246,7 @@ class OrderController extends Controller
 			    	$order->otime = date('Y-m-d H:i:s',time());
 		    		$order->gid = $value->gid;
 		    		$order->oid = $oid;
+                    $order->status = rand(0,3);
 			    	$res = $order->save();
 			    	//抛出异常
 				    	if($res === false){
@@ -251,8 +256,6 @@ class OrderController extends Controller
 	    		
 		    	};
 
-		    	
-		    	
 		    	
 		    	//事务提交
 		    	DB::commit();
@@ -358,58 +361,52 @@ class OrderController extends Controller
     }
 
     /**
-     * 评论
-     * @param CarController方法，
+     * 秒杀订单生成
+     * @param 
      * @return view 
      */
-    public function evaluate()
+    public function seckills(Request $request)
     {
-        $status = 2;
         //获取当前登录用户购物车信息
         $car = CarController::cardata();
-        //获取用户所有订单内商品详情
-        $path = '/home/order/evaluate?status=2';
-        $order_info = self::orderInfoStatus($status,3,$path);
+        //获取当前用户id
+        $id = session('home_userinfo')->id;
+        //获取用户默认地址
+        $addr = Addrs::where('uid',$id)->where('status','=','1')->get();
 
-        //获取用户订单商品状态
-        $order_status = self::order_status();
+        $id = session('home_userinfo')->id;
+        $user = Users::find($id);
+        $car2 = $user->usercar;
         
-        // foreach ($order_info as $key => $value) {
-        //     dd($value);
-        // }
-        // dd($order_info);
-
-        return view('home.order.evaluate',[
-            'car'=>$car,
-            'order_info'=>$order_info,
-            'order_status'=>$order_status,
-        ]);
-    }
-
-    public function comment(Request $request)
-    {
-        DB::beginTransaction();
-
-        $gid = $request->input('gid');
-
-        $comment = New Comment;
-        $comment->uid = session('home_userinfo')->id;
-        $comment->gid = $gid;
-        $comment->content = $request->input('content');
-        $comment->grade = $request->input('grade','1');
-        $res = $comment->save();
-
-
-        $order_info = orders_infos::where('gid',$gid)->where('order_number',$request->input('order_number'))->first();
-        $order_info->status = 4;
-        $res2 = $order_info->save();
-
-        if($res && $res2){
-            DB::commit();
-            echo json_encode(['msg'=>'ok','info'=>'评论成功']);
-        }else{
-            echo json_encode(['msg'=>'err','info'=>'评论失败']);
-            DB::rollBack();
+        //获取购物车中秒杀商品
+        $seckills = [];
+        foreach ($car2 as $key => $value) {
+            if ($value->status == 1) {
+                $seckills[] = $value;
+            }
         }
+        $gid = $seckills[0]->gid;
+        $aid = $request->input('aid');
+        $data = DB::table('act_goods')->where('aid',$aid)->where('gid',$gid)->first();
+        // dump($gid);
+        // dump($aid);
+        // dd($data);
+        
+        if(!empty($addr[0])){
+           return view('home.order.seckills',[
+                            'car'=>$car,
+                            'addr'=>$addr,
+                            'seckills'=>$seckills,
+                            'data'=>$data,
+                        ]); 
+        }else{
+           return view('home.order.seckills2',[
+                            'car'=>$car,
+                            'seckills'=>$seckills,
+                            'data'=>$data,
+                        ]); 
+        }
+
     }
+    
 }
