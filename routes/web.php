@@ -31,7 +31,6 @@ Route::get('/',function() {
 });
 
 
-
 Route::group(['middleware'=>'home_login'],function(){
         //个人中心 个人信息页面
 		Route::get('home/personal','Home\PersonalController@index');
