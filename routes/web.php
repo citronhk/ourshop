@@ -69,7 +69,7 @@ Route::group(['middleware'=>'home_login'],function(){
 		//前台查看用户所有评论
 		Route::get('/home/comment/index','Home\CommentController@index');
 		//购物车订单 秒杀订单生成
-		Route::get('/home/car/seckills','Home\CarController@seckills');
+		Route::post('/home/car/seckills','Home\CarController@seckills');
 		//购物车订单 秒杀订单确认
 		Route::get('/home/order/seckills','Home\OrderController@seckills');
 		                                                                           

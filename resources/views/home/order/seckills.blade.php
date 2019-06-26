@@ -115,7 +115,7 @@
             <table border="0" style="width:830px; margin-left:50px ;margin-bottom:50px;" cellspacing="0" cellpadding="0">
               <tr>
                 <td align="right">
-                    商品总价: <font color="#ff4e00" id="abc"  onclick="totalPrice({{count($seckills)}},{{$data->discount}})">￥1815.00</font>&nbsp;<font color="#ff4e00" style="font-size: 20px">x&nbsp;{{$data->discount * 10}}&nbsp;折 </font>
+                    商品总价: <font color="#ff4e00" id="abc"  onclick="totalPrice({{count($seckills)}},{{$data->discount}})">￥1815.00</font>&nbsp;<font color="#ff4e00" style="font-size: 20px">x&nbsp;{{$data->discount * 10}}&nbsp;折 </font>  + 配送费用: <font color="#ff4e00">￥15.00</font>
                 </td>
               </tr>
               <input type="hidden" id="jkl" name="total" value="" onclick="cs();">
@@ -137,7 +137,9 @@
                   n = n + parseInt($('.'+i).text().replace('￥',''));
                 }
                 $('#abc').text('￥'+n);
-                $('#def').text('￥'+(n+15)*discount);
+                let a = (n*discount).toFixed(2);
+                a = Number(a)+15;
+                $('#def').text('￥'+a);
               }
               $('#def').click();
               $('#abc').click();

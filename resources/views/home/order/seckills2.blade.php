@@ -55,11 +55,11 @@
             </div>
             <table border="0" class="car_tab" style="width:830px; margin-left:50px ;margin-bottom:50px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="car_th" width="350">商品名称</td>
+                <td class="car_th" width="250">商品名称</td>
                 <td class="car_th" width="150">属性</td>
-                <td class="car_th" width="100">单价</td>
-                <td class="car_th" width="100">购买数量</td>
-                <td class="car_th" width="100">小计</td>
+                <td class="car_th" width="90">单价</td>
+                <td class="car_th" width="90">购买数量</td>
+                <td class="car_th" width="250">小计</td>
                
               </tr>
               @foreach($seckills as $k=>$v)
@@ -71,7 +71,7 @@
                 <td align="center">{{ $v->cargood->desc }}</td> 
                  <td align="center" style="color:#ff4e00;">￥{{ $v->cargood->price }}</td> 
                 <td align="center">{{ $v->num }}</td>
-                <td align="center" class="{{$k}}" id="total{{$v->id}}" style="color:#ff4e00;">{{ $v->num }} * {{$v->cargood->price}}  * {{$data->discount}}&nbsp;=&nbsp; ￥{{ $v->num * $v->cargood->price * $data->discount}}</td>
+                <td align="center" class="{{$k}}" id="total{{$v->id}}" style="color:#ff4e00;">￥{{ $v->num * $v->cargood->price }}</td>
               
               </tr>
               @endforeach
@@ -97,7 +97,8 @@
                 <td width="395"><input type="text" name="postal" value="" style="width:100%; height:100%"></td>
               </tr>
             </table>
-        
+          
+           
             <div class="two_t">
               &nbsp;&nbsp;&nbsp;&nbsp;其他信息
             </div>
@@ -114,19 +115,13 @@
             <table border="0" style="width:830px; margin-left:50px ;margin-bottom:50px;" cellspacing="0" cellpadding="0">
               <tr>
                 <td align="right">
-                  商品总价: 
-                    <font color="#ff4e00" id="abc"  onclick="totalPrice({{count($seckills)}},{{$data->discount}})">
-                        ￥1815.00 
-                    </font>&nbsp;
-                    <font color="#ff4e00" style="font-size: 20px">
-                        x&nbsp;{{$data->discount * 10}}&nbsp;折 
-                    </font>
+                    商品总价: <font color="#ff4e00" id="abc"  onclick="totalPrice({{count($seckills)}},{{$data->discount}})">￥1815.00</font>&nbsp;<font color="#ff4e00" style="font-size: 20px">x&nbsp;{{$data->discount * 10}}&nbsp;折 </font>  + 配送费用: <font color="#ff4e00">￥15.00</font>
                 </td>
               </tr>
               <input type="hidden" id="jkl" name="total" value="" onclick="cs();">
               <tr height="70">
                 <td align="right">
-                <span class="fr">应付款金额：<b id="def" onclick="totalPrice({{count($car)}})" style="font-size:22px; color:#ff4e00;">￥2899</b></span>
+                <span class="fr">应付款金额：<b id="def" onclick="totalPrice({{count($seckills)}},{{$data->discount}})" style="font-size:22px; color:#ff4e00;">￥2899</b></span>
                 </td>
               </tr>
               <tr height="70">
@@ -135,14 +130,16 @@
             </table>
             </form> 
             <script type="text/javascript">
-              function totalPrice(car){
+              function totalPrice(car,discount){
                 let n = 0;
                 // console.log(car)
                 for(let i=0;i<=car-1;i++){
                   n = n + parseInt($('.'+i).text().replace('￥',''));
                 }
                 $('#abc').text('￥'+n);
-                $('#def').text('￥'+(n+15));
+                let a = (n*discount).toFixed(2);
+                a = Number(a)+15;
+                $('#def').text('￥'+a);
               }
               $('#def').click();
               $('#abc').click();
