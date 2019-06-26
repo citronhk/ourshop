@@ -47,7 +47,8 @@ class CarController extends Controller
 	 * @param Goods(Models)
 	 * @return /home/car/index
 	 */
-	public function delete(Request $request){
+	public function delete(Request $request)
+	{
 		$id = $request->input('id');
 		$car = Car::find($id);
 		$res = $car->delete();

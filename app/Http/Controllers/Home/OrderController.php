@@ -406,7 +406,6 @@ class OrderController extends Controller
                             'data'=>$data,
                         ]); 
         }
-
     }
     
 }
