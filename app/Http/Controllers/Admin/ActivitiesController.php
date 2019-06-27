@@ -9,6 +9,7 @@ use App\Models\Goods;
 use App\Models\Act_goods;
 use DB;
 
+
 class ActivitiesController extends Controller
 {
     /**

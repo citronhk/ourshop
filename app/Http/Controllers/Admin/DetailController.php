@@ -42,7 +42,7 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         // dump($request->all());
         //实例化对象
         $datas = new Detail;
