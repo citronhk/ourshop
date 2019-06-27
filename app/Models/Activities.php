@@ -11,21 +11,10 @@ class Activities extends Model
 {
     public $table = 'activities';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/zhihao
     public function show()
     {
     	return $this->hasOne('App\Models\Act_goods','aid');
     }
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> origin/zhihao
 
     public function activities_goods()
     {

@@ -145,9 +145,9 @@ class BuyController extends Controller
      */
     public function createOrder($uid,$gid)
     {       
-        $time = date('Y-m-d H:i:s',time());
-        $data = array('uid'=>$uid,'gid'=>$gid,'num'=1,'type'=>1,'created_at'=>$time,'updated_at'=>$time);
-        return DB::table('car')->insert($data);
+        // $time = date('Y-m-d H:i:s',time());
+        // $data = array('uid'=>$uid,'gid'=>$gid,'num'=1,'type'=>1,'created_at'=>$time,'updated_at'=>$time);
+        // return DB::table('car')->insert($data);
     }
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

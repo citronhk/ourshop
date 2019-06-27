@@ -64,7 +64,7 @@ class ActivitiesController extends Controller
          $data = new Activities;
          $data_act = new Act_goods;
          //压入数据
-         $data->startTime = $request->startDate.' '.$request->startTime;
+         $data->startTime = $request->input('startDate','').' '.$request->input('startTime','');
          $data->endTime = $request->endDate.' '.$request->endTime;
          $data->status = 1;
          $data->type = 1;
@@ -118,11 +118,9 @@ class ActivitiesController extends Controller
     public function update(Request $request, $id)
     {
         //查找对应要修改的id的数据
-        $datas = Activities::find($id);
         $data_act = Act_goods::where('id',$id)->first();
+        
         //更新Activities表的数据
-        $datas->startTime = $request->startDate.' '.$request->startTime;
-        $datas->endTime = $request->endDate.' '.$request->endTime;
         
         //更新Act_goods表的数据
         $data_act->aid = $request->aid;
@@ -130,7 +128,7 @@ class ActivitiesController extends Controller
         $data_act->count = $request->count;
         // dd($request->startTime);
         //压入数据表 返回受影响行数
-        if($datas->save() && $data_act->save()){
+        if($data_act->save()){
         
             return redirect('/admin/activities')->with('success','修改成功');
         }else{

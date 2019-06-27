@@ -20,7 +20,7 @@
 		    <br>
 		    商品优惠：<input type="text" class="form-control" name="discount" value="{{ $act_data->discount }}" placeholder="">
 		    <br>
-		    商品销量：<input type="text" class="form-control" name="sales" value="{{ $act_data->count }}" placeholder="">
+		    商品销量：<input type="text" class="form-control" name="count" value="{{ $act_data->count }}" placeholder="">
 		    <br>
 		    场次：
 		    <select name="aid" id="">
@@ -39,7 +39,7 @@
             结束日期：
 		    	 <input type="date" class="" style="width:200px;border:1px solid #ccc;" name="endDate">
 		    结束时间：		 
-                 <input type="time" class="" style="width:200px;border:1px solid #ccc;" name="endtTime">
+                 <input type="time" class="" style="width:200px;border:1px solid #ccc;" name="endTime">
 		   
 		    <br>
 		    

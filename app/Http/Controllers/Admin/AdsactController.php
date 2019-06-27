@@ -123,7 +123,7 @@ class AdsactController extends Controller
     public function upUrl(Request $request)
     {
 
-        if($request->url){
+        if($request->hasFile('url')){
             $path = $request->file('url')->store(date('Ymd'));
         }else{
             $path = $request->reurl;
