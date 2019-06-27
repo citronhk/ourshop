@@ -27,10 +27,16 @@ class Logincontroller extends Controller
 	 */
 	public function dologin(Request $request)
 	{
+		$token = str_random(40);
+
 		$phone = $request->input('phone');
 		$upass = $request->input('upass');
 		$data = Users::where('phone','=',$phone)->first();
+		
 
+		$data->token = $token;
+		$data->save();
+		
 		if(empty($data)){
 			return redirect('/home/login')->with('error','手机号或密码错误');
 		}
@@ -56,10 +62,13 @@ class Logincontroller extends Controller
 	 */
 	public function sign(Request $request)
 	{
-		
+		$token = str_random(40);
 		$email = $request->input('email');
 		$upass = $request->input('upass');
+
 		$data = Users::where('email','=',$email)->first();
+		$data->token = $token;
+		$data->save();
 
 
 		if(empty($data)){
@@ -77,6 +86,8 @@ class Logincontroller extends Controller
 		//登录
 		session(['home_login'=>true]);
 		session(['home_userinfo'=>$data]);
+
+		
 		// dd(session('home_userinfo'));
 		return redirect('/home/personal')->with('success','登录成功');
 	}

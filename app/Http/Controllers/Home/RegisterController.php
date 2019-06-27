@@ -32,7 +32,7 @@ class RegisterController extends Controller
             'repass.same'=>'两次密码不一致'
         ]);
 
-    	$token = str_random(30);
+    	$token = str_random(40);
 
     	$email = $request->input('email');
     	$upass = $request->input('upass');
@@ -72,7 +72,7 @@ class RegisterController extends Controller
     		dd('链接失效');
     	}
      	$user->status = 1;
-     	$user->token = str_random(30);
+     	$user->token = str_random(40);
     	if($user->save()){
     		echo '激活成功';
     	}else{
