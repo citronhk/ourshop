@@ -188,13 +188,23 @@ Route::get('/home/goods/addColl','Home\DetailController@addColl');
 //加入购物车
 Route::get('/home/goods/addCar','Home\DetailController@addCar');
 
+//商品特买
+// Route::get('/home/skill','Skill\SkillController@index');
 
 
+//商品特买
+Route::get('/skill/index','Skill\SkillController@index');
 
+//商品特买
+Route::get('/skill/pre','Skill\SkillController@pre');
 
+Route::get('/skill/end','Skill\SkillController@end');
 
+//商品抢购
+Route::get('/skill/buy','Skill\BuyController@index');
 
-
+//提交数据
+Route::post('/skill/sub','Skill\BuyController@handle');
 
 
 //商品路由 

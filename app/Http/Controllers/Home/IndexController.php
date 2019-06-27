@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Home\DetailController;
 use DB;
+use Illuminate\Support\Facades\Redis;
 
 class IndexController extends Controller
 {
@@ -24,18 +25,14 @@ class IndexController extends Controller
         $floor_ads_datas_r = self::getFloorAds(4,1);          //获取生鲜右侧广告位
         $hot_sell_goods_data = self::getHotsell();
 
-  
-
-
-    	//返回首页视图
-        // return view('home.index.index',['cates_data'=>$cates_data]);
+    	//渲染首页视图
     	return view('home.index.index',[
                     'banners_data'=>$banners_data,
                     'floor_1_cates'=>$floor_1_cates,
                     'floor_goods_datas'=>$floor_goods_datas,
                     'floor_ads_datas_l'=>$floor_ads_datas_l,
                     'floor_ads_datas_r'=>$floor_ads_datas_r,
-                    'hot_sell_goods_data'=>$hot_sell_goods_data,
+                    'hot_sell_goods_data'=>$hot_sell_goods_data
                 ]);
     }
 
@@ -47,11 +44,9 @@ class IndexController extends Controller
      */
     public static function getPidCatesData($pid = 0)
     {
-    	$data =  DB::table('cates')
-                    ->where('pid',$pid)
-                    ->get();
+        $cates_data = DB::table('cates')->where('pid',$pid)->get();
        
-        foreach($data as $k=>$v){
+        foreach($cates_data as $k=>$v){
 
             // $sec = DB::table('cates')->where('pid',$v->id)->get();
 
@@ -65,34 +60,8 @@ class IndexController extends Controller
             
         }
 
-
-        return $data;
+        return $cates_data;
     }
-
-    //     /**
-    //  * 获取分类数据
-    //  * @param $pid 分类id
-    //  * @return 返回分类数据
-    //  */
-    // public static function getPidCatesData($pid = 0)
-    // {
-    //     $data =  DB::table('cates')
-    //                 ->where('pid',$pid)
-    //                 ->get();
-       
-    //     foreach($data as $k=>$v){
-
-    //         // $sec = DB::table('cates')->where('pid',$v->id)->get();
-
-    //         // $v->sub = $sec;
-    //         //递归
-    //         $v->sub = self::getPidCatesData($v->id);
-    //     }
-
-       
-    //     return $data;
-    // }
-
 
     /**
      *  修改栏目显示形式 
@@ -106,16 +75,8 @@ class IndexController extends Controller
                     ->take(3)
                     ->get();
         return $data ;
-       // return  DB::tabel('cates')
-       //          ->where('pid',$pid)
-       //          ->take(3)
-       //          ->get();
     }
 
-    // public static function cataData()
-    // {
-    //     getPidCatesData($pid = 0)
-    // }
 
     /**
      * 显示轮播图

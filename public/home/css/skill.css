@@ -1,0 +1,24 @@
+
+.times{
+	width: 90px;
+	height: 25px;
+	color: #fff;
+	font-size: 12px;
+	line-height: 25px;
+	text-align: center;
+}
+
+.on{
+	background-color:#ff4e00;
+}
+
+.after{
+	background-color: #e2e2e2;
+}
+
+.cdown{
+	width: 110px;
+}
+
+
+

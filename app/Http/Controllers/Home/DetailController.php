@@ -9,7 +9,6 @@ use DB;
 
 class DetailController extends Controller
 {
-
     /**
      * 显示首页
      * @param 
@@ -19,10 +18,13 @@ class DetailController extends Controller
     {
         //接收请求id
         $gid = $request->input('id',0);
-        // dump('');
+
+        //接收请求商品售卖类型 
+        //0:普通类型 ,1:限时特买
+        $aid = $request->input('aid',0);
+
         $uid = 8;
 
-    
 
         //获取当请求id的商品数据
         $goods_attr = self::getGoodsAttrById($gid);
@@ -49,7 +51,8 @@ class DetailController extends Controller
 
 
     	//返回详情页视图  
-    	return view('home.detail.index',['id'=>$gid,  
+    	return view('home.detail.index',['aid'=>$aid,
+                                         'id'=>$gid,  
                                          'goods_attr'=>$goods_attr,
                                          'like_goods_data'=>$like_goods_data,
                                          'goods_photo'=>$goods_photo,
@@ -63,7 +66,7 @@ class DetailController extends Controller
      * @param $id 商品id 
      * @return 商品详情 
      */
-    public function getGoodsDataById($id)
+    public static function getGoodsDataById($id)
     {
         return DB::table('goods')->where('id',$id)->first();
     }
@@ -73,7 +76,7 @@ class DetailController extends Controller
      *  @param $id 商品id
      *  @return data 
      */
-    public function getDescPhotoByid($id)
+    public static function getDescPhotoByid($id)
     {
         return DB::table('goods_photo')->select('profile')->where('gid',$id)->get();
     }
@@ -83,15 +86,16 @@ class DetailController extends Controller
      *  @param $id 商品id
      *  @return attr_list
      */
-    public function getGoodsAttrById($id)
+    public static function getGoodsAttrById($id)
     {
         //获取商品名称
         $goods = DB::table('goods')->where('id',$id)->first();
-
-
+        
         //获取商品属性
         $data = DB::table('goods_detail')->where('gid',$id)->first();
-    
+            
+        
+
         //定义商品属性列表
         $attr_list = [];
 
@@ -115,7 +119,7 @@ class DetailController extends Controller
      * @param $id 商品id
      * @return json
      */
-    public function addColl(Request $request)
+    public static function addColl(Request $request)
     {
         //获取商品id
         $gid = $request->input('id',0);
@@ -153,7 +157,7 @@ class DetailController extends Controller
      * @param $request 请求数据
      * @return json
      */
-    public function addCar(Request $request)
+    public static function addCar(Request $request)
     {
         //获取商品id
         $gid = $request->input('id',0);
@@ -217,7 +221,7 @@ class DetailController extends Controller
      *  @param $request 请求参数
      *  @return 
      */
-    public function addRecord($gid,$uid)
+    public static function addRecord($gid,$uid)
     {
         //搜索该用户的浏览记录
         $record_list = self::getRecordsByUid($uid);
@@ -255,7 +259,6 @@ class DetailController extends Controller
         return $record_list;
     }
 
-
     /**
      *  记录商品点击量 
      *  商品详情页记录
@@ -263,7 +266,7 @@ class DetailController extends Controller
      *  @return 
      */
     
-    public  function addGoodsBrows($gid)
+    public static  function addGoodsBrows($gid)
     {
         //通过商品id,获取该商品的浏览量
         $data = DB::table('goods')->select('clickNum')->where('id',$gid)->first();
@@ -281,7 +284,7 @@ class DetailController extends Controller
      * @param $cid 栏目id
      * @return data
      */
-    public function getUseLikeByCid($cid)
+    public static function getUseLikeByCid($cid)
     {
         return DB::table('goods')
                     ->where('cid',$cid)
@@ -295,7 +298,7 @@ class DetailController extends Controller
      * @param $gid 商品id
      * @return $data
      */
-    public function getCommentByGid($gid)
+    public static function getCommentByGid($gid)
     {
         return DB::table('comment')
                     ->where('gid',$gid)
@@ -308,7 +311,7 @@ class DetailController extends Controller
      * @param Request id 商品id ,content评论内容
      * @return 
      */
-    public function publish(Request $request)
+    public static function publish(Request $request)
     {
         $uid = 14;
         //商品id
@@ -353,7 +356,7 @@ class DetailController extends Controller
      * @param $gid 商品id, $uid用户id
      * @return true/false
      */
-    public function CheckComment($gid,$uid)
+    public static function CheckComment($gid,$uid)
     {
         $res = DB::table('comment')
                 ->where('uid',$uid)
@@ -371,7 +374,7 @@ class DetailController extends Controller
      *  @param $uid 用户id
      *  @return 返回用户所有购买过的商品id
      */
-    public function GetGoodsListByUid($uid)
+    public static function GetGoodsListByUid($uid)
     {
 
         //uid->order_number->gid
@@ -405,8 +408,6 @@ class DetailController extends Controller
 
         //返回用户所有购买过的商品id
         return $user_goods_list;
-        
-
 
     }
 

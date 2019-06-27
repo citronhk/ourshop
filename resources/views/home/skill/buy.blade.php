@@ -7,7 +7,8 @@
            EvPNG.fix('div, ul, img, li, input, a'); 
         </script>
     <![endif]-->   
- <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script type="text/javascript" src="/home/js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="/home/js/menu.js"></script>    
             
     <script type="text/javascript" src="/home/js/lrscroll_1.js"></script>   
@@ -42,26 +43,11 @@
         <span class="fl">全部 > 美妆个护 > 香水 > 迪奥 > 迪奥真我香水</span>
     </div>    
     <div class="content">
-                            
         <div id="tsShopContainer">
             <div id="tsImgS"><a href="/uploads/{{$goods_attr['pic']}}" title="Images" class="MagicZoom" id="MagicZoom">
                 <img src="/uploads/{{$goods_attr['pic']}}" width="390" height="390" /></a>
             </div>
-         <!--    <div id="tsPicContainer">
-                <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
-                <div id="tsImgSCon">
-                    <ul>
-                        <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="/home/images/ps1.jpg" tsImgS="/home/images/ps1.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(1)" rel="MagicZoom"><img src="/home/images/ps2.jpg" tsImgS="/home/images/ps2.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(2)" rel="MagicZoom"><img src="/home/images/ps3.jpg" tsImgS="/home/images/ps3.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(3)" rel="MagicZoom"><img src="/home/images/ps4.jpg" tsImgS="/home/images/ps4.jpg" width="79" height="79" /></li>
-                    </ul>
-                </div>
-                <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
-            </div> -->
-            <!-- <img class="MagicZoomLoading" width="16" height="16" src="/home/images/loading.gif" alt="Loading..." /> -->               
         </div>
-        
         <div class="pro_des">
             <div class="des_name">
                 <p>{{$goods_attr['gname']}}</p>
@@ -71,22 +57,6 @@
                 本店价格：<b>￥{{$goods_attr['price']}}</b><br />
                 消费积分：<span>28R</span>
             </div>
-       <!--      <div class="des_choice">
-                <span class="fl">型号选择：</span>
-                <ul>
-                    <li class="checked">30ml<div class="ch_img"></div></li>
-                    <li>50ml<div class="ch_img"></div></li>
-                    <li>100ml<div class="ch_img"></div></li>
-                </ul>
-            </div> -->
-           <!--  <div class="des_choice">
-                <span class="fl">颜色选择：</span>
-                <ul>
-                    <li>红色<div class="ch_img"></div></li>
-                    <li class="checked">白色<div class="ch_img"></div></li>
-                    <li>黑色<div class="ch_img"></div></li>
-                </ul>
-            </div> -->
             <div class="des_share">
                 <div class="d_sh">
                     分享
@@ -100,39 +70,43 @@
                 </div>
                 <div class="d_care"><a  onclick="addColl({{$goods_attr['id']}})">关注商品</a></div>
             </div>
-            <div class="des_join">
-                    @if($aid == 0)
-                        <div class="j_nums">
-                            <input type="hidden" name="aid" value="{{$id}}">
-                            <input type="hidden" name="gid" value="{{$id}}">
-                            <input type="text" value="1" id="num" name="num" class="n_ipt" />
+            <div class="des_join"> 
+                    <input type="hidden" id="aid" name="aid" value="{{$id}}">
+                    <input type="hidden" id="gid" name="gid" value="{{$id}}">
+                    <!-- <div class="j_nums">
+                         
+                            <input type="text" id="num" name="num" value="1"  class="n_ipt" />
 
                             <input type="button" value="" onclick="addUpdate(jq(this));"  class="n_btn_1" />
                             <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />  
-                        </div>
-                            <!-- onclick="ShowDiv_1('MyDiv1','fade1') -->
-                        <span class="fl">
-                                <button onclick="AddCar({{ $goods_attr['id']}});" style="width:180px; height:45px;padding:0;border:0;"><img src="/home/images/j_car.png" /></button>
-                        </span>
-                    @else
-                        <form action="home/car/seckills" method="get">
-                            <div class="j_nums">
-                                    <input type="hidden" name="aid" value="{{$id}}">
-                                    <input type="hidden" name="gid" value="{{$id}}">
-                                    <input type="text" value="1" id="num" name="num" class="n_ipt" />
-
-                                    <input type="button" value="" onclick="addUpdate(jq(this));"  class="n_btn_1" />
-                                    <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />  
-                            </div>
-                            <!-- onclick="ShowDiv_1('MyDiv1','fade1') -->
-                            <span class="fl">
-                                    <button type="submit"  style="width:180px; height:45px;padding:0;border:0; background-color:#f54e04; font-size:18px;color:#fff;">立即抢购</button>
-                            </span>
-                        </form>
-                    @endif
+                    </div> -->
+                    <span class="fl">
+                            <button type="button" onclick="buy()"  style="width:180px; height:45px;padding:0;border:0; background-color:#f54e04; font-size:18px;color:#fff;">立即抢购</button>
+                    </span>
             </div>   
 
             <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    
+            <script type="text/javascript">
+                function buy()
+                {   
+                    let aid =  $('#aid').val();
+                    let gid =  $('#gid').val();
+                    // let num =  $('#num').val();
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.post('/skill/sub',{aid,gid},function(msg){
+                        // alert(msg); 
+                        console.log(msg);
+                    },'json');
+                }
+            </script>
+
             <script type="text/javascript">
                 function AddCar(id)
                 {
@@ -199,33 +173,7 @@
     <!--End 弹出层-收藏成功 End-->
     
     
-    <!--Begin 弹出层-加入购物车 Begin-->
-    <div id="fade1" class="black_overlay"></div>
-    <div id="MyDiv1" class="white_content">             
-        <div class="white_d">
-            <div class="notice_t">
-                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv_1('MyDiv1','fade1')"><img src="/home/images/close.gif" /></span>
-            </div>
-            <div class="notice_c">
-                
-                <table border="0" align="center" style="margin-top:;" cellspacing="0" cellpadding="0">
-                  <tr valign="top">
-                    <td width="40"><img src="/home/images/suc.png" /></td>
-                    <td>
-                        <span style="color:#3e3e3e; font-size:18px; font-weight:bold;">宝贝已成功添加到购物车</span><br />
-                        <!-- 购物车共有1种宝贝（3件） &nbsp; &nbsp; 合计：1120元 -->
-                    </td>
-                  </tr>
-                  <tr height="50" valign="bottom">
-                    <td>&nbsp;</td>
-                    <td><a href="/" class="b_sure">去购物车结算</a><a onclick="CloseDiv_1('MyDiv1','fade1')" class="b_buy">确认</a></td>
-                  </tr>
-                </table>
-                    
-            </div>
-        </div>
-    </div>    
-    <!--End 弹出层-加入购物车 End-->
+    
     
 
         <div class="s_brand">
