@@ -50,7 +50,7 @@ class CatesController extends Controller
      */
     public function create(Request $request)
     {
-       $id = $request->input('id','0');
+       $id = $request->input('id','0'); 
         //跳转创建页面
         return view('admins.cates.create',['id'=>$id,'cates'=>self::getCatesData()]);
     }

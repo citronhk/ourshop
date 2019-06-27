@@ -23,6 +23,8 @@
 		    <br>
 		    商品品牌：<input type="text" class="form-control" name="brand" value="{{ $detail_data->brand }}">
 		    <br>
+		    商品源：<input type="text" class="form-control" name="origin" value="{{ $detail_data->origin }}">
+		    <br>
 		    商品重量：<input type="text" class="form-control" name="weight" value="{{ $detail_data->weight  }}" >
 		    <br>
 		    商品编号：<input type="text" class="form-control" name="num" value="{{ $detail_data->num }}" >

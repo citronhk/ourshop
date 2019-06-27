@@ -35,6 +35,7 @@
 
 <body>
 	<div id="wrapper">
+	<br>
 		<!-- 头部栏 开始 -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
@@ -222,6 +223,15 @@
 							<div id="activities" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/activities" class="">活动商品列表</a></li>
+								  </ul>
+							</div>
+						</li>
+                       	<!-- 活动广告管理 -->
+						<li>
+							<a href="#adsact" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动广告管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="adsact" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/adsact" class="">特卖商品列表</a></li>
 								  </ul>
 							</div>
 						</li>

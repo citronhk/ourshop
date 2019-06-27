@@ -9,6 +9,9 @@
            EvPNG.fix('div, ul, img, li, input, a'); 
         </script>
     <![endif]-->    
+
+    
+
     <script type="text/javascript" src="/homes/js/jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="/homes/js/jquery.bxslider_e88acd1b.js"></script>
     
@@ -23,6 +26,8 @@
     <script type="text/javascript" src="/homes/js/s_ban.js"></script>
     
 <title>尤洪</title>
+
+
 </head>
 <body>  
 <!--Begin Header Begin-->

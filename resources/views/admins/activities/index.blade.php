@@ -25,7 +25,8 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>ID</th>
+					<th>ID</th>
+						<th>活动场次</th>
 						<th>商品名称</th>
 						<th>商品优惠</th>
 						<th>商品销量</th>
@@ -35,14 +36,16 @@
 					</tr>
 				</thead>
 				<tbody>
-                @foreach($activities_datas as $k=>$v)
+
+                @foreach($act_datas as $k=>$v)
 					<tr>
-						<td>{{ $v->id }}</td>
-						<td>{{ $v->activities_goods->gname }}</td>
+					<td>{{$v->id}}</td>
+						<td>{{ $v->aid }}</td>
+						<td>{{ $v->a_goods->gname }}</td>
 						<td>{{ $v->discount }}</td>
-						<td>{{ $v->sales }}</td>
-						<td>{{ $v->startTime }}</td>
-						<td>{{ $v->endTime }}</td>
+						<td>{{ $v->count }}</td>
+						<td>{{ $v->act_act->startTime }}</td>
+						<td>{{ $v->act_act->endTime }}</td>
 						<td>
 						    <a href="/admin/activities/{{$v->id}}/edit"  class="btn btn-info">修改</a>
 							<form action="/admin/activities/{{$v->id}}" method="post" style="display:inline-block;">
@@ -50,11 +53,12 @@
 							{{ method_field('DELETE') }}
 							     <input type="submit" class="btn btn-danger" value="删除">
 							</form>
-							@if($v->status == 1)
-							<a href="/admin/activities/status/{{ $v->id }}"  class="btn btn-danger">屏蔽</a>
+							@if($v->act_act->status == 1)
+							<a href="/admin/activities/status/{{ $v->aid }}"  class="btn btn-danger">屏蔽</a>
 							@else
-							<a href="/admin/activities/status/{{ $v->id }}"  class="btn btn-info">显示</a>
+							<a href="/admin/activities/status/{{ $v->aid }}"  class="btn btn-info">显示</a>
 							@endif
+							<a href="/admin/adsact/create?aid={{$v->aid}}"  class="btn btn-info">添加广告</a>
 						</td>
 					</tr>
 				@endforeach
@@ -75,7 +79,7 @@
 
 			</script>
 			<div id="page_page">
-			
+			   {{$act_datas -> links()}}
             </div>
 		</div>
 	</div>

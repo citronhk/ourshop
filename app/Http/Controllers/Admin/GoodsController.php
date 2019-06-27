@@ -13,7 +13,6 @@ use App\Models\Activities;
 use App\Models\Orders_users;
 use App\Models\Orders_infos;
 
-
 class GoodsController extends Controller
 {
     /**
@@ -34,7 +33,7 @@ class GoodsController extends Controller
             $goods_datas = Goods::where('gname','like','%'.$search2.'%')->where('cid','=',$search1)->paginate(5);
         }
         //查询分类数据
-        $cates_data = Cates::all();
+        $cates_data = CatesController::getCatesData();
         //显示页面 传输数据
         return view('admins.goods.index',[
                  'search1'=>$search1,
@@ -54,7 +53,7 @@ class GoodsController extends Controller
         //查询商品数据表
         $goods_data = Goods::find($request->input('id',''));
         //显示页面 传输数据
-        return view('admins.goods.create',['cates'=>Cates::all(),'goods_data'=>$goods_data]);
+        return view('admins.goods.create',['cates'=>CatesController::getCatesData(),'goods_data'=>$goods_data]);
     }
 
     /**
@@ -102,7 +101,9 @@ class GoodsController extends Controller
         //将数据压入数据库 返回受影响行数
         $res = $datas->save();
         if($res){
-            return redirect('/admin/goods')->with('success','添加成功');
+             $id = $datas->id;
+             $data = Goods::select('id','gname')->find($id);
+             return view('admins.detail.create',['data'=>$data]);
         }else{
             return back('添加失败');
         }
@@ -186,8 +187,10 @@ class GoodsController extends Controller
             Storage::delete($data->pic);
             Comment::where('gid',$data->id)->delete();
             Seckills::where('gid',$data->id)->delete();
-            Activities::where('gid',$data->id)->delete();
+            Activities::whe('gid',$data->id)->delete();
             Orders_infos::where('gid',$data->id)->delete();
+
+            
 
 
             return redirect('/admin/goods')->with('success','删除成功');

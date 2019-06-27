@@ -42,7 +42,7 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         // dump($request->all());
         //实例化对象
         $datas = new Detail;
@@ -50,14 +50,16 @@ class DetailController extends Controller
         $datas->gid = $request->input('gid');
         $datas->norm = $request->input('norm');
         $datas->brand = $request->input('brand');
+        $datas->origin = $request->input('origin');
         $datas->weight = $request->input('weight');
         $datas->num = $request->input('num');
         $datas->created_at = date('Y-m-d H:i:s',time());
         $datas->updated_at = date('Y-m-d H:i:s',time());
         //将数据压入数据库 返回受影响行数
+        // dd($datas);
         $res = $datas->save();
         if($res){
-            return redirect('/admin/detail')->with('success','添加成功');
+            return redirect('/admin/goods')->with('success','添加成功');
         }else{
             return back('添加失败');
         }

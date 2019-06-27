@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Activities;
 use App\Models\Goods;
+use App\Models\Act_goods;
+use DB;
+
 
 class ActivitiesController extends Controller
 {
@@ -16,11 +19,13 @@ class ActivitiesController extends Controller
      */
     public function index(Request $request)
     {
+
         //获取搜索条件
         $search = $request->input('search','');
         //获取数据表数据
-        $activities_datas = Activities::all();
-        return view('admins.activities.index',['activities_datas'=>$activities_datas]);
+        $act_datas = Act_goods::orderBy('id','desc')->paginate(5);
+
+        return view('admins.activities.index',['act_datas'=>$act_datas]);
     }
 
     /**
@@ -32,8 +37,10 @@ class ActivitiesController extends Controller
     {
         //获取商品id
         $id = $request->input('id');
+        $act_data = Activities::select('id')->get();
+
         //显示添加页面  并且把商品数据传输过去
-        return view('admins.activities.create',['goods_data'=> Goods::find($id)]);
+        return view('admins.activities.create',['goods_data'=> Goods::find($id),'act_data'=>$act_data]);
     }
 
     /**
@@ -46,28 +53,28 @@ class ActivitiesController extends Controller
     {
         //验证逻辑错误
          $this->validate($request, [
-               'sales' => 'required',
+               'count' => 'required',
              ],[
-               'sales.required'=>'商品销量必填',
+               'count.required'=>'商品销量必填',
              ]
              );
          //通过gname字段获取gid
          $gid = Goods::where('gname',$request->input('gname'))->first()->id; 
          //实例化对象
          $data = new Activities;
+         $data_act = new Act_goods;
          //压入数据
-         $data->gid = $gid;
-         $data->sales = $request->input('sales','');
-         $data->discount = $request->input('discount','');
-         $data->startTime = date('Y-m-d H:i:s');
-         $data->endTime = date('Y-m-d H:i:s',time()+100*100);
+         $data->startTime = $request->startDate.' '.$request->startTime;
+         $data->endTime = $request->endDate.' '.$request->endTime;
          $data->status = 1;
          $data->type = 1;
 
+         $data_act->discount = $request->discount;
+         $data_act->count = $request->count;
+         $data_act->gid = $gid;
+         $data_act->aid = $request->aid;
          //压入数据表 返回受影响行数
-         $res = $data->save();
-
-        if($res){
+        if($data->save() && $data_act->save()){
             return redirect('/admin/activities')->with('success','添加成功');
         }else{
             return back('添加失败');
@@ -97,7 +104,8 @@ class ActivitiesController extends Controller
     public function edit($id)
     {
         //传输数据 显示页面
-        return view('admins.activities.edit',['activities_data'=>Activities::find($id)]);
+        $act_datas = Activities::select('id')->get();
+        return view('admins.activities.edit',['act_data'=>Act_goods::find($id),'act_datas'=>$act_datas]);
     }
 
     /**
@@ -111,16 +119,18 @@ class ActivitiesController extends Controller
     {
         //查找对应要修改的id的数据
         $datas = Activities::find($id);
+        $data_act = Act_goods::where('id',$id)->first();
+        //更新Activities表的数据
+        $datas->startTime = $request->startDate.' '.$request->startTime;
+        $datas->endTime = $request->endDate.' '.$request->endTime;
         
-        //更新数据
-        $datas->sales = $request->input('sales');
-        $datas->startTime = date('Y-m-d H:i:s');
-        $datas->endTime = date('Y-m-d H:i:s',time()+100*100);
-        $datas->discount = $request->input('discount');
+        //更新Act_goods表的数据
+        $data_act->aid = $request->aid;
+        $data_act->discount = $request->discount;
+        $data_act->count = $request->count;
+        // dd($request->startTime);
         //压入数据表 返回受影响行数
-        $res = $datas->save();
-        
-        if($res){
+        if($datas->save() && $data_act->save()){
         
             return redirect('/admin/activities')->with('success','修改成功');
         }else{
@@ -136,11 +146,8 @@ class ActivitiesController extends Controller
      */
     public function destroy($id)
     {
-        //获取要删除的数据
-        $data = Activities::find($id);
-
         //执行删除
-        if(Activities::destroy($id)){
+        if(Act_goods::destroy($id)){
             return redirect('/admin/activities')->with('success','删除成功');
         }else{
             return back()->with('error','删除成功');

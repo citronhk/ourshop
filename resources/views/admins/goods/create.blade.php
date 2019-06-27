@@ -40,7 +40,7 @@
 		    
             商品图片：<input type="file" name="pic">
             <br>      
-            <input type="submit" value="提交" class="btn btn-info">      
+            <input type="submit" value="下一步" class="btn btn-info">      
             <br>  
         </form>              
 		</div>
