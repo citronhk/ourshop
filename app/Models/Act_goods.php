@@ -17,4 +17,14 @@ class Act_goods extends Model
     {
     	return $this->belongsTo('App\Models\Activities','aid');
     }
+
+
+
+
+
+
+
+
+
+    
 }
