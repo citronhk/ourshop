@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Act_goods extends Model
+class Act_Goods extends Model
 {
+    //
+
     public $table='act_goods';
 
     public function a_goods()
@@ -19,12 +21,4 @@ class Act_goods extends Model
     }
 
 
-
-
-
-
-
-
-
-    
 }
