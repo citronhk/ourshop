@@ -336,7 +336,10 @@ Route::resource('admin/seckills','Admin\SeckillsController');
 //活动商品路由
 Route::get('admin/activities/status/{id}','Admin\ActivitiesController@status');
 Route::resource('admin/activities','Admin\ActivitiesController');
-
+//活动广告特卖路由
+Route::post('admin/adsact/upUrl','Admin\AdsactController@upUrl');
+Route::get('admin/adsact/url','Admin\AdsactController@url');
+Route::resource('admin/adsact','Admin\AdsactController');
 
 
 //前台 商品信息模板 路由

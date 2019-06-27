@@ -23,6 +23,8 @@
 		    <br>
 		    商品品牌：<input type="text" class="form-control" name="brand" value="">
 		    <br>
+		    商品源：<input type="text" class="form-control" name="origin" value="">
+		    <br>
 		    商品重量：<input type="text" class="form-control" name="weight" value="" placeholder="">
 		    <br>
 		    

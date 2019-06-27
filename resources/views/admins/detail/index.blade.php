@@ -28,6 +28,7 @@
 						<th>商品名称</th>
 						<th>商品规格</th>
 						<th>商品品牌</th>
+						<th>商品源</th>
 						<th>商品重量</th>
 						<th>商品编号</th>
 						<th>上架时间</th>
@@ -41,6 +42,7 @@
 						<td>{{ $v->detail_gid->gname }}</td>
 						<td>{{ $v->norm }}</td>
 						<td>{{ $v->brand }}</td>
+						<td>{{ $v->origin }}</td>
 						<td>{{ $v->weight }}</td>
 						<td>{{ $v->num }}</td>
 						<td>{{ $v->created_at }}</td>

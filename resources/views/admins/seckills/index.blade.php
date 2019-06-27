@@ -37,15 +37,7 @@
                 @foreach($seckills_datas as $k=>$v)
 					<tr>
 						<td>{{ $v->id }}</td>
-
-						<td>
-						@if(isset($v->goods_cate->cname))
-						{{ $v->seckills_goods->gname }}
-						@else
-						{{ $v->gid }}
-						@endif
-						</td>
-
+						<td>{{ $v->seckills_goods->gname }}</td>
 						<td>{{ $v->sales }}</td>
 						<td>{{ $v->startTime }}</td>
 						<td>{{ $v->endTime }}</td>

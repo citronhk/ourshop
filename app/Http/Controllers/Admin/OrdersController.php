@@ -67,7 +67,7 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) 
     {
         //查询数据 传输到页面
         return view('admins.orders.edit',['orders_infos_data'=>Orders_infos::find($id)]);
@@ -86,8 +86,9 @@ class OrdersController extends Controller
         $datas = Orders_infos::find($id);
         //修改数据
         $datas->order_number = $request->input('order_number');
+
         $datas->gid = $datas->gid;
-        $datas->oprice = $request->input('oprice');
+        $datas->oprice = $request->input('oprice'); 
         $datas->number = $request->input('number');
         $datas->order_addr = $request->input('order_addr');
         $datas->status = $request->input('status');
@@ -113,12 +114,8 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //获取订单表的数据
-        $data = Orders_infos::find($id);
-        //获取关联用户订单表用户的数据 执行删除 返回受影响行数
-        $res = Orders_users::where('oid',$data->id)->delete();
         //执行删除，返回信息
-        if(Orders_infos::destroy($id) && $res){
-            
+        if(Orders_infos::destroy($id)){
             return redirect('/admin/orders')->with('success','删除成功');
         }else{
             return back()->with('error','删除成功');
@@ -128,10 +125,9 @@ class OrdersController extends Controller
 
     public function infoUser(Request $request)
     {
-        $oid = $request->id;
-
-        $orders_datas = Orders_users::where('oid',$oid)->first();
-        $uname = $orders_datas->orders_users->uname;
+        $id = $request->oid;
+        $orders_datas = Orders_users::find($id);
+        $uname = $orders_datas->orders_users->uname; 
         
         echo json_encode(['orders_datas'=>$orders_datas,'uname'=>$uname]);
     }
@@ -147,7 +143,6 @@ class OrdersController extends Controller
         
         $datas->order_number = $request->input('order_number');
         $datas->uid = $datas->uid;
-        $datas->oid = $datas->oid;
         $datas->phone = $request->input('phone');
         $datas->total = $request->input('total');
         $datas->order_addr = $request->input('order_addr');

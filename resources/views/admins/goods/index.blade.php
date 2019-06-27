@@ -58,11 +58,11 @@
 						<td>{{ $v->id }}</td>
 						<td>{{ $v->gname }}</td>
 						<td>
-						@if(isset($v->goods_cate->cname))
-						{{ $v->goods_cate->cname }}
-						@else
-						{{ $v->gid }}
-                        @endif
+						@foreach($cates_data as $kk=>$vv)
+						@if($v->cid==$vv->id)
+						{{ $vv->cname }}
+						@endif
+                        @endforeach
 						</td>
 						<td>{{ $v->price }}</td>
 						<td>{{ $v->goodsNum }}</td>

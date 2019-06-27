@@ -11,7 +11,7 @@ class orders_infos extends Model
 
     public function users_infos()
     {
-    	return $this->hasOne('App\Models\Orders_users','oid');
+    	return $this->belongsTo('App\Models\Orders_users','oid');
     }
 
 
@@ -19,6 +19,8 @@ class orders_infos extends Model
     {
     	return $this->belongsTo('App\Models\Goods','gid');
     }
+
+    
 
 }
 

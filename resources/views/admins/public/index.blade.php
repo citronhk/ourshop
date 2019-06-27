@@ -35,6 +35,7 @@
 
 <body>
 	<div id="wrapper">
+	<br>
 		<!-- 头部栏 开始 -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
@@ -59,8 +60,8 @@
 
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img style="border-radius:50%;border:1px solid black;width:50px;" src="">
-							 <span></span>
+							<img style="border-radius:50%;border:1px solid black;width:50px;" src="/uploads/{{ session('admin_user')->profile }}">
+							 <span>{{ session('admin_user')->uname }}</span>
 							  <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li> <a href="javascript:;" onclick="changepass()"><i class="fa fa-cog"></i>修改密码</a> </li> 
@@ -73,25 +74,34 @@
 			</div>
 		</nav>
 		<!-- 头部栏 结束 -->
+<script type="text/javascript">
+	function changepass()
+	{
+	    $('#myModal-changepass').modal('show')
+	}
 
+	function changeimg()
+	{
+        $('#myModal-changeimg').modal('show')
+	}
+</script>
 		<!-- 侧边栏 开始 -->
 		<div id="sidebar-nav" class="sidebar">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-
 					<!-- 用户管理 -->
-					<li>
-						<a href="#users" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-user"></i> <span>用户管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-						<div id="users" class="collapse ">
-							<ul class="nav">
-								<li><a href="/admin/users" class="">用户列表</a></li>
-								<li><a href="/admin/users/create" class="">用户添加</a></li>
-							</ul>
-						</div>
-					</li>
-					 <!-- 轮播图管理 -->
-					<li>
+						<li>
+							<a href="#users" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-user"></i> <span>用户管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="users" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/users" class="">用户列表</a></li>
+									<li><a href="/admin/users/create" class="">用户添加</a></li>
+								</ul>
+							</div>
+						</li>
+                     <!-- 轮播图管理 -->
+						<li>
 							<a href="#banners" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-picture	"></i> <span>轮播图管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="banners" class="collapse ">
 								<ul class="nav">
@@ -99,17 +109,18 @@
 									<li><a href="/admin/banners/create" class="">轮播图	添加</a></li>
 								</ul>
 							</div>
-					</li>
+						</li>
 
-					<li>
-							<a href="#cate" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="cate" class="collapse ">
+					 <!-- 分类管理 -->
+						<li>
+							<a href="#cates" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-th	"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="cates" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/cates" class="">分类列表</a></li>
 									<li><a href="/admin/cates/create" class="">分类添加</a></li>
-								  </ul>
+								</ul>
 							</div>
-					</li>
+						</li>
 					<!-- 友情链接管理 -->
 						<li>
 							<a href="#links" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-heart"></i> <span>友情链接管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -121,7 +132,17 @@
 							</div>
 						</li>
 					<!-- 广告管理 -->
-					 <!-- 管理员管理-->
+					<li>
+							<a href="#ads" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-film"></i> <span>广告管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="ads" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/ads" class="">广告列表</a></li>
+									<li><a href="/admin/ads/create" class="">广告添加</a></li>
+								</ul>
+							</div>
+					</li>
+
+				    <!-- 管理员管理-->
 				    <li>
 						<a href="#admins" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-education"></i> <span>管理员管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 						<div id="admins" class="collapse ">
@@ -152,23 +173,10 @@
 						</div>
 					</li>
 
-             		<!-- 收货地址管理 -->
-					<li>
-						<a href="#addrs" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-map-marker"></i> <span>收货地址管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-						<div id="addrs" class="collapse ">
-							<ul class="nav">
-								<li><a href="/admin/addrs" class="">收货地址列表</a></li>
-								<li><a href="/admin/addrs/create" class="">收货地址添加</a></li>
-							</ul>
-						</div>
-					</li>
-				
-
 
                     <!-- 商品管理 -->
-            
-						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                        <li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-shopping-cart"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/goods" class="">商品列表</a></li>
@@ -180,7 +188,7 @@
 
                         <!-- 订单管理 -->
 						<li>
-							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-bookmark"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="orders" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/orders" class="">订单列表</a></li>
@@ -191,7 +199,7 @@
 
 						<!-- 评价管理 -->
 						<li>
-							<a href="#comment" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>评价管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#comment" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-align-left"></i> <span>评价管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="comment" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/comment" class="">评价列表</a></li>
@@ -201,7 +209,7 @@
 
 						<!-- 秒杀管理 -->
 						<li>
-							<a href="#seckills" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>秒杀商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#seckills" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-dashboard"></i> <span>秒杀商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="seckills" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/seckills" class="">秒杀商品列表</a></li>
@@ -211,19 +219,25 @@
 
 						<!-- 活动管理 -->
 						<li>
-							<a href="#activities" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#activities" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-star"></i> <span>活动管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="activities" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/activities" class="">活动商品列表</a></li>
 								  </ul>
 							</div>
 						</li>
+                       	<!-- 活动广告管理 -->
+						<li>
+							<a href="#adsact" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动广告管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="adsact" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/adsact" class="">特卖商品列表</a></li>
+								  </ul>
+							</div>
+						</li>
 
 
 					</ul>
-					
-
-
 				</nav>
 			</div>
 
@@ -267,5 +281,56 @@
 		<!-- 尾部 结束 -->
 	</div>
 </body>
+ <!-- Modal -->
+					<div class="modal fade" id="myModal-changepass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="myModalLabel">更换密码</h4>
+					      </div>
+					      <div class="modal-body">
+					      	<form action="/admin/users/changepass" method="post">
+					      		{{ csrf_field() }}
+					        	<div class="form-group"> 
+									<br>
+                               当前密码:<input type="password" name="inpass"><br>
+                               修改密码:<input type="password" name="upass"><br>
+                               确认密码:<input type="password" name="repass"><br>
+							  <input type="submit" class="btn btn-success">
+							  </div> 
+							</form>
+					      </div>
 
+					    </div>
+					  </div>
+					</div>
+
+ 
+					<!-- Modal -->
+					<div class="modal fade" id="myModal-changeimg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="myModalLabel">更换头像</h4>
+					      </div>
+					      <div class="modal-body">
+					      	<form action="/admin/users/changeimg" method="post" enctype="multipart/form-data" >
+					      		{{ csrf_field() }}
+					        	<div class="form-group"> 
+									<br>
+                                <div>
+                                	<img src="/uploads/{{ session('admin_user')->profile}}" class="img-thumbnail" style="width: 100px">
+                                    <input type="hidden" name="profile_path" value="{{session('admin_user')->profile}}">
+                                </div>
+                               修改头像:<input type="file" name="profile"><br>
+							  <input type="submit" class="btn btn-success">
+							  </div> 
+							</form>
+					      </div>
+
+					    </div>
+					  </div>
+					</div>
 </html>

@@ -9,7 +9,10 @@ class Activities extends Model
     public $table = 'activities';
 
 
-
+    public function show()
+    {
+    	return $this->hasOne('App\Models\Act_goods','aid');
+    }
 
 
 

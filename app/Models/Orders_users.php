@@ -14,4 +14,9 @@ class Orders_users extends Model
     {
     	return $this->hasMany('App\Models\orders_infos','oid');
     }
+
+    public function orders_users()
+    {
+    	return $this->belongsTo('App\Models\Users','uid');
+    }
 }

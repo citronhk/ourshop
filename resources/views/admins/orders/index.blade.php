@@ -63,7 +63,7 @@
 							{{ method_field('DELETE') }}
 							     <input type="submit" class="btn btn-danger" value="删除">
 							</form>
-							<a href="javascript:;" onclick="see({{ $v->id }})" class="btn btn-info">查看</a>
+							<a href="javascript:;" onclick="see({{ $v->oid }})" class="btn btn-info">查看</a>
 						</td>
 					</tr>
 				@endforeach
@@ -73,8 +73,8 @@
                 
 
 
-                function see(id){
-                	      $.get('/admin/orders/infoUser',{id},function(res){
+                function see(oid){
+                	      $.get('/admin/orders/infoUser',{oid},function(res){
                               let arr = res.orders_datas;
                               let uname = res.uname
                              console.log(arr['id'])
@@ -91,10 +91,9 @@
                              $('input[name=oid]').attr('value',arr['oid']);
 
                 	      },'json');
-                              $('input[type=text]').attr('disabled',true);
-
-
-                        	$('#myModal').modal('show')
+                             $('input[type=text]').attr('disabled',true);
+                        
+                        	 $('#myModal').modal('show')
                         	
                         }
 
@@ -121,9 +120,9 @@
                                   <input type="hidden" name="id" value="">
                                   <input type="hidden" name="uid" value="">
                                   <input type="hidden" name="oid" value="">
-                                  	 订单号：<input type="text" name="order_number" class="form-control" value="haha" style="width:100%;" disabled="false">
+                                  	 订单号：<input type="textarea" name="order_number" class="form-control" value="haha" style="width:100%;"  readonly>
                                   	 <br><br>
-                                  	 订单用户：<input type="text" name="uname" class="form-control" value="" style="width:100%;">
+                                  	 订单用户：<input type="textarea" name="uname" class="form-control" value="" style="width:100%;" readonly> 
                                   	 <br><br>
                                   	 收货人手机号：<input type="text" name="phone" class="form-control" value="" style="width:100%;">
                                   	 <br><br>

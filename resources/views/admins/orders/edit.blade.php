@@ -8,7 +8,7 @@
 	           @endforeach
 	       </ul>
 	  </div>
-@endif
+@endif 
 
 <h3 class="title1">订单修改</h3>
     <div class="panel">
@@ -19,7 +19,7 @@
 
 		    所属用户：<input type="text" class="form-control" name="uname" value="{{ $orders_infos_data->users_infos->orders_users->uname }}" disabled>
 		    <br>
-		    订单号：<input type="text" class="form-control" name="order_number" value="{{ $orders_infos_data->order_number }}" >
+		    订单号：<input type="text" class="form-control" name="order_number" value="{{ $orders_infos_data->order_number }}" readonly>
 		    <br>
 		    订单商品：<input type="text" class="form-control" name="gname" value="{{ $orders_infos_data->orders_goods->gname }}" disabled>
 		    <br>

@@ -20,12 +20,28 @@
 		    <br>  
 		    商品优惠：<input type="text" class="form-control" name="discount" >
 		    <br> 
-		    商品销量：<input type="text" class="form-control" name="sales" value="">
+		    商品销量：<input type="text" class="form-control" name="count" value="">
 		    <br>
-		    开始时间：<input type="date" class="form-control" name="startTime" value="">
+		    场次：
+		    <select name="aid" id="">
+		    @foreach($act_data as $k=>$v)
+		    	<option value="{{ $v->id }}" class="form-control">第{{ $v->id }}场</option>
+		    @endforeach
+		    </select>
 		    <br>
-		    结束时间：<input type="date" class="form-control" name="endTime" value="" placeholder="">
-            <br>      
+		    <br>
+		    开始日期：
+		    	 <input type="date" class="" style="width:200px;border:1px solid #ccc;" name="startDate">
+		    开始时间：	 
+                 <input type="time" class="" style="width:200px;border:1px solid #ccc;" name="startTime">
+                 <br>
+                 <br>
+            结束日期：
+		    	 <input type="date" class="" style="width:200px;border:1px solid #ccc;" name="endDate">
+		    结束时间：		 
+                 <input type="time" class="" style="width:200px;border:1px solid #ccc;" name="endTime">
+            <br>
+            <br>
             <input type="submit" value="提交" class="btn btn-info">      
             <br>  
         </form>              
