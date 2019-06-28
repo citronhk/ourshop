@@ -101,8 +101,11 @@
                     });
 
                     $.post('/skill/sub',{aid,gid},function(msg){
-                        // alert(msg); 
-                        console.log(msg);
+                        if(msg.msg=='success'){
+                            alert(msg.info);
+                        }else{
+                            alert(msg.info);
+                        }
                     },'json');
                 }
             </script>

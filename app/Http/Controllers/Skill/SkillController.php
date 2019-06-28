@@ -28,7 +28,7 @@ class SkillController extends Controller
 
         //获取近期每一一个要执行的任务
         $aid = self::getCurrentTask()->id;
-
+ 
     	return view('home.skill.sellIndex',['aid'=>$aid,'goods_datas'=>$goods_datas]);
     }
 
@@ -105,26 +105,25 @@ class SkillController extends Controller
         //记录用户浏览记录
         self:: addRecord($gid,$uid);
 
-
-        //返回详情页视图  
-        return view('home.detail.index',['aid'=>$aid,
-                                         'id'=>$gid,  
-                                         'goods_attr'=>$goods_attr,
-                                         'like_goods_data'=>$like_goods_data,
-                                         'goods_photo'=>$goods_photo,
-                                         'comment_data'=>$comment_data,
-                                         'result' =>$result
-                                        ]);
+        // //返回详情页视图  
+        // return view('home.detail.index',['aid'=>$aid,
+        //                                  'id'=>$gid,  
+        //                                  'goods_attr'=>$goods_attr,
+        //                                  'like_goods_data'=>$like_goods_data,
+        //                                  'goods_photo'=>$goods_photo,
+        //                                  'comment_data'=>$comment_data,
+        //                                  'result' =>$result
+        //                                 ]);
     }
 
     /**
-     * 获取最近近一个要执行的任sellI
+     * 获取最近近一个要执行的任务
      * @param
      * @return
      */
-    public function getCurrentTask()
+    public static function getCurrentTask()
     {
-   		return Activities::where('status',1)->orderBy('startTime','asc')->first();
+        return  Activities::where('status',1)->orderBy('startTime','asc')->first();
     }
 
     /**
@@ -144,11 +143,11 @@ class SkillController extends Controller
     	$goods_id_list = [];
 
     	foreach ($act_goods as $k => $v){
-    		$goods_id[] = $v->gid;
+    		$goods_id_list[] = $v->gid;
     	}
 
         //返回一个数据,活动-商品属性,商品id数组
-    	return [$act_goods,$goods_id];
+    	return [$act_goods,$goods_id_list];
     }
 
     /**
@@ -167,6 +166,7 @@ class SkillController extends Controller
         //接收 活动-商品属性,商品id数组
         $arry= self::getGoodsId();
      
+     
         //商品活动属性
         $goods_attr = $arry[0];
 
@@ -180,7 +180,8 @@ class SkillController extends Controller
 
         //商品id数组
         $goods_id_list = $arry[1];
-    	
+    	   
+      
 
         $goods_datas = Goods::whereIn('id',$goods_id_list)->get();
 
@@ -196,6 +197,7 @@ class SkillController extends Controller
             $goods_datas[$k]['end'] = $end;
 
         }
+
 
     	return $goods_datas;
 

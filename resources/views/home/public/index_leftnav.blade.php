@@ -22,12 +22,6 @@
                         <div class="zi_l_c_links">
                             @foreach($vv->sub as $kkk=>$vvv)
                             <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                            <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                            <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                            <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                            <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                            <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
-                            <span>|<a href="/home/list?cid={{$vvv->id}}">{{ $vvv->cname }}</a></span>
                             @endforeach
                         </div>
                     </div>

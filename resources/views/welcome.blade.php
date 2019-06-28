@@ -79,19 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                ASHOPMALL
-=======
-                    LAMP21533333333333
->>>>>>> origin/dapeng
-=======
-                    LAMP21533333333333
->>>>>>> origin/zhihao
-=======
-                    LAMP21533333333333
->>>>>>> origin/wnuo
+                    LAMP
                 </div>
 
                 <div class="links">
