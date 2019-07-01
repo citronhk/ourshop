@@ -14,7 +14,7 @@
 										<thead>
 											<tr>
 												<th>ID</th>
-												<th>链接地址</th>
+												
 												<th>头像</th>
 												<th>状态</th>
 												<th>操作</th>
@@ -24,7 +24,7 @@
                                        @foreach($ads as $k => $v)
 											<tr>
 												<td>{{ $v->id }}</td>
-												<td>{{ $v->link }}</td>
+											
 												  	
 												<td>
 
