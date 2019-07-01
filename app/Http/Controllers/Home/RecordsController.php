@@ -22,7 +22,7 @@ class RecordsController extends Controller
         foreach($records as $k=>$v){
             $temp[] =  $v->records_good;
         }
-        dump($temp);
+        // dump($temp);
         return view('home.records.index',['car'=>$car,'temp'=>$temp]);
     }
 }
