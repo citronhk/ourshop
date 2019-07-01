@@ -327,8 +327,8 @@ Route::resource('admin/goods', 'Admin\GoodsController');
 Route::get('admin/detail/del/{id}','Admin\DetailController@del');
 Route::resource('admin/detail', 'Admin\DetailController');
 //商品图集
-Route::get('admin/phtoto/del/{id}','Admin\PhtotoController@del');
-Route::resource('admin/phtoto', 'Admin\PhtotoController');
+Route::get('admin/photo/del/{id}','Admin\PhotoController@del');
+Route::resource('admin/photo', 'Admin\PhotoController');
 
 //订单路由
 Route::post('admin/orders/upUser','Admin\OrdersController@upUser');

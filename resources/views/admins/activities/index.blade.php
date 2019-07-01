@@ -44,8 +44,8 @@
 						<td>{{ $v->a_goods->gname }}</td>
 						<td>{{ $v->discount }}</td>
 						<td>{{ $v->count }}</td>
-						<td>{{ $v->act_act->startTime }}</td>
-						<td>{{ $v->act_act->endTime }}</td>
+						<td>{{ date('Y-m-d H:i:s',$v->act_act->startTime) }}</td>
+						<td>{{ date('Y-m-d H:i:s',$v->act_act->endTime) }}</td>
 						<td>
 						    <a href="/admin/activities/{{$v->id}}/edit"  class="btn btn-info">修改</a>
 							<form action="/admin/activities/{{$v->id}}" method="post" style="display:inline-block;">

@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Phtoto extends Model
+class Photo extends Model
 {
     //
-    public $table = 'goods_phtoto';
+    public $table = 'goods_photo';
 
-    public function phtoto_goods()
+    public function photo_goods()
     {
     	return $this->belongsTo('App\Models\Goods','gid');
     }

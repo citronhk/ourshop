@@ -10,7 +10,7 @@
 	  </div>
 @endif
 
-<h3 class="title1">商品添加</h3>
+<h3 class="title1">商品详情添加</h3>
     <div class="panel">
 		<div class="panel-body">
 		<form action="/admin/detail" method="post" enctype="multipart/form-data">

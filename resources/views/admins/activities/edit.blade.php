@@ -9,7 +9,7 @@
 	       </ul>
 	  </div>
 @endif
-<h3 class="title1">秒杀商品修改</h3>
+<h3 class="title1">活动商品修改</h3>
     <div class="panel">
 		<div class="panel-body">
 		<form action="/admin/activities/{{ $act_data->id }}" method="post" enctype="multipart/form-data">

@@ -10,10 +10,10 @@
 	  </div>
 @endif
 
-<h3 class="title1">商品添加</h3>
+<h3 class="title1">商品图片添加</h3>
     <div class="panel">
-		<div class="panel-body">
-		<form action="/admin/phtoto?gid={{$goods_data->id}}" method="post" enctype="multipart/form-data">
+		<div class="panel-body"> 
+		<form action="/admin/photo?gid={{ $goods_data->id }}" method="post" enctype="multipart/form-data">
 			{{ csrf_field() }} 
 
 		    商品名称：<input type="text" class="form-control" name="gname" value="{{$goods_data->gname}}" disabled>

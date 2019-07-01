@@ -54,7 +54,7 @@
 							     <input type="submit" class="btn btn-danger" value="删除">
 							</form> -->
 							<a href="/admin/detail/del/{{ $v->id }}" class="btn btn-danger">删除</a>
-							<a href="/admin/phtoto?gid={{$v->gid}}" class="btn btn-success">商品图片</a>
+							<a href="/admin/photo?gid={{$v->gid}}" class="btn btn-success">商品图片</a>
 						</td>
 					</tr>
 				@endforeach

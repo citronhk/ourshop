@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Phtoto;
+use App\Models\Photo;
 use App\Models\Goods;
 use Illuminate\Support\Facades\Storage;
 
 
-class PhtotoController extends Controller 
+class PhotoController extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +20,12 @@ class PhtotoController extends Controller
     {
         $gid = $request->input('gid','');
         if($gid){
-            $phtoto_data = Phtoto::where('gid',$gid)->get();
+            $photo_data = Photo::where('gid',$gid)->get();
         }else{
-            $phtoto_data = Phtoto::get();
+            $photo_data = Photo::get();
         }
         $gdata = Goods::find($gid);
-        return view('admins.phtoto.index',['phtoto_data'=>$phtoto_data,'gid'=>$gid,'gdata'=>$gdata]);
+        return view('admins.photo.index',['photo_data'=>$photo_data,'gid'=>$gid,'gdata'=>$gdata]);
     }
 
     /**
@@ -36,7 +36,7 @@ class PhtotoController extends Controller
     public function create(Request $request)
     {
         $goods = Goods::find($request->gid);
-        return view('admins.phtoto.create',['goods_data'=>$goods]);
+        return view('admins.photo.create',['goods_data'=>$goods]);
     }
 
     /**
@@ -54,7 +54,7 @@ class PhtotoController extends Controller
             $path = '';
         }
 
-        $data = new Phtoto; 
+        $data = new Photo; 
 
         $data->gid = $request->gid;
         $data->profile = $path;
@@ -62,7 +62,7 @@ class PhtotoController extends Controller
         $data->updated_at = date('Y-m-d H:i:s');
         $res = $data->save();
         if($res){
-            return redirect('/admin/phtoto?gid='.$data->gid)->with('success','添加成功');
+            return redirect('/admin/photo?gid='.$data->gid)->with('success','添加成功');
         }else{
             return back('添加失败');
         }
@@ -89,7 +89,7 @@ class PhtotoController extends Controller
     public function edit($id)
     {
         
-        return view('admins.phtoto.edit',['phtoto_data'=>Phtoto::find($id)]);
+        return view('admins.photo.edit',['photo_data'=>Photo::find($id)]);
     }
 
     /**
@@ -109,13 +109,13 @@ class PhtotoController extends Controller
             $path = $request->pic;
         }
         
-        $datas = Phtoto::find($id);
+        $datas = Photo::find($id);
         $datas->profile = $path;
         $created_at = date('Y-m-d H:i:s');
         $updated_at = date('Y-m-d H:i:s');
         $res = $datas->save();
         if($res){
-            return redirect('/admin/phtoto?id='.$datas->gid)->with('success','修改成功');
+            return redirect('/admin/photo?id='.$datas->gid)->with('success','修改成功');
         }else{
             return back('修改失败');
         }
@@ -135,13 +135,15 @@ class PhtotoController extends Controller
 
     public function del($id)
     {
-        $data = Phtoto::find($id);
+        $data = Photo::find($id);
         $gid = Goods::select('id')->find($data->gid);
-        if(Phtoto::destroy($id)){
+        
+        if(Photo::destroy($id)){
             Storage::delete($data->profile);
-            return redirect('/admin/phtoto?gid='.$gid)->with('success','删除成功');
+            return redirect('/admin/photo?gid='.$gid->id)->with('success','删除成功');
         }else{
             return back()->with('error','删除成功');
         }
     }
 }
+ 
