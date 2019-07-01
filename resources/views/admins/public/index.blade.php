@@ -35,6 +35,7 @@
 
 <body>
 	<div id="wrapper">
+	<br>
 		<!-- 头部栏 开始 -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
@@ -109,6 +110,17 @@
 								</ul>
 							</div>
 						</li>
+
+					 <!-- 分类管理 -->
+						<li>
+							<a href="#cates" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-th	"></i> <span>分类管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="cates" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/cates" class="">分类列表</a></li>
+									<li><a href="/admin/cates/create" class="">分类添加</a></li>
+								</ul>
+							</div>
+						</li>
 					<!-- 友情链接管理 -->
 						<li>
 							<a href="#links" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-heart"></i> <span>友情链接管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -125,7 +137,7 @@
 							<div id="ads" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/ads" class="">广告列表</a></li>
-								<!-- 	<li><a href="/admin/ads/create" class="">广告添加</a></li> -->
+									<li><a href="/admin/ads/create" class="">广告添加</a></li>
 								</ul>
 							</div>
 					</li>
@@ -162,21 +174,9 @@
 					</li>
 
 
-             		<!-- 收货地址管理 -->
-					<li>
-						<a href="#addrs" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-map-marker"></i> <span>收货地址管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-						<div id="addrs" class="collapse ">
-							<ul class="nav">
-								<li><a href="/admin/addrs" class="">收货地址列表</a></li>
-								<li><a href="/admin/addrs/create" class="">收货地址添加</a></li>
-							</ul>
-						</div>
-					</li>
-
-
                     <!-- 商品管理 -->
                         <li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-shopping-cart"></i> <span>商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/goods" class="">商品列表</a></li>
@@ -188,7 +188,7 @@
 
                         <!-- 订单管理 -->
 						<li>
-							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#orders" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-bookmark"></i> <span>订单管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="orders" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/orders" class="">订单列表</a></li>
@@ -199,7 +199,7 @@
 
 						<!-- 评价管理 -->
 						<li>
-							<a href="#comment" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>评价管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#comment" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-align-left"></i> <span>评价管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="comment" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/comment" class="">评价列表</a></li>
@@ -209,7 +209,7 @@
 
 						<!-- 秒杀管理 -->
 						<li>
-							<a href="#seckills" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>秒杀商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#seckills" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-dashboard"></i> <span>秒杀商品管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="seckills" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/seckills" class="">秒杀商品列表</a></li>
@@ -219,10 +219,19 @@
 
 						<!-- 活动管理 -->
 						<li>
-							<a href="#activities" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#activities" data-toggle="collapse" class="collapsed"><i class="glyphicon glyphicon-star"></i> <span>活动管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="activities" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/activities" class="">活动商品列表</a></li>
+								  </ul>
+							</div>
+						</li>
+                       	<!-- 活动广告管理 -->
+						<li>
+							<a href="#adsact" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>活动广告管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="adsact" class="collapse ">
+								<ul class="nav">
+									<li><a href="/admin/adsact" class="">特卖商品列表</a></li>
 								  </ul>
 							</div>
 						</li>
