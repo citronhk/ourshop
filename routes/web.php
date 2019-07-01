@@ -74,6 +74,8 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('/home/order/seckills','Home\OrderController@seckills');
 		//收藏页面
 		Route::get('home/colls/index','Home\CollsController@index');
+		//足迹页面
+		Route::get('home/records/index','Home\RecordsController@index');
 		                                                                           
 });	
 
