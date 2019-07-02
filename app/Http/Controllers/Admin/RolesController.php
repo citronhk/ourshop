@@ -24,6 +24,15 @@ class RolesController extends Controller
           'linkscontroller'=>'友情链接管理',
           'catescontroller'=>'分类管理',
           'indexcontroller'=>'后台首页',
+          'adminscontroller'=>'管理员管理',
+          'rolescontroller'=>'角色管理',
+          'goodscontroller'=>'商品管理',
+          'orderscontroller'=>'订单管理',
+          'detailcontroller'=>'订单详情管理',
+          'commentscontroller'=>'评论管理',
+          'seckillscontroller'=>'秒杀管理',
+          'activitiescontroller'=>'活动管理',
+          'nodescontroller'=>'权限管理',
         ];
     }
 

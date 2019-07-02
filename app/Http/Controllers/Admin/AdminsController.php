@@ -45,21 +45,21 @@ class AdminsController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        // 	'uname' => 'required|regex:/^[a-z]{1}[\w]{5,17}$/',
-        //     'upass' => 'required|regex:/^[\w]{6,18}$/',
-        //     'repass' => 'required|same:upass',
-        //     'phone' => 'required|regex:/^[\w]{5,17}$/',
-        // ],[
-        //     'upass.required'=>'密码必填',
-        //     'upass.regex'=>'密码格式不正确',
-        //     'repass.required'=>'确认密码必填',
-        //     'repass.same'=>'两次密码不一致',
-        //     'phone.required'=>'电话必填',
-        //     'phone.regex'=>'电话格式不正常',
-        //     'uname.required'=>'用户名必填',
-        //     'uname.regex'=>'用户名格式不正常',
-        // ]);
+        $this->validate($request, [
+        	'uname' => 'required|regex:/^[a-z]{1}[\w]{5,17}$/',
+            'upass' => 'required|regex:/^[\w]{6,18}$/',
+            'repass' => 'required|same:upass',
+            'phone' => 'required|regex:/^[\w]{5,17}$/',
+        ],[
+            'upass.required'=>'密码必填',
+            'upass.regex'=>'密码格式不正确',
+            'repass.required'=>'确认密码必填',
+            'repass.same'=>'两次密码不一致',
+            'phone.required'=>'电话必填',
+            'phone.regex'=>'电话格式不正常',
+            'uname.required'=>'用户名必填',
+            'uname.regex'=>'用户名格式不正常',
+        ]);
       //文件上传
       if($request->hasFile('profile')){
         $file_path = $request->file('profile')->store(date('Ymd'));
