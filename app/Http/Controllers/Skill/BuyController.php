@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Skill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Home\DetailController;
+
+       
 use DB;
 use Illuminate\Support\Facades\Redis;
 
@@ -33,6 +35,11 @@ class BuyController extends Controller
         //分类id
         $cid = $goods_attr['cid'];
 
+         //获取购物车
+         $cars = DetailController::getCarCount();
+
+
+         
         //
         $like_goods_data = DetailController::getUseLikeByCid($cid);
 
@@ -60,7 +67,8 @@ class BuyController extends Controller
                                          'like_goods_data'=>$like_goods_data,
                                          'goods_photo'=>$goods_photo,
                                          'comment_data'=>$comment_data,
-                                         'result' =>$result
+                                         'result' =>$result,
+                                         'cars'=>$cars
                                         ]);
     }
 
