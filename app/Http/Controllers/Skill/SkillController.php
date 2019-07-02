@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Skill;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Home\DeatilController;
+use App\Http\Controllers\Home\DetailController;
 use App\Models\Goods;
 use App\Models\Activities;
 use App\Models\Act_goods;
 use Illuminate\Support\Facades\Redis;
+
 
 //商品展示层
 class SkillController extends Controller
@@ -28,8 +29,9 @@ class SkillController extends Controller
 
         //获取近期每一一个要执行的任务
         $aid = self::getCurrentTask()->id;
- 
-    	return view('home.skill.sellIndex',['aid'=>$aid,'goods_datas'=>$goods_datas]);
+        
+        $cars = DetailController::getCarCount();
+    	return view('home.skill.sellIndex',['aid'=>$aid,'goods_datas'=>$goods_datas,'cars'=>$cars]);
     }
 
     public function pre()
