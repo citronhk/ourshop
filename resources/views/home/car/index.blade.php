@@ -108,7 +108,7 @@
           </script>
           <tr valign="top" height="150">
           	<td colspan="6" align="right">
-            	<a href="#"><img src="/homes/images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#"><img src="/homes/images/buy2.gif" onclick="demo.submit()" /></a>
+            	 <a href="#"><img src="/homes/images/buy2.gif" onclick="demo.submit()" /></a>
             </td>
           </tr>
         </table>

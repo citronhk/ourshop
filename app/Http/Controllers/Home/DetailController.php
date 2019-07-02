@@ -185,7 +185,7 @@ class DetailController extends Controller
         $num = $request->input('num',0);
 
         //当前用户id
-        $uid = 10;
+        $uid = session('home_userinfo')->id;
 
         //获取当前用户的购车数据
         $data =  DB::table('car')->where('uid',$uid)->get();
