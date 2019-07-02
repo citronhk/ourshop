@@ -137,7 +137,6 @@
 							<div id="ads" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/ads" class="">广告列表</a></li>
-									<li><a href="/admin/ads/create" class="">广告添加</a></li>
 								</ul>
 							</div>
 					</li>

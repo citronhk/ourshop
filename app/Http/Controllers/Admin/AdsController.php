@@ -26,9 +26,21 @@ class AdsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admins.ads.create');
+       $gid = $request->input('id');
+      
+      //获取单条商品数据
+      $good = DB::table('goods')->where('id',$gid)->get();
+
+      //获取floors表数据
+      $floors = DB::table('floors')->get();
+   
+      return view('admins.ads.create',
+        ['floors'=>$floors,
+         'gid'=>$gid,
+         'good'=>$good,
+        ]);
     }
 
     /**
@@ -39,25 +51,20 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'link' => 'required',
-   
-        ],[
-            'link.required'=>'链接地址必填',
-        ]);
+
      //开启事务
        DB::beginTransaction();
-       //文件上传
-      if($request->hasFile('url')){
-        $file_path = $request->file('url')->store(date('Ymd'));
-      }else{
-        $file_path = '';
-      }
+
         //接收数据
         $data = $request->all();
         $adss = new Ads;
-        $adss->link = $data['link']; 
-        $adss->url = $file_path;
+       // $adss->link = $data['link']; 
+        $adss->url = $request->input('url','');
+        $adss->fid = $data['fid'];
+        $adss->about = $data['about'];
+        $adss->gid = $request->input('gid','');
+        
+
         $res = $adss->save();
         if($res){
          DB::commit();
@@ -87,9 +94,22 @@ class AdsController extends Controller
      */
     public function edit($id)
     {
+
+       //获取floors表数据
+      $floors = DB::table('floors')->get();  
+
         //获取单条数据
         $ad = Ads::find($id);
-        return view('admins.ads.edit',['ad'=>$ad]);
+        $fid = $ad->fid;
+
+      $floor = DB::table('floors')->where('id',$fid)->get();
+     
+        return view('admins.ads.edit',['ad'=>$ad,
+                           'floors'=>$floors,
+                           'id'=>$id,
+                           'floor'=>$floor,
+                           'fid'=>$fid,
+          ]);
     }
 
     /**
@@ -101,27 +121,19 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'link' => 'required',
-   
-        ],[
-            'link.required'=>'链接地址必填',
-        ]);
+  
      //开启事务
        DB::beginTransaction();
 
-      if($request->hasFile('url')){
-      //删除旧照片
-      Storage::delete($request->input('url_path'));
-        $url_path = $request->file('url')->store(date('Ymd'));
-      }else{
-        $url_path = $request->input('old_url');   
-      }
+ 
 
       //获取数据->压入数据库
       $ads = ads::find($id);
-      $ads->link = $request->input('link','');
-      $ads->url = $url_path;
+      $ads->url = $request->input('url','');
+      $ads->fid = $request->input('fid','');
+      $ads->about = $request->input('about','');
+
+     //dd($ads);
       $res =  $ads->save();
        if($res){
          DB::commit();
@@ -130,6 +142,7 @@ class AdsController extends Controller
          DB::rollBack();
          return back()->with('error','修改失败');
        }    
+     
     }
 
     /**

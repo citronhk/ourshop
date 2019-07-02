@@ -85,6 +85,7 @@
 							<a href="/admin/activities/create?id={{ $v->id }}" class="btn btn-info">添加活动</a>
 							<a href="/admin/seckills/create?id={{ $v->id }}" class="btn btn-info">添加秒杀</a>
 							<a href="/admin/detail/create?id={{ $v->id }}" class="btn btn-success">添加详情</a>
+							<a href="/admin/ads/create?id={{ $v->id }}" class="btn btn-warning">添加广告</a>
 						</td>
 					</tr>
 				@endforeach
