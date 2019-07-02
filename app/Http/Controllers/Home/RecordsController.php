@@ -18,11 +18,11 @@ class RecordsController extends Controller
 
         //获取用户足迹信息
         $records = Records::where('uid',$id)->get();
+        //获取足迹商品信息
         $temp = [];
         foreach($records as $k=>$v){
             $temp[] =  $v->records_good;
         }
-        // dump($temp);
         return view('home.records.index',['car'=>$car,'temp'=>$temp]);
     }
 }
