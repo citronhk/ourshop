@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Activities;
 use App\Models\Goods;
 use App\Models\Act_goods;
-use DB;
+use DB; 
 
 
 class ActivitiesController extends Controller

@@ -17,7 +17,7 @@
  <div class="panel" >
     <form class="navbar-form navbar-left" action="/admin/comment" method="get">
 		<div class="input-group">
-			<input type="text" value="{{ $search }}" class="form-control" name="search" placeholder="评价搜索">
+			<input type="text" value="{{ $search }}" class="form-control" name="search" placeholder="评价内容搜索">
 			<span class="input-group-btn"><input type="submit" value="搜索" class="btn btn-primary"></span>
 		</div>
 	</form>
