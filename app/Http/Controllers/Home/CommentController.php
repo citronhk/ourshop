@@ -96,8 +96,11 @@ class CommentController extends Controller
         //当前用户id
         $id = session('home_userinfo')->id;
        $comment = Comment::where('uid',$id)->orderBy('created_at', 'desc')->get();
-       // dump($comment);
-       // dd($order_info);
+    //    dump($comment);
+    // foreach($order_info as $k=>$v){
+    //     dump($v);
+    // }
+    //    dd($order_info);
 
 
         return view('home.comment.index',[

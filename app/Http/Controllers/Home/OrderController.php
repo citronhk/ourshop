@@ -246,7 +246,7 @@ class OrderController extends Controller
 			    	$order->otime = date('Y-m-d H:i:s',time());
 		    		$order->gid = $value->gid;
 		    		$order->oid = $oid;
-                    $order->status = rand(0,3);
+                    $order->status = rand(1,2);
 			    	$res = $order->save();
 			    	//抛出异常
 				    	if($res === false){
