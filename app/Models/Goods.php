@@ -17,9 +17,9 @@ class Goods extends Model
     	return $this->belongsTo('App\Models\Cates','cid');
     }
 
-    public function goods_phtoto()
+    public function goods_photo()
     {
-    	return $this->hasOne('App\Models\Phtoto','gid');
+    	return $this->hasOne('App\Models\Photo','gid');
     }
 
    

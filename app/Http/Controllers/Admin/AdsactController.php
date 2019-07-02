@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ads_act_goods;
 use Illuminate\Support\Facades\Storage;
 
-class AdsactController extends Controller
+class AdsactController extends Controller 
 {
     /**
      * Display a listing of the resource.

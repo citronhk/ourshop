@@ -28,23 +28,23 @@
 						<th>商品名称</th>
 						<th>图集</th>
 						<th>创建时间</th>
-						<th>操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/phtoto/create?gid={{ $gid }}" class="">添加图片</a></th>
+						<th>操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/photo/create?gid={{ $gid }}" class="">添加图片</a></th>
 
 					</tr>
 				</thead>
 				<tbody>
-				@foreach($phtoto_data as $k=>$v)
+				@foreach($photo_data as $k=>$v)
 				<tr>
 					    <td>{{ $v->id }}</td>
-					    <td>{{$v->phtoto_goods->gname}}</td>
+					    <td>{{$v->photo_goods->gname}}</td>
 						<td>
 							<img src="/uploads/{{$v->profile}}" width="60px">
 						</td>
 						<td>{{$v->created_at}}</td>
 						<td>
-						    <a href="/admin/phtoto/create?gid={{ $gid }}" class="btn btn-info">添加</a>
-							<a href="/admin/phtoto/{{ $v->id }}/edit" class="btn btn-info">修改</a>
-							<a href="/admin/phtoto/del/{{ $v->id }}" class="btn btn-danger">删除</a>
+						    <a href="/admin/photo/create?gid={{ $gid }}" class="btn btn-info">添加</a>
+							<a href="/admin/photo/{{ $v->id }}/edit" class="btn btn-info">修改</a>
+							<a href="/admin/photo/del/{{ $v->id }}" class="btn btn-danger">删除</a>
 						</td>
 					</tr>
 				@endforeach

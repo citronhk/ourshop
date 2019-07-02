@@ -91,9 +91,19 @@
             @if(session('home_login'))
             <span class="fl">你好,
             {{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}
+            <span class="fl">你好,{{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}
                 &nbsp; 
                 <a href="/home/personal" style="color:#ff4e00;">前往管理中心</a>
                     &nbsp;|&nbsp;
+                <a href="#">我的订单</a>
+                &nbsp;|
+            </span>
+            @else
+            <span class="fl">你好，请
+                <a href="/home/login">登录</a>
+                &nbsp; 
+                <a href="/home/register" style="color:#ff4e00;">免费注册</a>
+                  &nbsp;|&nbsp;
                 <a href="#">我的订单</a>
                 &nbsp;|
             </span>
@@ -149,6 +159,19 @@
         </div>
         <div class="i_car">
             <div class="car_t"><a href="/home/car/index">购物车</a> [ <span>{{count($car)}}</span> ]</div>
+            @if(empty(session('home_userinfo')))
+            <div class="car_bg">
+                <!--Begin 购物车未登录 Begin-->
+                <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+                <!--End 购物车未登录 End-->
+            </div>
+            @else
+            <div class="car_bg">
+                <!--Begin 购物车未登录 Begin-->
+                <div class="un_login">你好,<a href="Login.html" style="color:#ff4e00;">{{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}</a></div>
+                <!--End 购物车未登录 End-->
+            </div>
+            @endif
         </div>
     </div>
 </div>
@@ -162,6 +185,7 @@
                 <div class="left_m_t t_bg1">订单中心</div>
                 <ul>
                     <li><a href="/home/personal">个人信息</a></li>
+                    <li><a href="/home/personal/edit">个人信息</a></li>
                     <li><a href="/home/order/list">我的订单</a></li>
                     <li><a href="/home/addr">收货地址</a></li>
                 </ul>
@@ -174,6 +198,7 @@
                     <li><a href="Member_Msg.html">我的留言</a></li>
                     <li><a href="Member_Links.html">推广链接</a></li>
                     <li><a href="/home/comment/index">我的评论</a></li>
+                    <li><a href="#">我的评论</a></li>
                 </ul>
             </div>
             <div class="left_m">

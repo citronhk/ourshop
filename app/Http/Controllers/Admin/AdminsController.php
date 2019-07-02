@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admins;
 use App\Models\AdminsRoles;
-use Hash;
+use Hash; 
 use DB;
 class AdminsController extends Controller
 {

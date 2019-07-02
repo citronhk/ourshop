@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Activities;
 use App\Models\Goods;
 use App\Models\Act_goods;
-use DB;
+use DB; 
 
 
 class ActivitiesController extends Controller
@@ -64,10 +64,21 @@ class ActivitiesController extends Controller
          $data = new Activities;
          $data_act = new Act_goods;
          //压入数据
-         $data->startTime = $request->input('startDate','').' '.$request->input('startTime','');
-         $data->endTime = $request->endDate.' '.$request->endTime;
+         
          $data->status = 1;
-         $data->type = 1;
+         $data->type = 1; 
+         //把活动的开始结束日期，时间转化成数组，再转化成时间戳  
+         $DateStart = explode('-',$request->startDate);
+         $TimeStart = explode(':',$request->startTime);
+         $DateEnd = explode('-',$request->endDate);
+         $TimeEnd = explode(':',$request->endTime);
+         //以数值形式，指定某个时刻的时间戳
+         $startTime = mktime($TimeStart[0],$TimeStart[1],00,$DateStart[1],$DateStart[2],$DateStart[0]);
+         $endTime = mktime($TimeEnd[0],$TimeEnd[1],00,$DateEnd[1],$DateEnd[2],$DateEnd[0]);
+         //压入数据，开始时间和结束时间
+         $data->startTime = $startTime;
+         $data->endTime = $endTime;
+         // dd($data->endTime);
 
          $data_act->discount = $request->discount;
          $data_act->count = $request->count;
@@ -126,6 +137,8 @@ class ActivitiesController extends Controller
         $data_act->aid = $request->aid;
         $data_act->discount = $request->discount;
         $data_act->count = $request->count;
+
+        
         // dd($request->startTime);
         //压入数据表 返回受影响行数
         if($data_act->save()){

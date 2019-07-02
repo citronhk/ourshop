@@ -329,6 +329,39 @@ Route::group(['middleware'=>['login']],function(){
 	Route::resource('admin/addrs', 'Admin\AddrsController');
     
 
+//志豪路由
+ 
+	//商品路由 
+
+Route::get('admin/goods/status/{id}', 'Admin\GoodsController@status');
+Route::resource('admin/goods', 'Admin\GoodsController');
+//商品详情
+Route::get('admin/detail/del/{id}','Admin\DetailController@del');
+Route::resource('admin/detail', 'Admin\DetailController');
+//商品图集
+Route::get('admin/photo/del/{id}','Admin\PhotoController@del');
+Route::resource('admin/photo', 'Admin\PhotoController');
+
+//订单路由
+Route::post('admin/orders/upUser','Admin\OrdersController@upUser');
+Route::get('admin/orders/infoUser','Admin\OrdersController@infoUser');
+Route::resource('admin/orders', 'Admin\OrdersController');
+
+//评价管理路由
+Route::get('admin/comment/status','Admin\CommentController@status');
+Route::resource('admin/comment', 'Admin\CommentController');
+
+//秒杀商品路由
+Route::get('admin/seckills/status/{id}','Admin\SeckillsController@status');
+Route::resource('admin/seckills','Admin\SeckillsController');
+
+//活动商品路由
+Route::get('admin/activities/status/{id}','Admin\ActivitiesController@status');
+Route::resource('admin/activities','Admin\ActivitiesController');
+//活动广告特卖路由
+Route::post('admin/adsact/upUrl','Admin\AdsactController@upUrl');
+Route::get('admin/adsact/url','Admin\AdsactController@url');
+Route::resource('admin/adsact','Admin\AdsactController');
 
 	 
 	//商品路由 
