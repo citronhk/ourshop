@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\Home\DetailController;
 use Illuminate\Support\Facades\Redis;
 
 
@@ -33,8 +34,9 @@ class AppServiceProvider extends ServiceProvider
             Redis::setex('guess_goods_datas_redis',600,json_encode($guess_goods_datas));
         }
 
+
         View::share(['cates_data'=>$cates_data,
-                    'guess_goods_datas' => $guess_goods_datas
+                     'guess_goods_datas' => $guess_goods_datas,
                     ]);
     }
 

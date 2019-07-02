@@ -65,7 +65,7 @@ class SkillController extends Controller
     }
 
     //显示抢购商品详情页
-/**
+    /**
      * 显示首页
      * @param 
      * @return 首页视图,数据
@@ -125,6 +125,8 @@ class SkillController extends Controller
     {
         return  Activities::where('status',1)->orderBy('startTime','asc')->first();
     }
+
+
 
     /**
      *  活动商品信息

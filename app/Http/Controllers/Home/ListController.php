@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Home\DetailController;
 use DB;
 
 class ListController extends Controller
@@ -22,17 +23,23 @@ class ListController extends Controller
         $cid = null ;
         if(!empty($request->input('search'))){
             $search = $request->input('search');
-            $goods_datas = DB::table('goods')->where('gname','like','%'.$search.'%')->paginate(20);
+            $goods_datas = DB::table('goods')->where('gname','like','%'.$search.'%')->paginate(24);
         }
 
         if(!empty($request->input('cid'))){
             $cid = $request->input('cid');
-            $goods_datas = self::getGoodsDataByCid($cid);
+            $goods_datas = self::getGoodsDataByCid($cid); 
+            $record_data = DetailController::getRecords($cid);
         }  
+
+        //获取购物车
+        $cars = DetailController::getCarCount(); 
 
         return view('home.list.index',[ 'cid'=>$cid,
                                         'search'=>$search,
-                                        'goods_datas'=>$goods_datas
+                                        'goods_datas'=>$goods_datas,
+                                        'record_data'=>$record_data,
+                                        'cars'=>$cars
                                     ]);
 
     }

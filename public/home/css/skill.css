@@ -1,8 +1,8 @@
 
 .times{
-	width: 90px;
+	width: auto;
+	padding: 0 10px;
 	height: 25px;
-	color: #fff;
 	font-size: 12px;
 	line-height: 25px;
 	text-align: center;
@@ -13,7 +13,7 @@
 }
 
 .after{
-	background-color: #e2e2e2;
+	/*background-color: #e2e2e2;*/
 }
 
 .cdown{
@@ -21,4 +21,11 @@
 }
 
 
+/*倒计时样式*/
+ul.countdown {list-style: none;}
+ul.countdown li {display: inline-block;}
+ul.countdown li span {}
+ul.countdown li.seperator {}
 
+
+.countdown span{color:#ff4e00;}

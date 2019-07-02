@@ -39,7 +39,7 @@
 @section('content')
 <div class="i_bg">
     <div class="postion">
-        <span class="fl">全部 > 美妆个护 > 香水 > 迪奥 > 迪奥真我香水</span>
+        <span class="fl"></span>
     </div>    
     <div class="content">
                             
@@ -226,14 +226,6 @@
         </div>
     </div>    
     <!--End 弹出层-加入购物车 End-->
-    
-
-        <div class="s_brand">
-            <div class="s_brand_img"><img src="/home/images/sbrand.jpg" width="188" height="132" /></div>
-            <div class="s_brand_c"><a href="#">进入品牌专区</a></div>
-        </div>    
-        
-        
     </div>
     <div class="content mar_20">
         <div class="l_history">

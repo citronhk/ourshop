@@ -9,6 +9,7 @@ use DB;
 
 class DetailController extends Controller
 {
+
     /**
      * 显示首页
      * @param 
@@ -23,7 +24,7 @@ class DetailController extends Controller
         //0:普通类型 ,1:限时特买
         $aid = $request->input('aid',0);
 
-        $uid = 8;
+        $uid = session('home_userinfo')->id;
 
 
         //获取当请求id的商品数据
@@ -47,7 +48,10 @@ class DetailController extends Controller
         self::addGoodsBrows($gid);
 
         //记录用户浏览记录
-        self:: addRecord($gid,$uid);
+        self:: addRecord($gid,$uid);    
+
+        //获取购物车
+        $cars = self::getCarCount();
 
 
     	//返回详情页视图  
@@ -57,8 +61,22 @@ class DetailController extends Controller
                                          'like_goods_data'=>$like_goods_data,
                                          'goods_photo'=>$goods_photo,
                                          'comment_data'=>$comment_data,
-                                         'result' =>$result
+                                         'result' =>$result,
+                                         'cars'=>$cars
                                         ]);
+    }
+
+    /**
+     * 获取购物车商品个数
+     */
+    public static function getCarCount()
+    {   
+        $count = 0;
+        if(session('home_login')){
+            $count = DB::table('car')->where('uid',session('home_userinfo')->id)->count();
+        }
+        return $count;
+        
     }
 
     /**
@@ -152,6 +170,8 @@ class DetailController extends Controller
         }
     }
 
+
+
     /**
      * 加入购物车
      * @param $request 请求数据
@@ -216,7 +236,7 @@ class DetailController extends Controller
     }
 
     /**
-     * 记录浏览记录 
+     * 添加浏览记录 
      *  
      *  @param $request 请求参数
      *  @return 
@@ -232,8 +252,7 @@ class DetailController extends Controller
             //如果不存在数组中
             //则向数据库压入数据
             //返回记录数据
-            DB::table('goods_records')->insert(['uid'=>$uid,'gid'=>$gid]);
-
+            DB::table('goods_records')->insert(['uid'=>$uid,'gid'=>$gid,'created_at'=>date('Y-m-d H:i:s',time())]);
         }
     }
 
@@ -260,12 +279,40 @@ class DetailController extends Controller
     }
 
     /**
+     * 根据用户浏览记录/该类商品的销售量/该类商品点击量推荐到时 商品列表页左侧
+     * @param 
+     * @return
+     */
+    public static function getRecords($cid)
+    {
+        if(session('home_login')){
+            $record_data = DB::table('goods_records')
+                            ->where('uid',session('home_userinfo')->id)
+                            ->orderBy('created_at','desc')
+                            ->take(4)
+                            ->get();
+
+            $id_list = [];
+
+            foreach ($record_data as $key => $value) {
+                $id_list[] = $value->id;
+            }
+
+            return  DB::table('goods')->whereIn('id',$id_list)->get();
+            
+        }else if($cid){
+            return self::getUseLikeByCid($cid);
+        }else{
+            return  DB::table('goods')->orderBy('clickNum','desc')->take(4)->get();
+        }
+    }
+
+    /**
      *  记录商品点击量 
      *  商品详情页记录
      *  @param $pid商品id
      *  @return 
      */
-    
     public static  function addGoodsBrows($gid)
     {
         //通过商品id,获取该商品的浏览量
@@ -348,7 +395,6 @@ class DetailController extends Controller
             echo json_encode(['msg'=>'error','info'=>'评论失败']);
             exit;
         }
-
     }
 
     /**
@@ -408,7 +454,6 @@ class DetailController extends Controller
 
         //返回用户所有购买过的商品id
         return $user_goods_list;
-
     }
 
 }

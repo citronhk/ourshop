@@ -91,10 +91,19 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
+
         	<span class="fl">
-                你好，请<a href="/home/login">登录</a>&nbsp; 
+                你好，
+                 @if(session('home_login'))
+                 <a href="/home/personal">{{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}</a>&nbsp; 
+                 
+                @else
+                请<a href="/home/login">登录</a>&nbsp; 
+                @endif
                 <a href="/home/register" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;
-                <a href="/home/order/list">我的订单</a>&nbsp;|</span>
+                <a href="/home/order/list">我的订单</a>&nbsp;|
+            </span>
+
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>
@@ -126,7 +135,10 @@
         
     </div>
     <div class="i_car">
-    	<div class="car_t">购物车 [ <span>3</span> ]</div>
+       @if(session('home_login'))
+            <a href="/home/car/index"><div class="car_t">购物车 [<span>{{$cars}}</span>]</div></a>
+       @else
+        <div class="car_t car_b">购物车 [ <span>0</span> ]</div>
         <div class="car_bg">
        		<!--Begin 购物车未登录 Begin-->
         	<div class="un_login">还未登录！
@@ -134,6 +146,7 @@
              查看购物车！</div>
             <!--End 购物车未登录 End-->
         </div>
+        @endif
     </div>
 </div>
 

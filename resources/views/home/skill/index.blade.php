@@ -94,16 +94,20 @@
                     </div>
                     <div class="ch_bg">
                         <span class="ch_txt">￥<font>{{$v->price*$v->discount }}</font></span>
-                        <a href="/home/detail?aid={{$aid}}&id={{$v->id}}" class="ch_a">查看</a>
+                        <a  class="ch_a">查看</a>
                     </div>
+        
                     <!-- <div class="times">倒计时：1200 时 30 分 28 秒</div> -->
-                    <div class="times after">倒计时：{{$v->start }}</div>
-
+                    <div class="countdown times after">倒计时:
+                        <span class="hours">0</span>时
+                        <span class="minutes">0</span>分
+                        <span class="seconds">0</span>秒
+                    </div>
                 </li>
+                
 			@endforeach
             </ul>
             <!-- 商品特卖 结束 -->
-
         </div>        
    		<!--End 特卖 End-->
         
@@ -180,4 +184,6 @@
         </div>
     </div>    
 </div>
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/countDown.js"></script>
 @endsection

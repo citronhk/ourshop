@@ -171,6 +171,10 @@ Route::group(['middleware'=>'home_login'],function(){
 //前台主页
 Route::get('/','Home\IndexController@index');
 
+
+Route::get('/home/time','Home\IndexController@getTime');
+
+
 //前台列表页
 Route::get('home/list','Home\ListController@index');
 
