@@ -10,6 +10,7 @@ use App\Models\Activities;
 use App\Models\Act_goods;
 use Illuminate\Support\Facades\Redis;
 
+
 //商品展示层
 class SkillController extends Controller
 {
@@ -28,7 +29,6 @@ class SkillController extends Controller
 
         //获取近期每一一个要执行的任务
         $aid = self::getCurrentTask()->id;
-
         //获取购物车
         $cars = DetailController::getCarCount();
 
@@ -90,58 +90,6 @@ class SkillController extends Controller
                                             ]);
     }
 
-    //显示抢购商品详情页
-    /**
-     * 显示首页
-     * @param 
-     * @return 首页视图,数据
-     */
-    public function showdetail(Request $request)
-    {
-        //接收请求id
-        $gid = $request->input('id',0);
-
-        //接收请求商品售卖类型 
-        //0:普通类型 ,1:限时特买
-        $aid = $request->input('aid',0);
-
-        $uid = 8;
-
-
-        //获取当请求id的商品数据
-        $goods_attr = self::getGoodsAttrById($gid);
-
-        //分类id
-        $cid = $goods_attr['cid'];
-
-        //
-        $like_goods_data = self::getUseLikeByCid($cid);
-
-        //商品评论
-        $comment_data = self::getCommentByGid($gid);
-        
-        //商品图集
-        $goods_photo = self::getDescPhotoByid($gid);
-
-        $result = in_array($gid, self::GetGoodsListByUid($uid));
-
-        //点击量+1
-        self::addGoodsBrows($gid);
-
-        //记录用户浏览记录
-        self:: addRecord($gid,$uid);
-
-        // //返回详情页视图  
-        // return view('home.detail.index',['aid'=>$aid,
-        //                                  'id'=>$gid,  
-        //                                  'goods_attr'=>$goods_attr,
-        //                                  'like_goods_data'=>$like_goods_data,
-        //                                  'goods_photo'=>$goods_photo,
-        //                                  'comment_data'=>$comment_data,
-        //                                  'result' =>$result
-        //                                 ]);
-    }
-
     /**
      * 获取最近近一个要执行的任务
      * @param
@@ -151,8 +99,6 @@ class SkillController extends Controller
     {
         return  Activities::where('status',1)->orderBy('startTime','asc')->first();
     }
-
-
 
     /**
      *  活动商品信息
