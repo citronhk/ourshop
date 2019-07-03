@@ -9,7 +9,6 @@ use DB;
 
 class DetailController extends Controller
 {
-
     /**
      * 显示首页
      * @param 
@@ -20,11 +19,22 @@ class DetailController extends Controller
         //接收请求id
         $gid = $request->input('id',0);
 
-        //接收请求商品售卖类型 
-        //0:普通类型 ,1:限时特买
-        $aid = $request->input('aid',0);
+        if(session('home_login')){
+            $uid = session('home_userinfo')->id;
 
-        $uid = session('home_userinfo')->id;
+            $result = in_array($gid, self::GetGoodsListByUid($uid));
+
+            //记录用户浏览记录
+            self:: addRecord($gid,$uid);    
+
+            //获取购物车
+            $cars = self::getCarCount();
+
+        }else{
+            $result = null;
+            $cars = 0;
+        }
+        
 
 
         //获取当请求id的商品数据
@@ -42,21 +52,12 @@ class DetailController extends Controller
         //商品图集
         $goods_photo = self::getDescPhotoByid($gid);
 
-        $result = in_array($gid, self::GetGoodsListByUid($uid));
-
         //点击量+1
         self::addGoodsBrows($gid);
 
-        //记录用户浏览记录
-        self:: addRecord($gid,$uid);    
-
-        //获取购物车
-        $cars = self::getCarCount();
-
 
     	//返回详情页视图  
-    	return view('home.detail.index',['aid'=>$aid,
-                                         'id'=>$gid,  
+    	return view('home.detail.index',['id'=>$gid,  
                                          'goods_attr'=>$goods_attr,
                                          'like_goods_data'=>$like_goods_data,
                                          'goods_photo'=>$goods_photo,
@@ -132,6 +133,7 @@ class DetailController extends Controller
         return $attr_list;
     }
 
+
     /**
      * 添加收藏
      * @param $id 商品id
@@ -139,35 +141,43 @@ class DetailController extends Controller
      */
     public static function addColl(Request $request)
     {
-        //获取商品id
-        $gid = $request->input('id',0);
-        // $gid = 100;
-        $uid = 10;
-        $data = DB::table('goods_colls')->where('uid',$uid)->get();
-        $coll_list = [];
+        if(session('home_login')){
+            //获取商品id
+            $gid = $request->input('id',0);
+            // $gid = 100;
+            $uid = session('home_userinfo')->id;
 
-        foreach ($data as $key => $value) {
-            $coll_list[] = $value->gid;
-        }
+            $data = DB::table('goods_colls')->where('uid',$uid)->get();
 
-        //查询是商品id 否存在数据中
-        $status = in_array($gid, $coll_list);
-        if($status){
-           echo json_encode(['msg'=>'alreadly']);
-            exit;
-        }
+            $coll_list = [];
 
-        if(!$status){
-            //压入数据
-            $res = DB::table('goods_colls')->insert(['uid'=>$uid,'gid'=>$gid]);
-            if($res){
-                echo json_encode(['msg'=>'success']);
+            foreach ($data as $key => $value) {
+                $coll_list[] = $value->gid;
+            }
+
+            //查询是商品id 否存在数据中
+            $status = in_array($gid, $coll_list);
+
+            if($status){
+               echo json_encode(['msg'=>'alreadly']);
                 exit;
             }
 
+            if(!$status){
+                //压入数据
+                $res = DB::table('goods_colls')->insert(['uid'=>$uid,'gid'=>$gid]);
+                if($res){
+                    echo json_encode(['msg'=>'success']);
+                    exit;
+                }
+
+            }else{
+                 echo json_encode(['msg'=>'error']);
+            } 
         }else{
-             echo json_encode(['msg'=>'error']);
+             echo json_encode(['msg'=>'login']);
         }
+       
     }
 
 
@@ -179,59 +189,63 @@ class DetailController extends Controller
      */
     public static function addCar(Request $request)
     {
-        //获取商品id
-        $gid = $request->input('id',0);
-        // //加入购物车数量
-        $num = $request->input('num',0);
+        if(session('home_login')){
+            //获取商品id
+            $gid = $request->input('id',0);
+            // //加入购物车数量
+            $num = $request->input('num',0);
 
-        //当前用户id
-        $uid = session('home_userinfo')->id;
+            //当前用户id
+            $uid = session('home_userinfo')->id;
 
-        //获取当前用户的购车数据
-        $data =  DB::table('car')->where('uid',$uid)->get();
+            //获取当前用户的购车数据
+            $data =  DB::table('car')->where('uid',$uid)->get();
 
-        //定义数组接收,收藏商品id
-        //format id=>gid
-        $car_list = [];
-       
-        //定义数组接收,收藏商品id=>数量
-        //format gid=>num
-        $car_num = [];
+            //定义数组接收,收藏商品id
+            //format id=>gid
+            $car_list = [];
+           
+            //定义数组接收,收藏商品id=>数量
+            //format gid=>num
+            $car_num = [];
 
 
-        //遍历数组,获取该用户的购物车中的商品id
-        if(isset($data)){
-            foreach ($data as $key => $value) {
-                $car_list[$value->id] = $value->gid;
-                $car_num[$value->gid] = $value->num;
+            //遍历数组,获取该用户的购物车中的商品id
+            if(isset($data)){
+                foreach ($data as $key => $value) {
+                    $car_list[$value->id] = $value->gid;
+                    $car_num[$value->gid] = $value->num;
+                }
             }
-        }
 
-       //检测当前要加入购物车的商品id,是否存已经存在
-       if(in_array($gid, $car_list)){
+           //检测当前要加入购物车的商品id,是否存已经存在
+           if(in_array($gid, $car_list)){
 
-            //如果存在,则
-            $num = $car_num[$gid] + $num;
-            
-            //把数据压入
-            $res = DB::table('car')
-                ->where('uid',$uid)
-                ->where('gid',$gid)
-                ->update(['num' => $num]);
+                //如果存在,则
+                $num = $car_num[$gid] + $num;
+                
+                //把数据压入
+                $res = DB::table('car')
+                    ->where('uid',$uid)
+                    ->where('gid',$gid)
+                    ->update(['num' => $num]);
 
-       }else{
-             //如何不存在,
-             //把数据压入
-            $res = DB::table('car')->insert(['uid'=>$uid,'gid'=>$gid,'num'=>$num]);
-       }
+           }else{
+                 //如何不存在,
+                 //把数据压入
+                $res = DB::table('car')->insert(['uid'=>$uid,'gid'=>$gid,'num'=>$num]);
+           }
 
-       //返回提示结果
-        if($res){
-            echo json_encode(['msg'=>'success']);
-            exit;
+           //返回提示结果
+            if($res){
+                echo json_encode(['msg'=>'success']);
+                exit;
+            }else{
+                 echo json_encode(['msg'=>'error']);
+                 exit;
+            }
         }else{
-             echo json_encode(['msg'=>'error']);
-             exit;
+             echo json_encode(['msg'=>'login']);
         }
     }
 
@@ -360,7 +374,8 @@ class DetailController extends Controller
      */
     public static function publish(Request $request)
     {
-        $uid = 14;
+        $uid = session('home_login');
+     
         //商品id
         $gid = $request->input('id',0);
 

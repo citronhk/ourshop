@@ -101,7 +101,6 @@
                 <div class="d_care"><a  onclick="addColl({{$goods_attr['id']}})">关注商品</a></div>
             </div>
             <div class="des_join">
-                    @if($aid == 0)
                         <div class="j_nums">
                             <input type="hidden" name="aid" value="{{$id}}">
                             <input type="hidden" name="gid" value="{{$id}}">
@@ -114,22 +113,6 @@
                         <span class="fl">
                                 <button onclick="AddCar({{ $goods_attr['id']}});" style="width:180px; height:45px;padding:0;border:0;"><img src="/home/images/j_car.png" /></button>
                         </span>
-                    @else
-                        <form action="home/car/seckills" method="get">
-                            <div class="j_nums">
-                                    <input type="hidden" name="aid" value="{{$id}}">
-                                    <input type="hidden" name="gid" value="{{$id}}">
-                                    <input type="text" value="1" id="num" name="num" class="n_ipt" />
-
-                                    <input type="button" value="" onclick="addUpdate(jq(this));"  class="n_btn_1" />
-                                    <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />  
-                            </div>
-                            <!-- onclick="ShowDiv_1('MyDiv1','fade1') -->
-                            <span class="fl">
-                                    <button type="submit"  style="width:180px; height:45px;padding:0;border:0; background-color:#f54e04; font-size:18px;color:#fff;">立即抢购</button>
-                            </span>
-                        </form>
-                    @endif
             </div>   
 
             <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>

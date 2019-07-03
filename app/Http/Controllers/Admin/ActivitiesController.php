@@ -137,7 +137,7 @@ class ActivitiesController extends Controller
         $data_act->aid = $request->aid;
         $data_act->discount = $request->discount;
         $data_act->count = $request->count;
-
+       
         
         // dd($request->startTime);
         //压入数据表 返回受影响行数

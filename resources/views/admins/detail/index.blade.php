@@ -61,7 +61,7 @@
 				</tbody>
 			</table>
 			<div id="page_page">
-			
+			{{ $detail_datas->links() }}
             </div>
 		</div>
 	</div>

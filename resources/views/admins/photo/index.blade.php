@@ -47,12 +47,10 @@
 							<a href="/admin/photo/del/{{ $v->id }}" class="btn btn-danger">删除</a>
 						</td>
 					</tr>
+					
 				@endforeach
 				</tbody>
 			</table>
-			<div id="page_page">
-			
-            </div>
 		</div>
 	</div>
 			<!-- END BASIC TABLE -->

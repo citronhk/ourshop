@@ -208,25 +208,25 @@ class IndexController extends Controller
      *  @param $uid 用户id
      *  @return 商品推荐商品信息
      */
-    public static function getGoodsByRecord($uid)
+    public static function getGoodsByRecord()
     {
-        //获取用户浏览数据
-        $record_list = DetailController::getRecordsByUid($uid);
+        $count = 0;
+        if(session('home_login')){
+            $uid = session('home_userinfo')->id;
+            //获取用户浏览数据
+            $record_list = DetailController::getRecordsByUid($uid);
 
-        //通过数组当前用户浏览记录
-        $count = count($record_list);
-
+            //通过数组当前用户浏览记录
+            $count = count($record_list);
+        }
+        
         //如何浏览数据>5,则根据浏览记录推荐
         if($count>5){
-            $data = DB::table('goods')->whereIn('id',$record_list)->get();
+           return DB::table('goods')->whereIn('id',$record_list)->get();
         }else{
             //如何浏览数据<5,自动推荐 
-            $data = DB::table('goods')->orderBy('clickNum', 'desc')->take(20);
+            return  DB::table('goods')->orderBy('clickNum','desc')->take(20)->get();
         }
-
-        //return 
-        return $data;
-        
     }
 
 

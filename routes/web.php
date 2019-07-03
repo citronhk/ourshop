@@ -383,6 +383,10 @@ Route::post('admin/adsact/upUrl','Admin\AdsactController@upUrl');
 Route::get('admin/adsact/url','Admin\AdsactController@url');
 Route::resource('admin/adsact','Admin\AdsactController');
 
+//新闻路由
+Route::get('admin/news/status/{id}', 'Admin\NewsController@status');
+Route::resource('admin/news','Admin\NewsController');
+
 	 
 	//商品路由 
 

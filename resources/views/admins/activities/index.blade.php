@@ -47,7 +47,7 @@
 						<td>{{ date('Y-m-d H:i:s',$v->act_act->startTime) }}</td>
 						<td>{{ date('Y-m-d H:i:s',$v->act_act->endTime) }}</td>
 						<td>
-						    <a href="/admin/activities/{{$v->id}}/edit"  class="btn btn-info">修改</a>
+						    <!-- <a href="/admin/activities/{{$v->id}}/edit"  class="btn btn-info">修改</a> -->
 							<form action="/admin/activities/{{$v->id}}" method="post" style="display:inline-block;">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}

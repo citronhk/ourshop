@@ -19,11 +19,7 @@ class PhotoController extends Controller
     public function index(Request $request)
     {
         $gid = $request->input('gid','');
-        if($gid){
-            $photo_data = Photo::where('gid',$gid)->get();
-        }else{
-            $photo_data = Photo::get();
-        }
+        $photo_data = Photo::where('gid',$gid)->get();
         $gdata = Goods::find($gid);
         return view('admins.photo.index',['photo_data'=>$photo_data,'gid'=>$gid,'gdata'=>$gdata]);
     }
@@ -115,7 +111,7 @@ class PhotoController extends Controller
         $updated_at = date('Y-m-d H:i:s');
         $res = $datas->save();
         if($res){
-            return redirect('/admin/photo?id='.$datas->gid)->with('success','修改成功');
+            return redirect('/admin/photo?gid='.$datas->gid)->with('success','修改成功');
         }else{
             return back('修改失败');
         }
@@ -136,11 +132,10 @@ class PhotoController extends Controller
     public function del($id)
     {
         $data = Photo::find($id);
-        $gid = Goods::select('id')->find($data->gid);
-        
+        $gid = $data->gid;
         if(Photo::destroy($id)){
             Storage::delete($data->profile);
-            return redirect('/admin/photo?gid='.$gid->id)->with('success','删除成功');
+            return redirect('/admin/photo?gid='.$gid)->with('success','删除成功');
         }else{
             return back()->with('error','删除成功');
         }

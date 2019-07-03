@@ -22,5 +22,12 @@ class Goods extends Model
     	return $this->hasOne('App\Models\Photo','gid');
     }
 
+    public function g_detail()
+    {
+    	return $this->hasOne('App\Models\Detail','gid');
+    }
+
+
+
    
 }
