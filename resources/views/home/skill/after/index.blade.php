@@ -26,9 +26,10 @@
     <script type="text/javascript" src="/home/js/p_tab.js"></script>
     
     <script type="text/javascript" src="/home/js/shade.js"></script>
-    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
+   
+    
     <link type="text/css" rel="stylesheet" href="/home/css/skill.css" />
-
+    <link type="text/css" rel="stylesheet" href="/home/css/style.css" />
 @endsection
 
 <!-- 显示商品分类列表 -->
@@ -94,9 +95,10 @@
                     </div>
                     <div class="ch_bg">
                         <span class="ch_txt">￥<font>{{$v->price*$v->discount }}</font></span>
-                        <a href="/skill/buy?aid={{$aid}}&id={{$v->id}}" class="ch_a on">抢购</a>
+                        <a class="ch_a after">查看</a>
                     </div>
-                    <div class="times on">活动进行中</div>
+                    <div class="times after">活动结束</div>
+                        
                 </li>
             @endforeach
             </ul>

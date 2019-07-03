@@ -68,85 +68,28 @@
                         <a href="#"><img src="/home/images/sh_5.gif" /></a>
                     </div>
                 </div>
-                <div class="d_care"><a  onclick="addColl({{$goods_attr['id']}})">关注商品</a></div>
+                <div class="d_care"><a  onclick="addColl({{$goods_attr['id']}})">收藏商品</a></div>
             </div>
-            <div class="des_join"> 
-                    <input type="hidden" id="aid" name="aid" value="{{$id}}">
-                    <input type="hidden" id="gid" name="gid" value="{{$id}}">
-                    <!-- <div class="j_nums">
-                         
-                            <input type="text" id="num" name="num" value="1"  class="n_ipt" />
+            <form action="/home/car/seckills" method="get">
+                <div class="des_join"> 
+                        {{csrf_field()}}
+                        <input type="hidden" id="aid" name="aid" value="{{$aid}}">
+                        <input type="hidden" id="gid" name="gid" value="{{$goods_attr['id']}}">
+                        <div class="j_nums">
+                             
+                                <input type="text" id="num" name="num" value="1"  class="n_ipt" />
 
-                            <input type="button" value="" onclick="addUpdate(jq(this));"  class="n_btn_1" />
-                            <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />  
-                    </div> -->
-                    <span class="fl">
-                            <button type="button" onclick="buy()"  style="width:180px; height:45px;padding:0;border:0; background-color:#f54e04; font-size:18px;color:#fff;">立即抢购</button>
-                    </span>
-            </div>   
+                                <input type="button" value="" onclick="addUpdate(jq(this));"  class="n_btn_1" />
+                                <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />  
+                        </div>
+                        <span class="fl">
+                                <button type="submit"  style="width:180px; height:45px;padding:0;border:0; background-color:#f54e04; font-size:18px;color:#fff;">立即抢购</button>
+                        </span>
+                </div>   
+            </form>
 
-            <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-    
-            <script type="text/javascript">
-                function buy()
-                {   
-                    let aid =  $('#aid').val();
-                    let gid =  $('#gid').val();
-                    // let num =  $('#num').val();
-
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $.post('/skill/sub',{aid,gid},function(msg){
-                        if(msg.msg=='success'){
-                            alert(msg.info);
-                        }else{
-                            alert(msg.info);
-                        }
-                    },'json');
-                }
-            </script>
-
-            <script type="text/javascript">
-                function AddCar(id)
-                {
-                    // action="/home/goods/addCar"
-
-                    // 获取当前选购商品id
-                    // let id = $("#gid").val()
-                    //获取当前选购商品数量
-                    let num = $("#num").val()
-
-                    $.get('/home/goods/addCar',{id,num},function(msg){
-                        if(msg.msg == 'success'){
-                           
-                            ShowDiv_1('MyDiv1','fade1');
-                          }else{
-                            
-                          }
-                    },'json');
-                }
-
-                function addColl(id)
-                {
-                    $.get('/home/goods/addColl',{id},function(msg){
-                        if(msg.msg == 'success'){
-                            ShowDiv('MyDiv','fade');
-                          }else if(msg.msg == 'alreadly'){
-                             $("#tips").html('已经加入收藏夹');
-                             ShowDiv('MyDiv','fade');
-                          }else{
-
-                          }
-                    },'json');
-                }
-            </script>
         </div>    
         
-    
      <!--Begin 弹出层-收藏成功 Begin-->
     <div id="fade" class="black_overlay"></div>
     <div id="MyDiv" class="white_content">             
@@ -454,6 +397,8 @@
         </div>
     </div>    
     <!--End 弹出层-收藏成功 End-->
+            
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <script src="/home/js/ShopShow.js"></script>
 @endsection
 

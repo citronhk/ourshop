@@ -124,7 +124,7 @@
 </div>
 
 <div class="top">
-    <div class="logo"><a href="Index.html"><img src="/home/images/logo.png" /></a></div>
+    <div class="logo"><a href="/"><img src="/home/images/logo.png" /></a></div>
     <div class="search">
 
         <!-- 全局搜索 -->
@@ -209,7 +209,7 @@
                                         </a>
                                     </div>
                                     <div class="price">
-                                        <font>￥<span>{{$v->price}}</span></font> &nbsp; 26R
+                                        <font>￥<span>{{$v->price}}</span></font> &nbsp;
                                     </div>
                                 </div>
                             </li>

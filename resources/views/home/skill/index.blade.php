@@ -73,11 +73,11 @@
 
             <ul class="p_sell">
             @foreach($goods_datas as $k=>$v)
-            	<li>
-                	<div class="img"><img src="/uploads/{{$v->pic}}" width="160" height="140"></div>
+                <li>
+                    <div class="img"><img src="/uploads/{{$v->pic}}" width="160" height="140"></div>
                     <div class="name">{{$v->gname}}</div>
                     <div class="price">
-                    	<table border="0" style="width:100%; color:#888888;" cellspacing="0" cellpadding="0">
+                        <table border="0" style="width:100%; color:#888888;" cellspacing="0" cellpadding="0">
                           <tbody>
                           <tr style="font-family:'宋体';">
                             <td width="33%">市场价 </td>
@@ -105,15 +105,15 @@
                     </div>
                 </li>
                 
-			@endforeach
+            @endforeach
             </ul>
             <!-- 商品特卖 结束 -->
         </div>        
-   		<!--End 特卖 End-->
+        <!--End 特卖 End-->
         
         <div class="s_right">
-        	<div class="sell_ban">
-            	<div id="imgPlays">
+            <div class="sell_ban">
+                <div id="imgPlays">
                     <ul class="imgs" id="actors" style="width: 900px; margin-left: 0px;">
                         <li><a href="javascript:void(0)"><img src="/home/images/tm_ban.jpg" width="300" height="352"></a></li>
                         <li><a href="javascript:void(0)"><img src="/home/images/tm_ban.jpg" width="300" height="352"></a></li>
@@ -124,62 +124,62 @@
                 </div>   
             </div>
             <div class="sell_hot">
-            	<div class="s_hot_t">
-                	<span class="fl">热销品牌</span>
+                <div class="s_hot_t">
+                    <span class="fl">热销品牌</span>
                     <span class="h_more fr"><a href="javascript:void(0)">更多</a></span>
                 </div>
                 <ul>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_1.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_2.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_3.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_4.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_5.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_6.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_1.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_2.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_3.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_4.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_5.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_6.jpg" width="160" height="59"></a></li>
                     <li><a href="javascript:void(0)"><img src="/home/images/hb_7.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_8.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_9.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_10.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_11.jpg" width="160" height="59"></a></li>
-                	<li><a href="javascript:void(0)"><img src="/home/images/hb_12.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_8.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_9.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_10.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_11.jpg" width="160" height="59"></a></li>
+                    <li><a href="javascript:void(0)"><img src="/home/images/hb_12.jpg" width="160" height="59"></a></li>
                 </ul>
             </div>
             <div class="sell_tel">
-            	<table border="0" style="width:280px; margin:15px auto;" cellspacing="0" cellpadding="0">
+                <table border="0" style="width:280px; margin:15px auto;" cellspacing="0" cellpadding="0">
                   <tbody><tr valign="top">
                     <td width="170"><img src="/home/images/tm_1.png"></td>
                     <td>
-                    	客服在线时间 <br>
+                        客服在线时间 <br>
                         每天09:00 - 18:00
                     </td>
                   </tr>
                   <tr valign="top">
                     <td colspan="2" style="padding-left:58px; padding-top:10px;">
-                    	<span style="color:#ff4e00; font-size:20px;">400-123-4567</span><br>
+                        <span style="color:#ff4e00; font-size:20px;">400-123-4567</span><br>
                         客服热线（免费长途）
                     </td>
                   </tr>
                 </tbody></table>
             </div>
             <div class="sell_tel">
-            	<table border="0" style="width:280px; margin:15px auto;" cellspacing="0" cellpadding="0">
+                <table border="0" style="width:280px; margin:15px auto;" cellspacing="0" cellpadding="0">
                   <tbody><tr valign="top">
                     <td width="170"><img src="/home/images/tm_2.png"></td>
                     <td>
-                    	享受VIP专属特权 
+                        享受VIP专属特权 
                     </td>
                   </tr>
-            	</tbody></table>
+                </tbody></table>
             </div>
             <div class="sell_tel">
-            	<table border="0" style="width:280px; margin:15px auto;" cellspacing="0" cellpadding="0">
+                <table border="0" style="width:280px; margin:15px auto;" cellspacing="0" cellpadding="0">
                   <tbody><tr valign="top">
                     <td width="170"><img src="/home/images/tm_3.png"></td>
                     <td>
-                    	客服在线时间<br>
+                        客服在线时间<br>
                         每天09:00 - 18:00
                     </td>
                   </tr>
-            	</tbody></table>
+                </tbody></table>
             </div>
         </div>
     </div>    

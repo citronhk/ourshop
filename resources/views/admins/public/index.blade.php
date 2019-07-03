@@ -180,7 +180,6 @@
 								<ul class="nav">
 									<li><a href="/admin/goods" class="">商品列表</a></li>
 									<li><a href="/admin/goods/create" class="">商品添加</a></li>
-									<li><a href="/admin/detail" class="">商品详情</a></li>
 								  </ul>
 							</div>
 						</li>

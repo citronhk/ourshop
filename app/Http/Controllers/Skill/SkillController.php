@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Skill;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Home\DeatilController;
+use App\Http\Controllers\Home\DetailController;
 use App\Models\Goods;
 use App\Models\Activities;
 use App\Models\Act_goods;
@@ -28,8 +28,18 @@ class SkillController extends Controller
 
         //获取近期每一一个要执行的任务
         $aid = self::getCurrentTask()->id;
- 
-    	return view('home.skill.sellIndex',['aid'=>$aid,'goods_datas'=>$goods_datas]);
+
+        //获取购物车
+        $cars = DetailController::getCarCount();
+
+        
+        //显示倒计时页面 -> 活动进行 ->结束
+    	return view('home.skill.now.index',[
+                                            'aid'=>$aid,
+                                            'goods_datas'=>$goods_datas,                 
+                                             //显示购物车
+                                            'cars'=>$cars
+                                            ]);
     }
 
     public function pre()
@@ -45,7 +55,15 @@ class SkillController extends Controller
         //获取近期每一一个要执行的任务
         $aid = self::getCurrentTask()->id;
 
-    	return view('home.skill.index',['aid'=>$aid,'goods_datas'=>$goods_datas]);
+        //获取购物车
+        $cars = DetailController::getCarCount();
+
+    	return view('home.skill.before.index',[
+                                            'aid'=>$aid,
+                                            'goods_datas'=>$goods_datas,                 
+                                             //显示购物车
+                                            'cars'=>$cars
+                                            ]);
     }
 
     public function end()
@@ -61,7 +79,15 @@ class SkillController extends Controller
         //获取近期每一一个要执行的任务
         $aid = self::getCurrentTask()->id;
 
-    	return view('home.skill.aftIndex',['aid'=>$aid,'goods_datas'=>$goods_datas]);
+        //获取购物车
+        $cars = DetailController::getCarCount();
+
+    	return view('home.skill.after.index',[
+                                            'aid'=>$aid,
+                                            'goods_datas'=>$goods_datas,                 
+                                             //显示购物车
+                                            'cars'=>$cars
+                                            ]);
     }
 
     //显示抢购商品详情页

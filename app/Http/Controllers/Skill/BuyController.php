@@ -49,18 +49,26 @@ class BuyController extends Controller
 
         //记录用户浏览记录
         DetailController:: addRecord($gid,$uid);
+        
+        //获取购物车
+        $cars = DetailController::getCarCount();
+
+   
 
 
 
 
     	//返回详情页视图  
-    	return view('home.skill.buy',['aid'=>$aid,
+    	return view('home.skill.buy',[   'aid'=>$aid,
                                          'id'=>$gid,  
                                          'goods_attr'=>$goods_attr,
                                          'like_goods_data'=>$like_goods_data,
                                          'goods_photo'=>$goods_photo,
                                          'comment_data'=>$comment_data,
-                                         'result' =>$result
+                                         'result' =>$result,
+
+                                          //显示购物车
+                                          'cars'=>$cars
                                         ]);
     }
 

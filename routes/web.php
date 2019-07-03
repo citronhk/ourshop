@@ -22,11 +22,6 @@ Route::get('home/register','Home\RegisterController@index');
 
 //前台手机注册
 Route::get('home/register/sendPhone','Home\RegisterController@sendPhone');
-// // Route 路由
-// Route::get('/',function() {
-// 	return view('welcome');
-// });
-
 
 //执行手机注册
 Route::post('home/register/store','Home\RegisterController@store');
@@ -90,13 +85,15 @@ Route::group(['middleware'=>'home_login'],function(){
 		//前台查看用户所有评论
 		Route::get('/home/comment/index','Home\CommentController@index');
 		//购物车订单 秒杀订单生成
-		Route::post('/home/car/seckills','Home\CarController@seckills');
+		Route::get('/home/car/seckills','Home\CarController@seckills');
 		//购物车订单 秒杀订单确认
 		Route::get('/home/order/seckills','Home\OrderController@seckills');
 		//收藏页面
 		Route::get('home/colls/index','Home\CollsController@index');
 		//足迹页面
 		Route::get('home/records/index','Home\RecordsController@index');
+
+		
 		                                                                           
 });	
 
@@ -191,7 +188,12 @@ Route::group(['middleware'=>'home_login'],function(){
 //前台主页
 Route::get('/','Home\IndexController@index');
 
+//站点新闻
+Route::get('/news','News\IndexController@index');
 
+Route::get('/news/list','News\ListController@index');
+
+//获取时间
 Route::get('/home/time','Home\IndexController@getTime');
 
 
@@ -349,41 +351,10 @@ Route::group(['middleware'=>['login']],function(){
 	Route::resource('admin/addrs', 'Admin\AddrsController');
     
 
-//志豪路由
+
+
+	//志豪路由
  
-	//商品路由 
-
-Route::get('admin/goods/status/{id}', 'Admin\GoodsController@status');
-Route::resource('admin/goods', 'Admin\GoodsController');
-//商品详情
-Route::get('admin/detail/del/{id}','Admin\DetailController@del');
-Route::resource('admin/detail', 'Admin\DetailController');
-//商品图集
-Route::get('admin/photo/del/{id}','Admin\PhotoController@del');
-Route::resource('admin/photo', 'Admin\PhotoController');
-
-//订单路由
-Route::post('admin/orders/upUser','Admin\OrdersController@upUser');
-Route::get('admin/orders/infoUser','Admin\OrdersController@infoUser');
-Route::resource('admin/orders', 'Admin\OrdersController');
-
-//评价管理路由
-Route::get('admin/comment/status','Admin\CommentController@status');
-Route::resource('admin/comment', 'Admin\CommentController');
-
-//秒杀商品路由
-Route::get('admin/seckills/status/{id}','Admin\SeckillsController@status');
-Route::resource('admin/seckills','Admin\SeckillsController');
-
-//活动商品路由
-Route::get('admin/activities/status/{id}','Admin\ActivitiesController@status');
-Route::resource('admin/activities','Admin\ActivitiesController');
-//活动广告特卖路由
-Route::post('admin/adsact/upUrl','Admin\AdsactController@upUrl');
-Route::get('admin/adsact/url','Admin\AdsactController@url');
-Route::resource('admin/adsact','Admin\AdsactController');
-
-	 
 	//商品路由 
 
 	Route::get('admin/goods/status/{id}', 'Admin\GoodsController@status');
@@ -392,8 +363,8 @@ Route::resource('admin/adsact','Admin\AdsactController');
 	Route::get('admin/detail/del/{id}','Admin\DetailController@del');
 	Route::resource('admin/detail', 'Admin\DetailController');
 	//商品图集
-	Route::get('admin/phtoto/del/{id}','Admin\PhtotoController@del');
-	Route::resource('admin/phtoto', 'Admin\PhtotoController');
+	Route::get('admin/photo/del/{id}','Admin\PhotoController@del');
+	Route::resource('admin/photo', 'Admin\PhotoController');
 
 	//订单路由
 	Route::post('admin/orders/upUser','Admin\OrdersController@upUser');

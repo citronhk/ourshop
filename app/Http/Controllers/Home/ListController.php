@@ -24,6 +24,7 @@ class ListController extends Controller
         if(!empty($request->input('search'))){
             $search = $request->input('search');
             $goods_datas = DB::table('goods')->where('gname','like','%'.$search.'%')->paginate(24);
+            $record_data = DetailController::getRecords(0);
         }
 
         if(!empty($request->input('cid'))){
@@ -31,10 +32,14 @@ class ListController extends Controller
             $goods_datas = self::getGoodsDataByCid($cid); 
             $record_data = DetailController::getRecords($cid);
         }  
+        if(session('home_login')){
+            //获取购物车
+            $cars = DetailController::getCarCount(); 
 
-        //获取购物车
-        $cars = DetailController::getCarCount(); 
-
+        }else{
+            $cars = 0;
+        }
+        
         return view('home.list.index',[ 'cid'=>$cid,
                                         'search'=>$search,
                                         'goods_datas'=>$goods_datas,

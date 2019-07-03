@@ -88,13 +88,12 @@ class CarController extends Controller
 	 */
 	public function seckills(Request $request)
 	{
-		
 		$gid = $request->input('gid');
 		$aid = $request->input('aid');
 
 		$car = new Car;
 		$car->gid = $gid;
-		$car->num = 1;
+		$car->num = $request->input('num');
 		$car->status = 1;
 		$car->uid = session('home_userinfo')->id;
 		$res = $car->save();

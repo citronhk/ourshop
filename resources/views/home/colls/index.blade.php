@@ -12,11 +12,11 @@
                 <td align="center" width="270">操作</td>
             @foreach($temp as $k=>$v)
               <tr>
-                <td style="font-family:'宋体';">
-                	<div class="sm_img"><a href="/home/detail?id={{$v->id}}"><img src="/uploads/{{$v->pic}}" width="48" height="48" /></a></div>{{$v->gname}}
+                <td style="font-family:'宋体'; ">
+                  <div class="sm_img"><a href="/home/detail?id={{$v->id}}"><img src="/uploads/{{$v->pic}}" width="48" height="48" /></a></div><a href="/home/detail?id={{$v->id}}">{{$v->gname}}</a>
                 </td>
                 <td align="center">￥{{$v->price}}</td>
-                <td align="center">&nbsp; &nbsp; <a href="#" style="color:#ff4e00;">加入购物车</a>&nbsp; &nbsp; <a href="#">删除</a></td>
+                <td align="center"><a href="#">删除</a></td>
               </tr>
             @endforeach
             </table>

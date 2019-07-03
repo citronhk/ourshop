@@ -23,7 +23,6 @@
     <script type="text/javascript" src="/home/js/bban.js"></script>
     <script type="text/javascript" src="/home/js/hban.js"></script>
     <script type="text/javascript" src="/home/js/tban.js"></script>
-    
     <script type="text/javascript" src="/home/js/lrscroll_1.js"></script>
 @endsection
 
@@ -64,14 +63,13 @@
 
         <div class="inews">
             <div class="news_t">
-                <span class="fr"><a href="#">更多 ></a></span>新闻资讯
+                <span class="fr"> <a href="/news/list">更多</a></span>新闻资讯
             </div>
+
             <ul>
-                <li><span>[ 特惠 ]</span><a href="#">掬一轮明月 表无尽惦念</a></li>
-                <li><span>[ 公告 ]</span><a href="#">好奇金装成长裤新品上市</a></li>
-                <li><span>[ 特惠 ]</span><a href="#">大牌闪购 · 抢！</a></li>
-                <li><span>[ 公告 ]</span><a href="#">发福利 买车就抢千元油卡</a></li>
-                <li><span>[ 公告 ]</span><a href="#">家电低至五折</a></li>
+                @foreach($news as $k=>$v)
+                <li><span>[ 资讯 ]</span><a href="/news?id={{$v->id}}">{{$v->title}}</a></li>
+                @endforeach
             </ul>
             <div class="charge_t">
                 话费充值<div class="ch_t_icon"></div>
@@ -571,8 +569,9 @@
     </div>  
     <!--End 数码家电 End--> 
 
-
     <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/js/countDown.js"></script>
+    
+    
 </div>
 @endsection

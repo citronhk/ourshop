@@ -27,17 +27,14 @@ class AppServiceProvider extends ServiceProvider
         if(Redis::exists('guess_goods_datas_redis')){
             $guess_goods_datas = json_decode(Redis::get('guess_goods_datas_redis'));
         }else{
-            $guess_goods_datas = IndexController::getGoodsByRecord(10);
+            $guess_goods_datas = IndexController::getGoodsByRecord();
             Redis::setex('guess_goods_datas_redis',600,json_encode($guess_goods_datas));
         }
-        
-        View::share(['cates_data'=>IndexController::getPidCatesData(),
-                    'guess_goods_datas' => IndexController::getGoodsByRecord(10),
-                    ]);
 
+        // dd($guess_goods_datas);
 
         View::share(['cates_data'=>$cates_data,
-                     'guess_goods_datas' => $guess_goods_datas,
+                     'guess_goods_datas' => $guess_goods_datas
                     ]);
     }
 

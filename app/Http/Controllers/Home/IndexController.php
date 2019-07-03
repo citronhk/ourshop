@@ -8,6 +8,7 @@ use App\Http\Controllers\Home\DetailController;
 use DB;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Skill\SkillController;
+use App\Http\Controllers\News\ListController;
 
 class IndexController extends Controller
 {
@@ -22,6 +23,9 @@ class IndexController extends Controller
 
         // 轮播图数据
         $banners_data = self::getBannersData();     
+
+        //站点新闻
+        $news = ListController::support();
 
         // 热门商品
         $hot_sell_goods_data = self::getHotsell();
@@ -99,6 +103,7 @@ class IndexController extends Controller
     	//渲染首页视图
     	return view('home.index.index',[
                     'banners_data'=>$banners_data,
+                    'news'=>$news,
                     'hot_sell_goods_data'=>$hot_sell_goods_data,
 
                     //商品特买
@@ -208,25 +213,25 @@ class IndexController extends Controller
      *  @param $uid 用户id
      *  @return 商品推荐商品信息
      */
-    public static function getGoodsByRecord($uid)
+    public static function getGoodsByRecord()
     {
-        //获取用户浏览数据
-        $record_list = DetailController::getRecordsByUid($uid);
+        $count = 0;
+        if(session('home_login')){
+            $uid = session('home_userinfo')->id;
+            //获取用户浏览数据
+            $record_list = DetailController::getRecordsByUid($uid);
 
-        //通过数组当前用户浏览记录
-        $count = count($record_list);
-
+            //通过数组当前用户浏览记录
+            $count = count($record_list);
+        }
+        
         //如何浏览数据>5,则根据浏览记录推荐
         if($count>5){
-            $data = DB::table('goods')->whereIn('id',$record_list)->get();
+           return DB::table('goods')->whereIn('id',$record_list)->get();
         }else{
             //如何浏览数据<5,自动推荐 
-            $data = DB::table('goods')->orderBy('clickNum', 'desc')->take(20);
+            return  DB::table('goods')->orderBy('clickNum','desc')->take(20)->get();
         }
-
-        //return 
-        return $data;
-        
     }
 
 

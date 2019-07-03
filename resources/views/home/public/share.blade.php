@@ -89,8 +89,6 @@
         <!--End 所在收货地区 End-->
         <span class="fr">
             @if(session('home_login'))
-            <span class="fl">你好,
-            {{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}
             <span class="fl">你好,{{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}
                 &nbsp; 
                 <a href="/home/personal" style="color:#ff4e00;">前往管理中心</a>
@@ -163,12 +161,6 @@
             <div class="car_bg">
                 <!--Begin 购物车未登录 Begin-->
                 <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
-                <!--End 购物车未登录 End-->
-            </div>
-            @else
-            <div class="car_bg">
-                <!--Begin 购物车未登录 Begin-->
-                <div class="un_login">你好,<a href="Login.html" style="color:#ff4e00;">{{session('home_userinfo')->uname ? session('home_userinfo')->uname :(session('home_userinfo')->phone ? session('home_userinfo')->phone : session('home_userinfo')->email)}}</a></div>
                 <!--End 购物车未登录 End-->
             </div>
             @endif
