@@ -48,19 +48,6 @@
             <div id="tsImgS"><a href="/uploads/{{$goods_attr['pic']}}" title="Images" class="MagicZoom" id="MagicZoom">
                 <img src="/uploads/{{$goods_attr['pic']}}" width="390" height="390" /></a>
             </div>
-         <!--    <div id="tsPicContainer">
-                <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
-                <div id="tsImgSCon">
-                    <ul>
-                        <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="/home/images/ps1.jpg" tsImgS="/home/images/ps1.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(1)" rel="MagicZoom"><img src="/home/images/ps2.jpg" tsImgS="/home/images/ps2.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(2)" rel="MagicZoom"><img src="/home/images/ps3.jpg" tsImgS="/home/images/ps3.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(3)" rel="MagicZoom"><img src="/home/images/ps4.jpg" tsImgS="/home/images/ps4.jpg" width="79" height="79" /></li>
-                    </ul>
-                </div>
-                <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
-            </div> -->
-            <!-- <img class="MagicZoomLoading" width="16" height="16" src="/home/images/loading.gif" alt="Loading..." /> -->               
         </div>
         
         <div class="pro_des">
@@ -72,22 +59,6 @@
                 本店价格：<b>￥{{$goods_attr['price']}}</b><br />
                 消费积分：<span>28R</span>
             </div>
-       <!--      <div class="des_choice">
-                <span class="fl">型号选择：</span>
-                <ul>
-                    <li class="checked">30ml<div class="ch_img"></div></li>
-                    <li>50ml<div class="ch_img"></div></li>
-                    <li>100ml<div class="ch_img"></div></li>
-                </ul>
-            </div> -->
-           <!--  <div class="des_choice">
-                <span class="fl">颜色选择：</span>
-                <ul>
-                    <li>红色<div class="ch_img"></div></li>
-                    <li class="checked">白色<div class="ch_img"></div></li>
-                    <li>黑色<div class="ch_img"></div></li>
-                </ul>
-            </div> -->
             <div class="des_share">
                 <div class="d_sh">
                     分享
@@ -102,7 +73,6 @@
                 <div class="d_care"><a  onclick="addColl({{$goods_attr['id']}})">收藏商品</a></div>
             </div>
             <div class="des_join">
-                   
                         <div class="j_nums">
                             <input type="hidden" name="aid" value="{{$id}}">
                             <input type="hidden" name="gid" value="{{$id}}">

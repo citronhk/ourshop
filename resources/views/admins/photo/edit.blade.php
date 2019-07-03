@@ -10,7 +10,7 @@
 	  </div>
 @endif
 
-<h3 class="title1">商品图片修改</h3>
+<h3 class="title1">商品图片修改</h3> 
     <div class="panel">
 		<div class="panel-body">
 		<form action="/admin/photo/{{ $photo_data->id }}" method="post" enctype="multipart/form-data">

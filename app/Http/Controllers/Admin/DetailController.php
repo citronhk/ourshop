@@ -17,7 +17,7 @@ class DetailController extends Controller
     public function index(Request $request)
     {
       
-        $detail_datas = Detail::all();
+        $detail_datas = Detail::paginate(5);
         
         return view('admins.detail.index',['detail_datas'=>$detail_datas]);
         

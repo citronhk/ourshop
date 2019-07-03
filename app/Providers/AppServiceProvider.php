@@ -30,7 +30,6 @@ class AppServiceProvider extends ServiceProvider
             $guess_goods_datas = IndexController::getGoodsByRecord();
             Redis::setex('guess_goods_datas_redis',600,json_encode($guess_goods_datas));
         }
-
         // dd($guess_goods_datas);
 
         View::share(['cates_data'=>$cates_data,

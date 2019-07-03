@@ -92,98 +92,8 @@ Route::group(['middleware'=>'home_login'],function(){
 		Route::get('home/colls/index','Home\CollsController@index');
 		//足迹页面
 		Route::get('home/records/index','Home\RecordsController@index');
-
-		
-		                                                                           
+                                                                       
 });	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //前台主页
 Route::get('/','Home\IndexController@index');
@@ -212,9 +122,6 @@ Route::get('/home/goods/addColl','Home\DetailController@addColl');
 //加入购物车
 Route::get('/home/goods/addCar','Home\DetailController@addCar');
 
-//商品特买
-// Route::get('/home/skill','Skill\SkillController@index');
-
 
 //商品特买
 Route::get('/skill/index','Skill\SkillController@index');
@@ -235,59 +142,8 @@ Route::post('/skill/sub','Skill\BuyController@handle');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //前台 商品信息模板 路由
 Route::get('home/activities/index','Home\ActivitiesController@index');
-
-
-
 
 
 //后台-首页
@@ -353,10 +209,6 @@ Route::group(['middleware'=>['login']],function(){
 
 
 
-	//志豪路由
- 
-	//商品路由 
-
 	Route::get('admin/goods/status/{id}', 'Admin\GoodsController@status');
 	Route::resource('admin/goods', 'Admin\GoodsController');
 	//商品详情
@@ -392,11 +244,3 @@ Route::group(['middleware'=>['login']],function(){
 	Route::get('home/activities/index','Home\ActivitiesController@index');
 
 });
-
-
-
-
-
-
-
-
